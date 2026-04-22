@@ -1,0 +1,685 @@
+TEST PASTE<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hatch n Harvest — Ideas worth growing</title>
+<meta name="description" content="Hatch n Harvest is a bold, playful advertising studio. We hatch big ideas and harvest the results." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF6E5;
+    --yolk: #FFC93C;
+    --tomato: #FF5A3C;
+    --moss: #2E5D3A;
+    --leaf: #6BBF59;
+    --ink: #1A1A1A;
+    --paper: #FFFAF0;
+    --shadow: 0 10px 30px rgba(26,26,26,0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; line-height: 1.05; letter-spacing: -0.02em; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: sticky;
+    top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(255,246,229,0.8);
+    border-bottom: 1px solid rgba(26,26,26,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900; font-size: 22px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-egg {
+    width: 26px; height: 30px;
+    background: var(--yolk);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: inset -4px -6px 0 rgba(0,0,0,0.08);
+    display: inline-block;
+    transform: rotate(-5deg);
+  }
+  .nav-links { display: flex; gap: 32px; font-weight: 500; font-size: 15px; }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--tomato); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream);
+    padding: 10px 20px; border-radius: 999px;
+    font-weight: 600; font-size: 14px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover { background: var(--tomato); transform: translateY(-2px); }
+
+  /* ---- Hero ---- */
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 100px;
+    position: relative;
+  }
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--leaf);
+    color: white;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 24px;
+    transform: rotate(-2deg);
+  }
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 900;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--tomato);
+    position: relative;
+  }
+  .hero h1 em::after {
+    content: '';
+    position: absolute;
+    left: -4%; right: -4%; bottom: 6%;
+    height: 14px;
+    background: var(--yolk);
+    z-index: -1;
+    transform: skew(-3deg);
+    border-radius: 4px;
+  }
+  .hero p {
+    font-size: clamp(18px, 2vw, 22px);
+    max-width: 620px;
+    color: #444;
+    margin-bottom: 36px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 16px 30px; border-radius: 999px;
+    font-weight: 600; font-size: 16px;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--tomato); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    padding: 16px 30px; border-radius: 999px;
+    font-weight: 600; font-size: 16px;
+    border: 2px solid var(--ink);
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--cream); }
+
+  .hero-egg {
+    position: absolute;
+    right: 5%; top: 30%;
+    width: 220px; height: 260px;
+    background: var(--yolk);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: var(--shadow), inset -20px -30px 0 rgba(0,0,0,0.06);
+    animation: float 6s ease-in-out infinite;
+    z-index: -1;
+  }
+  .hero-sprout {
+    position: absolute;
+    right: 10%; top: 18%;
+    font-size: 80px;
+    animation: wiggle 4s ease-in-out infinite;
+    z-index: -1;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(-8deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+  }
+
+  /* ---- Marquee ---- */
+  .marquee {
+    background: var(--ink);
+    color: var(--cream);
+    overflow: hidden;
+    padding: 18px 0;
+    border-top: 4px solid var(--yolk);
+    border-bottom: 4px solid var(--yolk);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    align-items: center;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 20px; }
+  .marquee-track .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--tomato); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---- Sections ---- */
+  section { scroll-margin-top: 80px; }
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 32px;
+  }
+  .section-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--tomato);
+    color: white;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    max-width: 800px;
+  }
+  .section-title em { font-style: italic; color: var(--moss); }
+  .section-sub {
+    font-size: 18px;
+    color: #555;
+    max-width: 620px;
+    margin-bottom: 56px;
+  }
+
+  /* ---- Services ---- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 28px;
+    padding: 36px 28px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .service-card:nth-child(1) { background: var(--cream); }
+  .service-card:nth-child(2) { background: #FFE5D9; }
+  .service-card:nth-child(3) { background: #DCEFD3; }
+  .service-card:nth-child(4) { background: #E5DBFF; }
+  .service-icon {
+    font-size: 44px;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  .service-card h3 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .service-card p {
+    color: #444; font-size: 15px;
+  }
+
+  /* ---- About ---- */
+  .about {
+    background: var(--moss);
+    color: var(--cream);
+    border-radius: 40px;
+    padding: 80px 60px;
+    margin: 0 32px;
+    max-width: 1136px;
+    margin-left: auto; margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .about::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: var(--yolk);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+  .about::after {
+    content: '🌱';
+    position: absolute;
+    bottom: 30px; right: 60px;
+    font-size: 100px;
+    opacity: 0.4;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .about h2 {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .about h2 em { font-style: italic; color: var(--yolk); }
+  .about p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: rgba(255,246,229,0.9);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--yolk);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: rgba(255,246,229,0.8);
+    margin-top: 8px;
+  }
+
+  /* ---- Sizzle Reel / Case Studies ---- */
+  .reel-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+  .reel-tile {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+    aspect-ratio: 4/3;
+    border: 2px solid var(--ink);
+  }
+  .reel-tile:hover { transform: scale(1.02); }
+  .reel-tile:nth-child(1) { grid-column: span 7; }
+  .reel-tile:nth-child(2) { grid-column: span 5; }
+  .reel-tile:nth-child(3) { grid-column: span 4; }
+  .reel-tile:nth-child(4) { grid-column: span 4; }
+  .reel-tile:nth-child(5) { grid-column: span 4; }
+  .reel-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .reel-1 { background: linear-gradient(135deg, #FF5A3C, #FFC93C); }
+  .reel-2 { background: linear-gradient(135deg, #2E5D3A, #6BBF59); }
+  .reel-3 { background: linear-gradient(135deg, #FFC93C, #FFE5D9); }
+  .reel-4 { background: linear-gradient(135deg, #6BBF59, #DCEFD3); }
+  .reel-5 { background: linear-gradient(135deg, #1A1A1A, #FF5A3C); }
+  .reel-meta {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(26,26,26,0.85), transparent);
+    color: var(--cream);
+  }
+  .reel-meta h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .reel-meta span { font-size: 13px; opacity: 0.85; }
+  .play-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(255,255,255,0.9);
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* ---- Contact ---- */
+  .contact {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 100px 32px;
+    border-radius: 40px;
+    margin: 0 32px 80px;
+    max-width: 1136px;
+    margin-left: auto; margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -50px; left: -50px;
+    width: 200px; height: 200px;
+    background: var(--tomato);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+  .contact::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: var(--yolk);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+  .contact h2 {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 900;
+    max-width: 800px; margin: 0 auto 24px;
+    position: relative; z-index: 1;
+  }
+  .contact h2 em { font-style: italic; color: var(--yolk); }
+  .contact p {
+    font-size: 18px;
+    color: rgba(255,246,229,0.85);
+    max-width: 540px; margin: 0 auto 36px;
+    position: relative; z-index: 1;
+  }
+  .contact-form {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .contact-form input {
+    flex: 1; min-width: 220px;
+    padding: 16px 20px;
+    border-radius: 999px;
+    border: none;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 15px;
+  }
+  .contact-form input:focus { outline: 2px solid var(--yolk); }
+  .contact-form button {
+    background: var(--tomato);
+    color: var(--cream);
+    border: none;
+    padding: 16px 30px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .contact-form button:hover { background: var(--yolk); color: var(--ink); transform: translateY(-2px); }
+  .contact-direct {
+    margin-top: 32px;
+    font-size: 14px;
+    color: rgba(255,246,229,0.7);
+    position: relative; z-index: 1;
+  }
+  .contact-direct a { color: var(--yolk); text-decoration: underline; }
+
+  /* ---- Footer ---- */
+  footer {
+    text-align: center;
+    padding: 40px 32px;
+    color: #666;
+    font-size: 14px;
+  }
+  footer span { color: var(--tomato); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 60px 24px 80px; }
+    .hero-egg, .hero-sprout { display: none; }
+    .about { padding: 60px 32px; margin: 0 16px; border-radius: 28px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .reel-tile:nth-child(1),
+    .reel-tile:nth-child(2),
+    .reel-tile:nth-child(3),
+    .reel-tile:nth-child(4),
+    .reel-tile:nth-child(5) { grid-column: span 12; }
+    .contact { padding: 60px 24px; margin: 0 16px 60px; border-radius: 28px; }
+    .section { padding: 60px 24px; }
+  }
+
+  /* ---- Reveal on scroll ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-egg"></span> Hatch n Harvest</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a project</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-sprout">🌱</span>
+  <div class="hero-egg"></div>
+  <span class="eyebrow">✨ Independent ad studio</span>
+  <h1>We <em>hatch</em> bold ideas<br/>and harvest the results.</h1>
+  <p>Hatch n Harvest is a full-service advertising studio for brands that want to skip the boring stuff and grow something people actually care about.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-primary">Start a project →</a>
+    <a href="#work" class="btn-secondary">See our work</a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Brand strategy <span class="dot"></span></span>
+    <span>Campaigns <span class="dot"></span></span>
+    <span>Social <span class="dot"></span></span>
+    <span>Content <span class="dot"></span></span>
+    <span>Performance <span class="dot"></span></span>
+    <span>Creative direction <span class="dot"></span></span>
+    <span>Brand strategy <span class="dot"></span></span>
+    <span>Campaigns <span class="dot"></span></span>
+    <span>Social <span class="dot"></span></span>
+    <span>Content <span class="dot"></span></span>
+    <span>Performance <span class="dot"></span></span>
+    <span>Creative direction <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section reveal" id="services">
+  <span class="section-tag">What we do</span>
+  <h2 class="section-title">Big swings. <em>Sharp execution.</em></h2>
+  <p class="section-sub">From the seed of an idea to a fully-grown campaign — we handle every season of the work.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌱</div>
+      <h3>Brand Strategy</h3>
+      <p>Positioning, voice, and visual systems built to stand out and stand for something.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📣</div>
+      <h3>Campaigns</h3>
+      <p>Big-idea campaigns across TV, digital, OOH, and everything in between.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <h3>Social & Content</h3>
+      <p>Always-on content that earns attention without paying through the nose for it.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📈</div>
+      <h3>Performance</h3>
+      <p>Paid media planning and creative built to convert — and to keep getting better.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="reveal" id="about">
+  <div class="about">
+    <div class="about-grid">
+      <div>
+        <span class="section-tag" style="background: var(--yolk); color: var(--ink);">Why us</span>
+        <h2>Small studio. <em>Loud ideas.</em></h2>
+        <p>We're a tight-knit team of strategists, art directors, copywriters, and producers who got tired of the agency slog. So we built a place where great work moves fast and great people stick around.</p>
+        <p>No bloated decks. No 40-person zoom calls. Just sharp thinking and the craft to back it up.</p>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years of category-leading work</div>
+        </div>
+        <div>
+          <div class="stat-num">48</div>
+          <div class="stat-label">Brands we've helped grow</div>
+        </div>
+        <div>
+          <div class="stat-num">9</div>
+          <div class="stat-label">Awards in the trophy case</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Independent. Always.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / SIZZLE REEL -->
+<section class="section reveal" id="work">
+  <span class="section-tag">Selected work</span>
+  <h2 class="section-title">The <em>sizzle reel.</em></h2>
+  <p class="section-sub">A few campaigns we're proud of. (Hover to feel something.)</p>
+  <div class="reel-grid">
+    <div class="reel-tile">
+      <div class="reel-bg reel-1">🍅</div>
+      <div class="play-badge">▶ 1:24</div>
+      <div class="reel-meta">
+        <h4>Tomato Co. — "Vine Time"</h4>
+        <span>National brand campaign · 2025</span>
+      </div>
+    </div>
+    <div class="reel-tile">
+      <div class="reel-bg reel-2">🌾</div>
+      <div class="play-badge">▶ 0:45</div>
+      <div class="reel-meta">
+        <h4>Fields & Co. — "Made by Mornings"</h4>
+        <span>Brand film · 2024</span>
+      </div>
+    </div>
+    <div class="reel-tile">
+      <div class="reel-bg reel-3">🐣</div>
+      <div class="play-badge">▶ 0:30</div>
+      <div class="reel-meta">
+        <h4>Brood</h4>
+        <span>Launch campaign · 2024</span>
+      </div>
+    </div>
+    <div class="reel-tile">
+      <div class="reel-bg reel-4">🥬</div>
+      <div class="play-badge">▶ 0:60</div>
+      <div class="reel-meta">
+        <h4>Greener Co.</h4>
+        <span>Social-first series · 2025</span>
+      </div>
+    </div>
+    <div class="reel-tile">
+      <div class="reel-bg reel-5">🔥</div>
+      <div class="play-badge">▶ 0:15</div>
+      <div class="reel-meta">
+        <h4>Smolder</h4>
+        <span>Performance creative · 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="reveal" id="contact">
+  <div class="contact">
+    <h2>Let's grow <em>something good.</em></h2>
+    <p>Drop us a line — even if it's just to say hi or share a half-baked idea. We read everything.</p>
+    <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent! 🌱'; this.querySelector('button').disabled = true;">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Get in touch</button>
+    </form>
+    <div class="contact-direct">
+      Or email us directly at <a href="mailto:hello@hatchnharvest.co">hello@hatchnharvest.co</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with <span>♥</span> by Hatch n Harvest · © 2026
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
