@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
@@ -17,23 +17,43 @@
        without touching structure.
        ============================================================ */
     :root {
-      /* Color */
-      --paper: #F7EFDF;
-      --cream: #F3EADA;
-      --cream-deep: #E8DCC4;
-      --forest: #2E4A32;
-      --forest-deep: #1F3322;
-      --marigold: #E8A33D;
-      --clay: #C27456;
-      --ink: #23201C;
-      --stone: #6B6358;
-      --stone-soft: #9A9287;
-      --line: rgba(35, 32, 28, 0.14);
+      /* ----------------------------------------------------------
+         Hatch & Harvest brand v0 — provisional values, eyeballed
+         from the brand identity board. Verify against the brand
+         pack when it lands. Token NAMES kept legacy for lane 1
+         minimum-touch swap; rename in lane 2.
+         Mapping (legacy name → new role):
+           --paper       → cream surface (page bg)
+           --cream       → mid-cream
+           --cream-deep  → darker cream
+           --forest      → orange-700, used for eyebrows/links on light (a11y-safe orange)
+           --forest-deep → charcoal (dark surface, brand pair)
+           --marigold    → brand orange (primary)
+           --clay        → orange-600 (italic/script accent)
+           --ink         → near-black warm text
+           --stone       → warm muted text
+           --stone-soft  → warmer muted
+         ---------------------------------------------------------- */
 
-      /* Type */
+      /* Color */
+      --paper: #F7F4ED;
+      --cream: #ECE7DC;
+      --cream-deep: #D6CFC0;
+      --forest: #8C5212;        /* darkened from #B36A18 to pass AA-normal (4.5:1) on cream */
+      --forest-deep: #1F1D1A;
+      --marigold: #F39C2A;
+      --clay: #B36A18;          /* orange-700 — used for italic em in display headings and logo ampersand on cream; passes WCAG large-text 3:1 (3.82:1). Don't use for body text. */
+      --ink: #1F1D1A;
+      --stone: #5A554B;
+      --stone-soft: #6B6259;     /* darkened from #807A6E to pass AA-normal on cream */
+      --line: rgba(31, 29, 26, 0.14);
+
+      /* Type — Fraunces (chunky serif) for display, Inter for body.
+         Note: divergence from brand identity board which shows geometric sans
+         display. Locked in by design lead pending brand-pack sign-off. */
       --font-display: 'Fraunces', 'Times New Roman', serif;
-      --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-      --font-script: 'Caveat', cursive;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-script: 'Caveat', cursive; /* legacy; lane-2 review */
 
       /* Space & scale */
       --pad: clamp(20px, 4vw, 48px);
@@ -42,11 +62,12 @@
       --radius-md: 14px;
       --radius-lg: 28px;
 
-      /* Paper texture — subtle warm grain via layered gradients */
+      /* Paper texture — subtle warm grain via layered gradients
+         (rgba pinned to new brand orange + charcoal — keep in sync if tokens change) */
       --paper-texture:
-        radial-gradient(circle at 20% 20%, rgba(194, 116, 86, 0.05) 0, transparent 40%),
-        radial-gradient(circle at 80% 60%, rgba(46, 74, 50, 0.04) 0, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(232, 163, 61, 0.05) 0, transparent 40%);
+        radial-gradient(circle at 20% 20%, rgba(179, 106, 24, 0.05) 0, transparent 40%),
+        radial-gradient(circle at 80% 60%, rgba(31, 29, 26, 0.04) 0, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(243, 156, 42, 0.05) 0, transparent 40%);
     }
 
     /* ============================================================
@@ -171,11 +192,13 @@
     }
     .nav-links a:hover { color: var(--forest); }
     .nav-links a:hover::after {
+      /* Functional hover indicator — uses --forest (darker amber) to pass
+         WCAG 1.4.11 (Non-text Contrast 3:1) on cream. --marigold fails 3:1 on cream. */
       content: '';
       position: absolute;
       left: 0; right: 0; bottom: -2px;
       height: 2px;
-      background: var(--marigold);
+      background: var(--forest);
       border-radius: 2px;
     }
     .nav-cta {
@@ -392,9 +415,9 @@
       top: 12%;
       left: 22%;
       background: radial-gradient(circle,
-        rgba(232, 163, 61, 0.85) 0%,
-        rgba(232, 163, 61, 0.55) 35%,
-        rgba(232, 163, 61, 0) 72%);
+        rgba(243, 156, 42, 0.85) 0%,
+        rgba(243, 156, 42, 0.55) 35%,
+        rgba(243, 156, 42, 0) 72%);
     }
     .blob-clay {
       width: 52%;
@@ -402,19 +425,20 @@
       top: 44%;
       left: 8%;
       background: radial-gradient(circle,
-        rgba(194, 116, 86, 0.70) 0%,
-        rgba(194, 116, 86, 0.38) 40%,
-        rgba(194, 116, 86, 0) 75%);
+        rgba(179, 106, 24, 0.70) 0%,
+        rgba(179, 106, 24, 0.38) 40%,
+        rgba(179, 106, 24, 0) 75%);
     }
     .blob-forest {
+      /* legacy name, now charcoal blob — pairs orange with deep dark per brand board */
       width: 48%;
       height: 48%;
       top: 52%;
       left: 52%;
       background: radial-gradient(circle,
-        rgba(46, 74, 50, 0.55) 0%,
-        rgba(46, 74, 50, 0.28) 40%,
-        rgba(46, 74, 50, 0) 75%);
+        rgba(31, 29, 26, 0.55) 0%,
+        rgba(31, 29, 26, 0.28) 40%,
+        rgba(31, 29, 26, 0) 75%);
     }
     @keyframes atmos-enter {
       from { opacity: 0; transform: scale(0.82); }
@@ -496,12 +520,14 @@
       border-top: 1.5px solid var(--ink);
     }
     .belief .num {
+      /* 52px numerals carry semantic ordering — needs WCAG large-text 3:1 on cream.
+         --marigold gives only 1.99:1 on cream; --forest gives ~5.7:1. */
       font-family: var(--font-display);
       font-weight: 900;
       font-variation-settings: "opsz" 144, "SOFT" 100;
       font-size: 52px;
       line-height: 1;
-      color: var(--marigold);
+      color: var(--forest);
       margin-bottom: 12px;
       display: inline-block;
     }
@@ -623,7 +649,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(to top, rgba(20, 30, 22, 0.7) 0%, rgba(20, 30, 22, 0.2) 40%, rgba(20, 30, 22, 0) 70%);
+      background: linear-gradient(to top, rgba(31, 29, 26, 0.7) 0%, rgba(31, 29, 26, 0.2) 40%, rgba(31, 29, 26, 0) 70%);
       color: var(--paper);
       pointer-events: none;
     }
@@ -692,7 +718,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(20, 30, 22, 0.22);
+      background: rgba(31, 29, 26, 0.22);
       pointer-events: none;
       transition: background .3s ease;
     }
@@ -833,7 +859,7 @@
        ============================================================ */
     .studio {
       background:
-        linear-gradient(to bottom, transparent, rgba(232, 163, 61, 0.08)),
+        linear-gradient(to bottom, transparent, rgba(243, 156, 42, 0.08)),
         var(--paper);
     }
     .studio-inner {
