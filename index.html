@@ -18,35 +18,31 @@
        ============================================================ */
     :root {
       /* ----------------------------------------------------------
-         Hatch & Harvest brand v0 — provisional values, eyeballed
-         from the brand identity board. Verify against the brand
-         pack when it lands. Token NAMES kept legacy for lane 1
-         minimum-touch swap; rename in lane 2.
-         Mapping (legacy name → new role):
-           --paper       → cream surface (page bg)
-           --cream       → mid-cream
-           --cream-deep  → darker cream
-           --forest      → orange-700, used for eyebrows/links on light (a11y-safe orange)
-           --forest-deep → charcoal (dark surface, brand pair)
-           --marigold    → brand orange (primary)
-           --clay        → orange-600 (italic/script accent)
-           --ink         → near-black warm text
-           --stone       → warm muted text
-           --stone-soft  → warmer muted
+         Hatch & Harvest — dark mode. Brand orange #ff8900 is the
+         primary action color; warm cream #F2EBDA carries body type.
+         All values WCAG-checked against --paper (#15130F):
+           --ink #F2EBDA      → ~14:1  ✓ AAA
+           --stone #B5AC9B    → ~7:1   ✓ AAA
+           --stone-soft #9A9082 → ~5:1 ✓ AA normal
+           --marigold #ff8900 → ~7.9:1 ✓ AA normal (also passes as text)
+           --forest #ffa53c   → ~9.0:1 ✓ AA normal (hover/interactive)
+           --clay #ffb347     → ~10:1  ✓ AAA (italic em accent)
+         Button text uses --paper (dark) on --marigold (orange):
+           dark on #ff8900   → ~7.9:1 ✓ AA normal
          ---------------------------------------------------------- */
 
       /* Color */
-      --paper: #F7F4ED;
-      --cream: #ECE7DC;
-      --cream-deep: #D6CFC0;
-      --forest: #8C5212;        /* darkened from #B36A18 to pass AA-normal (4.5:1) on cream */
-      --forest-deep: #1F1D1A;
-      --marigold: #ff8900;     /* brand orange — confirmed against brand pack (was eyeballed #F39C2A in v0) */
-      --clay: #B36A18;          /* orange-700 — used for italic em in display headings and logo ampersand on cream; passes WCAG large-text 3:1 (3.82:1). Don't use for body text. */
-      --ink: #1F1D1A;
-      --stone: #5A554B;
-      --stone-soft: #6B6259;     /* darkened from #807A6E to pass AA-normal on cream */
-      --line: rgba(31, 29, 26, 0.14);
+      --paper: #15130F;         /* page bg — deep warm dark */
+      --cream: #1F1C16;         /* mid surface */
+      --cream-deep: #2A2620;    /* elevated surface */
+      --forest: #ffa53c;        /* hover/interactive orange — slightly brighter than --marigold */
+      --forest-deep: #211E18;   /* foil dark — slightly elevated dark for work/contact/footer */
+      --marigold: #ff8900;      /* brand orange — primary buttons, accents */
+      --clay: #ffb347;          /* italic em accent — lighter warm orange */
+      --ink: #F2EBDA;           /* body text — warm cream */
+      --stone: #B5AC9B;         /* muted text */
+      --stone-soft: #9A9082;    /* warmer muted */
+      --line: rgba(242, 235, 218, 0.14);
 
       /* Type — Fraunces (chunky serif) for display, Inter for body.
          Note: divergence from brand identity board which shows geometric sans
@@ -62,12 +58,12 @@
       --radius-md: 14px;
       --radius-lg: 28px;
 
-      /* Paper texture — subtle warm grain via layered gradients
-         (rgba pinned to new brand orange + charcoal — keep in sync if tokens change) */
+      /* Paper texture — subtle warm grain via layered gradients on dark.
+         Lifted to higher alpha so the warmth still reads on dark bg. */
       --paper-texture:
-        radial-gradient(circle at 20% 20%, rgba(179, 106, 24, 0.05) 0, transparent 40%),
-        radial-gradient(circle at 80% 60%, rgba(31, 29, 26, 0.04) 0, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(255, 137, 0, 0.05) 0, transparent 40%);
+        radial-gradient(circle at 20% 20%, rgba(255, 137, 0, 0.06) 0, transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(255, 179, 71, 0.04) 0, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(255, 137, 0, 0.05) 0, transparent 45%);
     }
 
     /* ============================================================
@@ -201,11 +197,11 @@
     }
     .nav-cta {
       padding: 10px 18px;
-      background: var(--forest-deep);
+      background: var(--marigold);
       color: var(--paper);
       border-radius: 999px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       transition: background .2s ease;
     }
     .nav-cta:hover { background: var(--forest); }
@@ -353,8 +349,9 @@
       transition: transform .15s ease, background .2s ease, color .2s ease;
     }
     .btn-primary {
-      background: var(--forest-deep);
+      background: var(--marigold);
       color: var(--paper);
+      font-weight: 600;
     }
     .btn-primary:hover { background: var(--forest); transform: translateY(-1px); }
     .btn-ghost {
@@ -423,20 +420,20 @@
       top: 44%;
       left: 8%;
       background: radial-gradient(circle,
-        rgba(179, 106, 24, 0.70) 0%,
-        rgba(179, 106, 24, 0.38) 40%,
-        rgba(179, 106, 24, 0) 75%);
+        rgba(255, 179, 71, 0.55) 0%,
+        rgba(255, 179, 71, 0.28) 40%,
+        rgba(255, 179, 71, 0) 75%);
     }
     .blob-forest {
-      /* legacy name, now charcoal blob — pairs orange with deep dark per brand board */
+      /* legacy name; on dark mode this is a deep amber for warmth */
       width: 48%;
       height: 48%;
       top: 52%;
       left: 52%;
       background: radial-gradient(circle,
-        rgba(31, 29, 26, 0.55) 0%,
-        rgba(31, 29, 26, 0.28) 40%,
-        rgba(31, 29, 26, 0) 75%);
+        rgba(140, 82, 18, 0.65) 0%,
+        rgba(140, 82, 18, 0.30) 40%,
+        rgba(140, 82, 18, 0) 75%);
     }
     @keyframes atmos-enter {
       from { opacity: 0; transform: scale(0.82); }
@@ -578,8 +575,8 @@
     /* ============================================================
        WORK / CASE STUDIES
        ============================================================ */
-    .work { background: var(--forest-deep); color: var(--paper); }
-    .work h2 { color: var(--paper); max-width: 16ch; }
+    .work { background: var(--forest-deep); color: var(--ink); }
+    .work h2 { color: var(--ink); max-width: 16ch; }
     .work .eyebrow { color: var(--marigold); }
     .work .eyebrow::before { background: var(--marigold); }
 
@@ -591,7 +588,7 @@
       margin-bottom: clamp(50px, 6vw, 90px);
     }
     .work-head p {
-      color: color-mix(in srgb, var(--paper) 70%, transparent);
+      color: color-mix(in srgb, var(--ink) 75%, transparent);
       max-width: 48ch;
       font-size: clamp(16px, 1.3vw, 18px);
       margin: 0;
@@ -608,7 +605,7 @@
     .case {
       position: relative;
       display: block;
-      color: var(--paper);
+      color: var(--ink);
       overflow: hidden;
       border-radius: var(--radius-md);
       transition: transform .4s ease;
@@ -640,7 +637,7 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--paper) 65%, transparent);
+      color: color-mix(in srgb, var(--ink) 70%, transparent);
     }
     .case-label .year { color: var(--marigold); }
     .case-name {
@@ -650,10 +647,10 @@
       font-size: clamp(26px, 2.5vw, 36px);
       letter-spacing: -0.02em;
       line-height: 1;
-      color: var(--paper);
+      color: var(--ink);
     }
     .case-one-liner {
-      color: color-mix(in srgb, var(--paper) 75%, transparent);
+      color: color-mix(in srgb, var(--ink) 80%, transparent);
       font-size: 15px;
       max-width: 42ch;
       margin: 4px 0 0;
@@ -675,8 +672,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(to top, rgba(31, 29, 26, 0.7) 0%, rgba(31, 29, 26, 0.2) 40%, rgba(31, 29, 26, 0) 70%);
-      color: var(--paper);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0) 70%);
+      color: var(--ink);
       pointer-events: none;
     }
     .case.featured .featured-top {
@@ -689,11 +686,11 @@
     }
     .case.featured .featured-flag {
       background: var(--marigold);
-      color: var(--forest-deep);
+      color: var(--paper);
       padding: 7px 14px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
@@ -704,14 +701,14 @@
       align-items: center;
       gap: 8px;
       padding: 10px 18px;
-      border: 1.5px solid color-mix(in srgb, var(--paper) 45%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--ink) 50%, transparent);
       border-radius: 999px;
-      color: var(--paper);
+      color: var(--ink);
       font-family: var(--font-body);
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.04em;
-      background: color-mix(in srgb, var(--paper) 10%, transparent);
+      background: color-mix(in srgb, var(--ink) 10%, transparent);
       backdrop-filter: blur(6px);
       opacity: 0;
       transform: translateY(-4px);
@@ -730,7 +727,7 @@
     .case.featured:hover .featured-cta {
       background: var(--marigold);
       border-color: var(--marigold);
-      color: var(--forest-deep);
+      color: var(--paper);
     }
 
     /* Locked (non-featured) cards — visually disabled */
@@ -761,14 +758,14 @@
       gap: 8px;
       margin-top: 16px;
       padding: 8px 14px;
-      border: 1.5px solid color-mix(in srgb, var(--paper) 22%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent);
       border-radius: 999px;
-      color: color-mix(in srgb, var(--paper) 55%, transparent);
+      color: color-mix(in srgb, var(--ink) 60%, transparent);
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      background: color-mix(in srgb, var(--paper) 4%, transparent);
+      background: color-mix(in srgb, var(--ink) 5%, transparent);
       width: fit-content;
     }
     .case-locked-cta svg { flex: none; opacity: 0.8; }
@@ -885,7 +882,7 @@
        ============================================================ */
     .studio {
       background:
-        linear-gradient(to bottom, transparent, rgba(243, 156, 42, 0.08)),
+        linear-gradient(to bottom, transparent, rgba(255, 137, 0, 0.08)),
         var(--paper);
     }
     .studio-inner {
@@ -924,7 +921,7 @@
       font-size: clamp(30px, 3.2vw, 44px);
       line-height: 1;
       letter-spacing: -0.02em;
-      color: var(--forest-deep);
+      color: var(--ink);
       margin-bottom: 10px;
     }
     .stat-label {
@@ -944,15 +941,15 @@
     .studio-image .sticker {
       position: absolute;
       bottom: 20px; left: 20px;
-      background: var(--paper);
+      background: var(--ink);
       padding: 14px 18px;
       border-radius: var(--radius-md);
       font-family: var(--font-script);
       font-size: 22px;
-      color: var(--clay);
+      color: var(--paper);
       line-height: 1.1;
       transform: rotate(-4deg);
-      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
       max-width: 200px;
     }
     @media (max-width: 900px) {
@@ -966,13 +963,13 @@
     .contact {
       text-align: center;
       background: var(--forest-deep);
-      color: var(--paper);
+      color: var(--ink);
       padding-block: clamp(100px, 14vw, 180px);
       position: relative;
       overflow: hidden;
     }
     .contact h2 {
-      color: var(--paper);
+      color: var(--ink);
       max-width: 18ch;
       margin-inline: auto;
     }
@@ -994,7 +991,7 @@
       font-weight: 900;
       font-variation-settings: "opsz" 144, "SOFT" 100;
       font-size: clamp(26px, 3.5vw, 52px);
-      color: var(--paper);
+      color: var(--ink);
       letter-spacing: -0.02em;
       border-bottom: 3px solid var(--marigold);
       padding-bottom: 6px;
@@ -1004,7 +1001,7 @@
     .contact-note {
       margin-top: 40px;
       font-size: 14px;
-      color: color-mix(in srgb, var(--paper) 65%, transparent);
+      color: color-mix(in srgb, var(--ink) 70%, transparent);
       letter-spacing: 0.08em;
     }
     .contact-decor {
@@ -1024,8 +1021,8 @@
     footer {
       padding: 64px 0 50px;
       background: var(--forest-deep);
-      color: color-mix(in srgb, var(--paper) 65%, transparent);
-      border-top: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+      color: color-mix(in srgb, var(--ink) 70%, transparent);
+      border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
     }
     .footer-lockup {
       display: flex;
