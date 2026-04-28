@@ -163,25 +163,17 @@
     .logo {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-variation-settings: "opsz" 48, "SOFT" 100;
-      font-size: 22px;
-      letter-spacing: -0.02em;
-      color: var(--forest-deep);
-    }
-    .logo .ampersand {
-      font-style: italic;
-      font-weight: 600;
-      color: var(--clay);
-      margin: 0 2px;
+      gap: 10px;
     }
     .logo svg { flex: none; color: var(--forest); }
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
+    .logo-icon {
+      height: 32px;
+      width: auto;
+      flex: none;
+    }
+    .logo-wordmark {
+      height: 22px;
+      width: auto;
       flex: none;
     }
 
@@ -1070,8 +1062,8 @@
   <header class="nav">
     <div class="wrap nav-inner">
       <a href="#top" class="logo" aria-label="Hatch n Harvest — home">
-        <img class="logo-mark" src="assets/brand/mnemonic-1.svg" alt="" aria-hidden="true" width="28" height="28" />
-        <span>Hatch <span class="ampersand">&amp;</span> Harvest</span>
+        <img class="logo-icon" src="assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+        <img class="logo-wordmark" src="assets/brand/wordmark.svg" alt="Hatch n Harvest" />
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#work">Work</a>
