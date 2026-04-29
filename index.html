@@ -316,7 +316,7 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: clamp(24px, 4vw, 60px);
-      align-items: end;
+      align-items: start;
       margin-top: clamp(36px, 4vw, 56px);
       max-width: 900px;
     }
@@ -1019,13 +1019,15 @@
     }
     .footer-lockup {
       display: flex;
-      justify-content: center;
       margin-bottom: 40px;
     }
-    .footer-lockup img {
-      width: 110px;
-      height: auto;
+    .footer-lockup a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
+    .footer-lockup .logo-icon { height: 32px; width: auto; flex: none; }
+    .footer-lockup .logo-wordmark { height: 22px; width: auto; flex: none; }
     .footer-inner {
       display: flex;
       justify-content: space-between;
@@ -1386,12 +1388,13 @@
     <div class="wrap">
       <div class="footer-lockup">
         <a href="#top" aria-label="Hatch n Harvest — home">
-          <img src="assets/brand/logo-vertical-white.svg" alt="Hatch n Harvest" />
+          <img class="logo-icon" src="assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+          <img class="logo-wordmark" src="assets/brand/wordmark.svg" alt="Hatch n Harvest" />
         </a>
       </div>
     </div>
     <div class="wrap footer-inner">
-      <div>© 2026 Hatch &amp; Harvest · Brooklyn, NY</div>
+      <div>© 2026 Hatch &amp; Harvest · Taipei, Taiwan</div>
       <nav class="footer-links" aria-label="Footer">
         <a href="mailto:hello@hatchnharvest.studio">Email</a>
         <a href="#">Instagram</a>
