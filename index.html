@@ -18,27 +18,20 @@
        ============================================================ */
     :root {
       /* ----------------------------------------------------------
-         Hatch & Harvest — dark mode. Brand orange #ff8900 is the
+         Hatch & Harvest — dark mode. Brand orange #F97B05 is the
          primary action color; warm cream #F2EBDA carries body type.
-         All values WCAG-checked against --paper (#15130F):
-           --ink #F2EBDA      → ~14:1  ✓ AAA
-           --stone #B5AC9B    → ~7:1   ✓ AAA
-           --stone-soft #9A9082 → ~5:1 ✓ AA normal
-           --marigold #ff8900 → ~7.9:1 ✓ AA normal (also passes as text)
-           --forest #ffa53c   → ~9.0:1 ✓ AA normal (hover/interactive)
-           --clay #ffb347     → ~10:1  ✓ AAA (italic em accent)
-         Button text uses --paper (dark) on --marigold (orange):
-           dark on #ff8900   → ~7.9:1 ✓ AA normal
+         Palette aligned with the Hatch & Harvest design system reference;
+         WCAG ratios re-verify against --paper (#1C1C1C) before publish.
          ---------------------------------------------------------- */
 
       /* Color */
-      --paper: #15130F;         /* page bg — deep warm dark */
-      --cream: #1F1C16;         /* mid surface */
-      --cream-deep: #2A2620;    /* elevated surface */
-      --forest: #ffa53c;        /* hover/interactive orange — slightly brighter than --marigold */
-      --forest-deep: #211E18;   /* foil dark — slightly elevated dark for work/contact/footer */
-      --marigold: #ff8900;      /* brand orange — primary buttons, accents */
-      --clay: #ffb347;          /* italic em accent — lighter warm orange */
+      --paper: #1C1C1C;         /* page bg — neutral near-black */
+      --cream: #2B2722;         /* mid surface — warm step from paper */
+      --cream-deep: #3D342D;    /* elevated surface — warm brown */
+      --forest: #FF6105;        /* hover/interactive orange — deeper red-orange */
+      --forest-deep: #28231E;   /* foil dark — slightly elevated dark for work/contact/footer */
+      --marigold: #F97B05;      /* brand orange — primary buttons, accents */
+      --clay: #FFA03C;          /* italic em accent — lighter warm orange */
       --ink: #F2EBDA;           /* body text — warm cream */
       --stone: #B5AC9B;         /* muted text */
       --stone-soft: #9A9082;    /* warmer muted */
@@ -61,9 +54,9 @@
       /* Paper texture — subtle warm grain via layered gradients on dark.
          Lifted to higher alpha so the warmth still reads on dark bg. */
       --paper-texture:
-        radial-gradient(circle at 20% 20%, rgba(255, 137, 0, 0.06) 0, transparent 45%),
-        radial-gradient(circle at 80% 60%, rgba(255, 179, 71, 0.04) 0, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(255, 137, 0, 0.05) 0, transparent 45%);
+        radial-gradient(circle at 20% 20%, rgba(249, 123, 5, 0.06) 0, transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(255, 160, 60, 0.04) 0, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(249, 123, 5, 0.05) 0, transparent 45%);
     }
 
     /* ============================================================
@@ -410,9 +403,9 @@
       top: 12%;
       left: 22%;
       background: radial-gradient(circle,
-        rgba(255, 137, 0, 0.85) 0%,
-        rgba(255, 137, 0, 0.55) 35%,
-        rgba(255, 137, 0, 0) 72%);
+        rgba(249, 123, 5, 0.85) 0%,
+        rgba(249, 123, 5, 0.55) 35%,
+        rgba(249, 123, 5, 0) 72%);
     }
     .blob-clay {
       width: 52%;
@@ -420,9 +413,9 @@
       top: 44%;
       left: 8%;
       background: radial-gradient(circle,
-        rgba(255, 179, 71, 0.55) 0%,
-        rgba(255, 179, 71, 0.28) 40%,
-        rgba(255, 179, 71, 0) 75%);
+        rgba(255, 160, 60, 0.55) 0%,
+        rgba(255, 160, 60, 0.28) 40%,
+        rgba(255, 160, 60, 0) 75%);
     }
     .blob-forest {
       /* legacy name; on dark mode this is a deep amber for warmth */
@@ -882,7 +875,7 @@
        ============================================================ */
     .studio {
       background:
-        linear-gradient(to bottom, transparent, rgba(255, 137, 0, 0.08)),
+        linear-gradient(to bottom, transparent, rgba(249, 123, 5, 0.08)),
         var(--paper);
     }
     .studio-inner {
@@ -1127,7 +1120,7 @@
 
     <!-- ======================= MANIFESTO ======================= -->
     <section class="manifesto">
-      <img class="section-decor" src="assets/brand/mnemonic-4.svg" alt="" aria-hidden="true" />
+      <img class="section-decor" src="assets/brand/mnemonic-h-1.png" alt="" aria-hidden="true" />
       <div class="wrap">
         <div class="eyebrow">What moves people</div>
         <h2>People don't buy marketing strategies. They buy <em>connection, belonging, meaning.</em></h2>
@@ -1277,7 +1270,7 @@
 
     <!-- ======================= PROCESS ======================= -->
     <section class="process" id="process">
-      <img class="section-decor" src="assets/brand/mnemonic-3.svg" alt="" aria-hidden="true" />
+      <img class="section-decor" src="assets/brand/mnemonic-bean-2.png" alt="" aria-hidden="true" />
       <div class="wrap">
         <div class="process-head">
           <div>
@@ -1381,8 +1374,8 @@
         <a class="contact-email" href="mailto:hello@hatchnharvest.studio">hello@hatchnharvest.studio</a>
         <div class="contact-note">Typical reply time: two working days · We'll tell you honestly if we're not the right fit.</div>
 
-        <img class="contact-decor left" src="assets/brand/mnemonic-2.svg" alt="" aria-hidden="true" />
-        <img class="contact-decor right" src="assets/brand/mnemonic-3.svg" alt="" aria-hidden="true" />
+        <img class="contact-decor left" src="assets/brand/mnemonic-h-2.png" alt="" aria-hidden="true" />
+        <img class="contact-decor right" src="assets/brand/mnemonic-bean-1.png" alt="" aria-hidden="true" />
       </div>
     </section>
 
@@ -1393,7 +1386,7 @@
     <div class="wrap">
       <div class="footer-lockup">
         <a href="#top" aria-label="Hatch n Harvest — home">
-          <img src="assets/brand/logo-vertical-orange.svg" alt="Hatch n Harvest" />
+          <img src="assets/brand/logo-vertical-white.svg" alt="Hatch n Harvest" />
         </a>
       </div>
     </div>
