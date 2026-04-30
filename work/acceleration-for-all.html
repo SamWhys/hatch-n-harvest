@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceleration For All — ViewSonic × Hustle Fund · Hatch n Harvest</title>
+  <meta name="description" content="A campaign, identity, and end-to-end experience for ViewSonic and Hustle Fund's joint accelerator — built to flatten the wall between watching and entering." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — mirror the homepage (dark mode).
+       Inlined here so the page is self-contained until we
+       migrate to a shared stylesheet.
+       ============================================================ */
+    :root {
+      --paper: #1C1C1C;
+      --cream: #2B2722;
+      --cream-deep: #3D342D;
+      --forest: #FF6105;
+      --forest-deep: #28231E;
+      --marigold: #F97B05;
+      --clay: #FFA03C;
+      --ink: #F2EBDA;
+      --stone: #B5AC9B;
+      --stone-soft: #9A9082;
+      --line: rgba(242, 235, 218, 0.14);
+
+      /* Project-specific accents — borrowed from the AfA palette so
+         swatches and accents read true to the campaign without
+         overriding the studio's brand voice. */
+      --afa-coral: #E36256;
+      --afa-purple: #7969C7;
+      --afa-navy: #2D3786;
+      --afa-yellow: #F2C53D;
+      --afa-teal: #2EBBC8;
+
+      --font-display: 'Open Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-script: 'Caveat', cursive;
+
+      --pad: clamp(20px, 4vw, 48px);
+      --maxw: 1240px;
+      --maxw-text: 780px;
+      --radius-sm: 4px;
+      --radius-md: 14px;
+      --radius-lg: 28px;
+
+      --paper-texture:
+        radial-gradient(circle at 20% 20%, rgba(249, 123, 5, 0.05) 0, transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(255, 160, 60, 0.03) 0, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(249, 123, 5, 0.04) 0, transparent 45%);
+    }
+
+    /* ============================================================
+       RESET + BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      background-image: var(--paper-texture);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img, svg { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    ::selection { background: var(--marigold); color: var(--forest-deep); }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 0.96;
+      color: var(--ink);
+      margin: 0 0 0.4em;
+    }
+    h1 { font-size: clamp(48px, 8vw, 112px); }
+    h2 { font-size: clamp(32px, 4.4vw, 60px); }
+    h3 { font-size: clamp(22px, 2.4vw, 32px); line-height: 1.05; }
+    h4 { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.1; }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--forest);
+      display: inline-block;
+    }
+    .script {
+      font-family: var(--font-script);
+      font-weight: 600;
+      color: var(--clay);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+    .wrap-text {
+      max-width: var(--maxw-text);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+
+    /* ============================================================
+       NAV — mirrors homepage
+       ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 20px 0;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon { height: 32px; width: auto; flex: none; }
+    .logo-wordmark { height: 22px; width: auto; flex: none; }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--ink);
+      position: relative;
+      padding-bottom: 3px;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+    .nav-cta {
+      padding: 10px 18px;
+      background: var(--marigold);
+      color: var(--paper);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .2s ease;
+    }
+    .nav-cta:hover { background: var(--forest); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* ============================================================
+       CASE HERO
+       ============================================================ */
+    .case-hero {
+      padding-top: clamp(50px, 7vw, 90px);
+      padding-bottom: clamp(40px, 5vw, 70px);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--stone);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color .2s ease;
+    }
+    .back-link:hover { color: var(--forest); }
+    .case-hero .eyebrow { margin-bottom: 24px; }
+    .case-hero h1 { max-width: 16ch; margin-bottom: 24px; }
+    .case-hero h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .case-hero-kicker {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.45;
+      color: var(--stone);
+      max-width: 56ch;
+      margin: 0 0 clamp(36px, 4vw, 56px);
+    }
+
+    .case-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1.5px solid var(--line);
+    }
+    .meta-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    @media (max-width: 800px) {
+      .case-meta-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    /* ============================================================
+       FULL BLEED HERO IMAGE
+       Aspect-ratio matches the source KV (16:9) so the full grid
+       of founder rows shows without cropping.
+       ============================================================ */
+    .case-bleed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .case-bleed img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ============================================================
+       STORY — the brief / insight / approach
+       ============================================================ */
+    .story { padding: clamp(80px, 10vw, 140px) 0; }
+    .story-block { margin-bottom: clamp(56px, 6vw, 80px); }
+    .story-block:last-child { margin-bottom: 0; }
+    .story-block .eyebrow { margin-bottom: 20px; }
+    .story-block h2 { margin-bottom: 24px; max-width: 18ch; }
+    .story-block p {
+      font-size: clamp(17px, 1.3vw, 19px);
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0 0 1em;
+    }
+    .story-block p:last-child { margin-bottom: 0; }
+
+    /* Pull-quote / insight */
+    .insight {
+      padding: clamp(60px, 8vw, 110px) 0;
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .insight blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 3.6vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 26ch;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .insight blockquote em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .insight .insight-label {
+      display: block;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+
+    /* ============================================================
+       WORK SECTIONS — grouped blocks
+       ============================================================ */
+    .work-intro { padding: clamp(80px, 10vw, 140px) 0 clamp(40px, 5vw, 60px); }
+    .work-intro .eyebrow { margin-bottom: 22px; }
+    .work-intro h2 { max-width: 16ch; margin-bottom: 24px; }
+    .work-intro p {
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    .work-section { padding: clamp(50px, 6vw, 80px) 0; }
+    .work-section + .work-section { border-top: 1px solid var(--line); }
+    .work-section-head {
+      margin-bottom: clamp(32px, 4vw, 48px);
+      max-width: var(--maxw-text);
+    }
+    .work-section-head .eyebrow { margin-bottom: 18px; }
+    .work-section-head h3 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+    .work-section-head p {
+      font-size: clamp(16px, 1.2vw, 18px);
+      color: var(--stone);
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    /* Block — image_full */
+    .block-full {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-full img { width: 100%; height: auto; display: block; }
+    .block-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--stone);
+      letter-spacing: 0.04em;
+    }
+
+    /* Block — image_pair */
+    .block-pair {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .block-pair figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-pair img { width: 100%; height: auto; display: block; }
+    @media (max-width: 700px) { .block-pair { grid-template-columns: 1fr; } }
+
+    /* Block — image_trio (3-up) */
+    .block-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .block-trio figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-trio img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; display: block; }
+    @media (max-width: 800px) { .block-trio { grid-template-columns: 1fr; } }
+
+    /* Block — gallery (variable) */
+    .gallery-five {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(12px, 1.4vw, 20px);
+    }
+    .gallery-five figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      text-align: center;
+    }
+    .gallery-five img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: var(--cream-deep);
+    }
+    .finalist-name {
+      padding: 14px 8px 16px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .finalist-cat {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) { .gallery-five { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px) { .gallery-five { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Block — identity_system (logo + palette + chevrons) */
+    .identity-stage {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: clamp(40px, 6vw, 80px) clamp(24px, 4vw, 60px);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
+    }
+    .identity-stage img { max-width: 100%; }
+    .identity-mark {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .identity-mark img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+    }
+    .identity-mark .mark-caption {
+      font-size: 13px;
+      color: var(--stone);
+      letter-spacing: 0.06em;
+    }
+    .palette-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .swatch {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+    }
+    .swatch-name { display: block; }
+    .swatch-hex {
+      display: block;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+    .palette-label {
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .chevron-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .chev {
+      width: 36px;
+      height: 36px;
+      flex: none;
+    }
+    @media (max-width: 800px) {
+      .identity-stage { grid-template-columns: 1fr; padding: 36px 24px; }
+    }
+
+    /* Block — hero_film (placeholder for YouTube embed) */
+    .film-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--afa-coral) 0%, var(--afa-purple) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .film-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .film-placeholder {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+      color: #fff;
+      padding: 24px;
+    }
+    .film-play {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .film-play svg { width: 32px; height: 32px; margin-left: 4px; }
+    .film-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .film-note {
+      font-size: 12px;
+      opacity: 0.85;
+      max-width: 38ch;
+      line-height: 1.5;
+    }
+
+    /* Block — quote */
+    .block-quote {
+      margin: 0;
+      padding: clamp(36px, 5vw, 64px) 0;
+    }
+    .block-quote blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      max-width: 28ch;
+    }
+    .block-quote blockquote em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .block-quote .quote-attr {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       OUTCOME — metrics row
+       ============================================================ */
+    .outcome {
+      background: var(--forest-deep);
+      padding: clamp(80px, 10vw, 140px) 0;
+    }
+    .outcome .eyebrow { color: var(--marigold); margin-bottom: 22px; }
+    .outcome .eyebrow::before { background: var(--marigold); }
+    .outcome h2 { color: var(--ink); max-width: 18ch; margin-bottom: 24px; }
+    .outcome-lead {
+      font-size: clamp(17px, 1.3vw, 19px);
+      line-height: 1.6;
+      color: color-mix(in srgb, var(--ink) 80%, transparent);
+      max-width: 60ch;
+      margin: 0 0 clamp(48px, 6vw, 72px);
+    }
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(20px, 2.4vw, 32px);
+    }
+    .metric {
+      padding-top: 24px;
+      border-top: 1.5px solid var(--ink);
+    }
+    .metric-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 4.4vw, 60px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--marigold);
+      margin-bottom: 14px;
+    }
+    .metric-label {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) { .metrics-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .metrics-row { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       REFLECTION
+       ============================================================ */
+    .reflection { padding: clamp(80px, 10vw, 140px) 0; }
+    .reflection .eyebrow { margin-bottom: 22px; }
+    .reflection h2 { max-width: 16ch; margin-bottom: 24px; }
+    .reflection p {
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* ============================================================
+       CREDITS
+       ============================================================ */
+    .credits {
+      padding: clamp(60px, 8vw, 100px) 0;
+      border-top: 1px solid var(--line);
+    }
+    .credits .eyebrow { margin-bottom: 30px; }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 60px);
+    }
+    .credits-block h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin: 0 0 16px;
+    }
+    .credits-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .credits-list li {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .credits-list li:last-child { border-bottom: 1px solid var(--line); }
+    .credits-role {
+      color: var(--stone);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+    @media (max-width: 700px) { .credits-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       NEXT PROJECT
+       ============================================================ */
+    .next-project-section {
+      background: var(--forest-deep);
+      padding: clamp(80px, 10vw, 140px) 0;
+      text-align: center;
+    }
+    .next-project {
+      display: inline-block;
+      color: var(--ink);
+      transition: color .2s ease;
+    }
+    .next-project:hover { color: var(--marigold); }
+    .np-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--marigold);
+      margin-bottom: 14px;
+    }
+    .np-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 64px);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .np-note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: color-mix(in srgb, var(--ink) 65%, transparent);
+    }
+
+    /* ============================================================
+       FOOTER — mirrors homepage
+       ============================================================ */
+    footer {
+      padding: 64px 0 50px;
+      background: var(--forest-deep);
+      color: color-mix(in srgb, var(--ink) 70%, transparent);
+      border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    }
+    .footer-lockup {
+      display: flex;
+      margin-bottom: 40px;
+    }
+    .footer-lockup a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+    .footer-links a:hover { color: var(--marigold); }
+  </style>
+</head>
+<body>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="logo" aria-label="Hatch n Harvest — home">
+        <img class="logo-icon" src="../assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+        <img class="logo-wordmark" src="../assets/brand/wordmark.svg" alt="Hatch n Harvest" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#studio">Studio</a>
+      </nav>
+      <a href="../index.html#contact" class="nav-cta">Start a project →</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================= CASE HERO ======================= -->
+    <section class="case-hero">
+      <div class="wrap">
+        <a href="../index.html#work" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M11 19l-7-7 7-7"/>
+          </svg>
+          All work
+        </a>
+        <div class="eyebrow">Campaign · 2021</div>
+        <h1>Acceleration <em>For All.</em></h1>
+        <p class="case-hero-kicker">A partnership campaign rebuilding the on-ramp to entrepreneurship — for everyone the old accelerator playbook left out.</p>
+
+        <div class="case-meta-grid">
+          <div>
+            <div class="meta-label">Client</div>
+            <div class="meta-value">ViewSonic × Hustle Fund</div>
+          </div>
+          <div>
+            <div class="meta-label">Scope</div>
+            <div class="meta-value">Campaign · Identity · Microsite · Film · Social</div>
+          </div>
+          <div>
+            <div class="meta-label">Year</div>
+            <div class="meta-value">2021</div>
+          </div>
+          <div>
+            <div class="meta-label">Reach</div>
+            <div class="meta-value">6 regions, global launch from Silicon Valley</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FULL BLEED HERO IMAGE ======================= -->
+    <div class="case-bleed">
+      <img src="../assets/work/acceleration-for-all/kv-hero.jpg" alt="Acceleration For All key visual — 30 founders' faces around the campaign lockup with arrow chevrons." loading="eager" />
+    </div>
+
+    <!-- ======================= STORY ======================= -->
+    <section class="story">
+      <div class="wrap-text">
+
+        <div class="story-block">
+          <div class="eyebrow">The shift</div>
+          <h2>The future of work showed up early.</h2>
+          <p>Lockdowns rewrote the rules of work overnight. Layoffs collided with the largest wave of new-business formation in a decade — passion projects, side hustles, one-person "tiny businesses" starting from kitchens and spare rooms.</p>
+          <p>The "future of work" wasn't a deck slide anymore. It was happening. And the accelerator playbook — Sand Hill Road, warm intros, six-figure cheques to people who already had them — hadn't caught up.</p>
+        </div>
+
+        <div class="story-block">
+          <div class="eyebrow">The brief</div>
+          <h2>Two partners, one missing on-ramp.</h2>
+          <p>ViewSonic and Hustle Fund — a global hardware brand and an early-stage venture fund — wanted to launch a joint accelerator. Hustle Fund needed reach beyond Silicon Valley. ViewSonic wanted to evolve from business <em>supplier</em> to business <em>partner</em>.</p>
+          <p>Both believed the existing accelerator model was too narrow: too male, too credentialed, too capital-heavy, too geographically concentrated. Our brief was to build the program, the brand, and the experience — and to get founders who'd never see themselves in an accelerator pitch deck to apply anyway.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================= INSIGHT ======================= -->
+    <section class="insight">
+      <div class="wrap-text">
+        <span class="insight-label">The insight</span>
+        <blockquote>
+          The old accelerator was a <em>velvet rope.</em> The new one had to be a <em>starting line.</em>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ======================= APPROACH ======================= -->
+    <section class="story">
+      <div class="wrap-text">
+        <div class="story-block">
+          <div class="eyebrow">The move</div>
+          <h2>Treat it as a brand, not a program.</h2>
+          <p>We named it <em>Acceleration For All</em> and built the whole experience as a single piece of campaign IP — a unifying mark, an unflinchingly inclusive cast, and an end-to-end flow stitched together by one promise: <em>Let's help build the future of work by redefining the future of entrepreneurship together.</em></p>
+          <p>Pre-launch teasers. A microsite with a low-friction submission flow. Two online qualifying rounds. A hybrid award ceremony broadcast from Silicon Valley. And a sustain layer of post-event content designed to recruit next year's cohort. Same brand, every step.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= WORK INTRO ======================= -->
+    <section class="work-intro">
+      <div class="wrap">
+        <div class="eyebrow">The work</div>
+        <h2>One brand, every door.</h2>
+        <p>From the opening hype film to a global social system, every touchpoint was built to enrol new founders into the program — and to flatten the wall between watching and entering.</p>
+      </div>
+    </section>
+
+    <!-- ======================= WORK SECTIONS ======================= -->
+    <div class="wrap">
+
+      <!-- The Manifesto -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">01 · The manifesto</div>
+          <h3>Permission, not pitch.</h3>
+          <p>An opening film and a tagline that gave permission. The message wasn't <em>enter our accelerator</em> — it was <em>follow your pipe dreams. We're here to help.</em></p>
+        </div>
+
+        <!-- HERO_FILM placeholder #1 — Manifesto film
+             To activate, replace the .film-placeholder with a YouTube iframe:
+             <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
+                     title="Acceleration For All — Manifesto film"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                     allowfullscreen></iframe>
+        -->
+        <figure class="block-full" style="background: transparent;">
+          <div class="film-frame" data-yt-id="" aria-label="Manifesto film placeholder — replace with YouTube embed">
+            <div class="film-placeholder">
+              <div class="film-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div class="film-label">Manifesto film · 60s</div>
+              <div class="film-note">YouTube embed will live here. Replace this placeholder block with the YouTube iframe once the link is ready.</div>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="block-quote">
+          <blockquote>"So follow your pipe dreams. <em>We're here to help.</em>"</blockquote>
+          <span class="quote-attr">— Manifesto, opening line</span>
+        </figure>
+      </section>
+
+      <!-- The Identity -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">02 · The identity</div>
+          <h3>A logo that points forward.</h3>
+          <p>Three chevrons for the three stages of the program — <em>gather, reward, celebrate</em> — set against a cast and palette built to read inclusive at any scale, from a 1080×1080 social tile to a 15-foot stage backdrop.</p>
+        </div>
+
+        <div class="identity-stage">
+          <div class="identity-mark">
+            <img src="../assets/work/acceleration-for-all/logo-lockup.jpg" alt="ViewSonic × Hustle Fund — Acceleration For All lockup with three forward chevrons." loading="lazy" />
+            <div class="chevron-row" aria-hidden="true">
+              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-purple)"/></svg>
+              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-teal)"/></svg>
+              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-navy)"/></svg>
+            </div>
+            <span class="mark-caption">The three-chevron mark — gather, reward, celebrate.</span>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <div class="swatch" style="background: var(--afa-coral); color: #fff;">
+                <span class="swatch-name">Coral</span>
+                <span class="swatch-hex">#E36256</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-purple); color: #fff;">
+                <span class="swatch-name">Purple</span>
+                <span class="swatch-hex">#7969C7</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-navy); color: #fff;">
+                <span class="swatch-name">Navy</span>
+                <span class="swatch-hex">#2D3786</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-yellow); color: #2D3786;">
+                <span class="swatch-name">Yellow</span>
+                <span class="swatch-hex">#F2C53D</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-teal); color: #fff;">
+                <span class="swatch-name">Teal</span>
+                <span class="swatch-hex">#2EBBC8</span>
+              </div>
+            </div>
+            <div class="palette-label">Five-tone palette — built for every cast member, every category, every region.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Microsite -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">03 · The microsite</div>
+          <h3>A door wide enough to walk through.</h3>
+          <p>A coming-soon page on day one, then a Typeform-driven submission flow, then a public content hub that doubled as the voting platform for the People's Choice award. Every screen was built to lower the cost of applying.</p>
+        </div>
+
+        <figure class="block-full">
+          <img src="../assets/work/acceleration-for-all/microsite.jpg" alt="The Acceleration For All coming-soon page — full landing, scroll detail, and mobile view shown together." loading="lazy" />
+          <figcaption class="block-caption">Coming-soon page — desktop and mobile.</figcaption>
+        </figure>
+      </section>
+
+      <!-- The Top 5 -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">04 · The finalists</div>
+          <h3>Five hustles, five categories.</h3>
+          <p>The inaugural Top 5 — pulled from a global pool spanning tiny business, B2B, social enterprise, and innovation. Each was given brand-level treatment in the run-up to the live final.</p>
+        </div>
+
+        <div class="gallery-five">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/finalist-before-noon.png" alt="Finalist — Before Noon" loading="lazy" />
+            <figcaption class="finalist-name">Before Noon<span class="finalist-cat">Tiny Business</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/finalist-colab.png" alt="Finalist — Co.Lab" loading="lazy" />
+            <figcaption class="finalist-name">Co.Lab<span class="finalist-cat">Innovation</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/finalist-mi-terror.png" alt="Finalist — Mi Terror" loading="lazy" />
+            <figcaption class="finalist-name">Mi Terror<span class="finalist-cat">Social Enterprise</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/finalist-roboamp.png" alt="Finalist — ROBOAMP" loading="lazy" />
+            <figcaption class="finalist-name">ROBOAMP<span class="finalist-cat">B2B</span></figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/finalist-telecalm.png" alt="Finalist — TeleCalm" loading="lazy" />
+            <figcaption class="finalist-name">TeleCalm<span class="finalist-cat">People's Choice</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- The Social System -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">05 · The social system</div>
+          <h3>One look. Six regions.</h3>
+          <p>Localised across AZ, DACH, FR, NL, TR, and UK — a single visual system, regionally voiced. The 30-founder grid showed up at every scale, because the brand promise was inclusion and the casting had to carry it.</p>
+        </div>
+
+        <div class="block-pair">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-1.jpg" alt="LinkedIn story frame — coral key art with the three chevrons and AfA wordmark." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-2.jpg" alt="LinkedIn story frame — purple variant with founder portrait." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-3.jpg" alt="LinkedIn story frame — yellow variant announcing categories." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-4.jpg" alt="LinkedIn story frame — navy variant with submission CTA." loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- The Live Event -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">06 · The live event</div>
+          <h3>Silicon Valley as host. Livestream as front door.</h3>
+          <p>A made-for-livestream award ceremony — built hybrid from inception so the audience watching from a laptop got the same room as the audience in seats. RSVP collateral, merch, and a 30-second sizzle film carried the brand into the room and into the feed.</p>
+        </div>
+
+        <div class="block-trio">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/rsvp-banner.jpg" alt="RSVP banner — Acceleration For All event invitation in coral and navy." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/tshirt.jpg" alt="Event t-shirt mockup — coral tee with chevron logo on the front." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/top5.jpg" alt="Top 5 announcement graphic — five-up grid of finalist headshots." loading="lazy" />
+          </figure>
+        </div>
+
+        <!-- HERO_FILM placeholder #2 — 30s sizzle / hype film -->
+        <figure class="block-full" style="background: transparent; margin-top: clamp(28px, 4vw, 44px);">
+          <div class="film-frame" data-yt-id="" aria-label="30-second sizzle film placeholder — replace with YouTube embed" style="background: linear-gradient(135deg, var(--afa-yellow) 0%, var(--afa-coral) 50%, var(--afa-purple) 100%);">
+            <div class="film-placeholder">
+              <div class="film-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div class="film-label">Sizzle film · 30s</div>
+              <div class="film-note">YouTube embed will live here. Replace this placeholder block with the YouTube iframe once the link is ready.</div>
+            </div>
+          </div>
+        </figure>
+      </section>
+
+    </div>
+
+    <!-- ======================= OUTCOME ======================= -->
+    <section class="outcome">
+      <div class="wrap">
+        <div class="eyebrow">What it built</div>
+        <h2>A front door, not a one-off.</h2>
+        <p class="outcome-lead">Acceleration For All gave a hardware brand and an early-stage fund a single, recognisable pop-cultural front door — and a content system that kept paying out long after the awards stage went dark.</p>
+
+        <div class="metrics-row">
+          <div class="metric">
+            <div class="metric-num">8</div>
+            <div class="metric-label">Award categories spanning tiny biz, B2B, sustainability, social enterprise</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">6</div>
+            <div class="metric-label">Localised regions — AZ · DACH · FR · NL · TR · UK</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">5</div>
+            <div class="metric-label">Stages of program experience designed end-to-end</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">1<sup>st</sup></div>
+            <div class="metric-label">Co-branded accelerator under the ViewSonic × Hustle Fund partnership</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= REFLECTION ======================= -->
+    <section class="reflection">
+      <div class="wrap-text">
+        <div class="eyebrow">What we learned</div>
+        <h2>If the promise is inclusion, every asset has to carry it.</h2>
+        <p>A tagline alone won't do the work. The 30-founder grid wasn't decoration — it was the strategy made visible at every scale. Casting, palette, and the small choices in every social tile carried more weight than any single hero film. Build the brand promise into the smallest unit of work and the biggest unit takes care of itself.</p>
+      </div>
+    </section>
+
+    <!-- ======================= CREDITS ======================= -->
+    <section class="credits">
+      <div class="wrap">
+        <div class="eyebrow">Credits</div>
+        <div class="credits-grid">
+          <div class="credits-block">
+            <h4>Hatch n Harvest</h4>
+            <ul class="credits-list">
+              <li>Campaign concept & naming<span class="credits-role">Strategy</span></li>
+              <li>Brand identity & lockup<span class="credits-role">Design</span></li>
+              <li>Microsite design<span class="credits-role">Digital</span></li>
+              <li>Manifesto film & 30s sizzle<span class="credits-role">Film</span></li>
+              <li>Global social system<span class="credits-role">Campaign</span></li>
+              <li>Event identity & merch<span class="credits-role">Environmental</span></li>
+            </ul>
+          </div>
+          <div class="credits-block">
+            <h4>Partners</h4>
+            <ul class="credits-list">
+              <li>ViewSonic<span class="credits-role">Co-lead · Hardware</span></li>
+              <li>Hustle Fund<span class="credits-role">Co-lead · Investment</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= NEXT PROJECT ======================= -->
+    <section class="next-project-section">
+      <div class="wrap">
+        <a class="next-project" href="../index.html#work">
+          <div class="np-eyebrow">More harvests →</div>
+          <div class="np-title">Back to all work</div>
+          <div class="np-note">Individual case studies for Hinterland Stays, Common Range, Small Acre, and Moth &amp; Bloom are on their way.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-lockup">
+        <a href="../index.html" aria-label="Hatch n Harvest — home">
+          <img class="logo-icon" src="../assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+          <img class="logo-wordmark" src="../assets/brand/wordmark.svg" alt="Hatch n Harvest" />
+        </a>
+      </div>
+    </div>
+    <div class="wrap footer-inner">
+      <div>© 2026 Hatch &amp; Harvest · Taipei, Taiwan</div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:hello@hatchnharvest.studio">Email</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Are.na</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
