@@ -361,6 +361,16 @@
       width: auto;
       max-width: 100%;
     }
+    .lockup-row > .lockup-image--video {
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .lockup-row > .lockup-image--video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
     .lockup-row.is-flipped > *:first-child { order: 2; }
     .lockup-row.is-flipped > *:last-child { order: 1; }
     @media (max-width: 800px) {
@@ -1140,8 +1150,14 @@
             <p>We named it <em>Acceleration For All</em> and built the whole experience as a single piece of campaign IP — a unifying mark, an unflinchingly inclusive cast, and an end-to-end flow stitched together by one promise: <em>Let's help build the future of work by redefining the future of entrepreneurship together.</em></p>
             <p>Pre-launch teasers. A microsite with a low-friction submission flow. Two online qualifying rounds. A hybrid award ceremony broadcast from Silicon Valley. And a sustain layer of post-event content designed to recruit next year's cohort. Same brand, every step.</p>
           </div>
-          <figure class="lockup-image lockup-image--svg">
-            <img src="../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Four chevrons arranged in a row — navy, graphite, coral, yellow — the supporting graphic kit that runs through every campaign asset." loading="lazy" />
+          <figure class="lockup-image lockup-image--video">
+            <iframe
+              src="https://www.youtube.com/embed/bDePq__LtMg?rel=0&modestbranding=1"
+              title="Acceleration For All — The move"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy"></iframe>
           </figure>
         </div>
       </div>
