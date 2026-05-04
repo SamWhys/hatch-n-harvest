@@ -763,6 +763,32 @@
       width: fit-content;
     }
     .case-locked-cta svg { flex: none; opacity: 0.8; }
+
+    /* Unlocked (non-featured) card CTA — mirrors locked-cta dimensions
+       so cards line up vertically, but uses brand orange to read as
+       interactive. */
+    .case-read-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 8px 14px;
+      border: 1.5px solid var(--marigold);
+      border-radius: 999px;
+      color: var(--marigold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: color-mix(in srgb, var(--marigold) 8%, transparent);
+      width: fit-content;
+      transition: background .2s ease, color .2s ease;
+    }
+    .case:hover .case-read-cta {
+      background: var(--marigold);
+      color: var(--paper);
+    }
+    .case-read-cta svg { flex: none; }
     .case.featured .featured-title {
       font-family: var(--font-display);
       font-weight: 900;
@@ -1191,24 +1217,23 @@
             </div>
           </a>
 
-          <!-- Hinterland Stays -->
-          <div class="case is-locked" role="article" aria-label="Hinterland Stays case study — coming soon">
+          <!-- Acceleration For All — ViewSonic × Hustle Fund -->
+          <a href="work/acceleration-for-all.html" class="case" aria-label="Acceleration For All — ViewSonic × Hustle Fund case study">
             <div class="case-image">
-              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="Misty forested mountain landscape" loading="lazy" />
+              <img src="assets/work/acceleration-for-all/kv-card.jpg" alt="Acceleration For All key visual — a colourful grid of 30 founders' faces around the campaign lockup." loading="lazy" />
             </div>
             <div class="case-meta">
-              <div class="case-label"><span>Identity · Digital</span><span class="year">2024</span></div>
-              <div class="case-name">Hinterland Stays</div>
-              <p class="case-one-liner">A hospitality collective for inns off the obvious path — small places, longer stays.</p>
-              <span class="case-locked-cta" aria-disabled="true">
-                <svg width="12" height="14" viewBox="0 0 14 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="2" y="8" width="10" height="8" rx="1.5"/>
-                  <path d="M4 8 V5.5 C4 3.5 5.3 2 7 2 C8.7 2 10 3.5 10 5.5 V8"/>
+              <div class="case-label"><span>Campaign · Identity · Film</span><span class="year">2021</span></div>
+              <div class="case-name">Acceleration For All</div>
+              <p class="case-one-liner">A partnership campaign for ViewSonic × Hustle Fund — rebuilding the on-ramp to entrepreneurship for everyone the old playbook left out.</p>
+              <span class="case-read-cta">
+                Read case study
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7"/>
                 </svg>
-                Locked
               </span>
             </div>
-          </div>
+          </a>
 
           <!-- Small Acre -->
           <div class="case is-locked" role="article" aria-label="Small Acre case study — coming soon">
