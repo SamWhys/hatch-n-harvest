@@ -29,14 +29,19 @@
       --stone-soft: #9A9082;
       --line: rgba(242, 235, 218, 0.14);
 
-      /* Project-specific accents — borrowed from the AfA palette so
-         swatches and accents read true to the campaign without
-         overriding the studio's brand voice. */
-      --afa-coral: #E36256;
-      --afa-purple: #7969C7;
-      --afa-navy: #2D3786;
-      --afa-yellow: #F2C53D;
-      --afa-teal: #2EBBC8;
+      /* AfA brand palette — sourced from the campaign brand book.
+         Five mains drive the system; five secondaries widen the
+         range for category and regional variants. */
+      --afa-yellow: #FFC200;
+      --afa-coral: #FD6051;
+      --afa-white: #FFFFFF;
+      --afa-paper: #F0F4F7;
+      --afa-navy: #1E2782;
+      --afa-red: #990000;
+      --afa-purple-deep: #9636A4;
+      --afa-teal: #2FB2D6;
+      --afa-graphite: #404555;
+      --afa-purple: #6F59D8;
 
       --font-display: 'Open Sans', system-ui, -apple-system, sans-serif;
       --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -190,7 +195,8 @@
       padding-bottom: clamp(40px, 5vw, 70px);
     }
     .back-link {
-      display: inline-flex;
+      display: flex;
+      width: fit-content;
       align-items: center;
       gap: 8px;
       color: var(--stone);
@@ -250,6 +256,61 @@
       background: var(--cream);
     }
     .case-bleed img { width: 100%; height: 100%; object-fit: cover; }
+    .case-bleed iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .bleed-caption {
+      max-width: var(--maxw);
+      margin: 18px auto 0;
+      padding: 0 var(--pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .bleed-caption strong {
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      text-transform: none;
+      font-size: 13px;
+    }
+
+    /* Hero-stage modifier — applied to in-wrap visual hero moments
+       (manifesto film, microsite). Adds breathing room + a soft
+       drop shadow + an editorial caption underneath, so each piece
+       reads as a chapter spread rather than a thumbnail. */
+    .hero-stage {
+      margin-top: clamp(20px, 3vw, 40px);
+    }
+    .hero-stage .block-full,
+    .hero-stage .film-frame {
+      box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.65);
+    }
+    .hero-caption {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .hero-caption strong {
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .bleed-caption, .hero-caption { flex-direction: column; gap: 6px; }
+    }
 
     /* ============================================================
        STORY — the brief / insight / approach
@@ -266,6 +327,46 @@
       margin: 0 0 1em;
     }
     .story-block p:last-child { margin-bottom: 0; }
+
+    /* Horizontal lockup — text + image side-by-side editorial row.
+       Default: text left, image right. Add .is-flipped to swap. */
+    .lockup-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      padding: clamp(40px, 6vw, 70px) 0;
+    }
+    .lockup-row > .story-block { margin-bottom: 0; }
+    .lockup-row > .lockup-image {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .lockup-row > .lockup-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .lockup-row > .lockup-image--svg {
+      padding: clamp(36px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--afa-paper);
+    }
+    .lockup-row > .lockup-image--svg img {
+      max-height: 220px;
+      width: auto;
+      max-width: 100%;
+    }
+    .lockup-row.is-flipped > *:first-child { order: 2; }
+    .lockup-row.is-flipped > *:last-child { order: 1; }
+    @media (max-width: 800px) {
+      .lockup-row { grid-template-columns: 1fr; padding: 28px 0; gap: 22px; }
+      .lockup-row.is-flipped > * { order: 0; }
+    }
 
     /* Pull-quote / insight */
     .insight {
@@ -381,6 +482,30 @@
     .block-trio img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; display: block; }
     @media (max-width: 800px) { .block-trio { grid-template-columns: 1fr; } }
 
+    /* Block — social_tight_grid (campaign asset wall, masonry)
+       Pinterest-style columns so each card keeps its native aspect
+       and reads as a real campaign deliverable rather than a cropped
+       thumbnail. Order in DOM follows the campaign timeline. */
+    .social-tight-grid {
+      column-count: 4;
+      column-gap: clamp(8px, 1vw, 14px);
+    }
+    .social-tight-grid figure {
+      margin: 0 0 clamp(8px, 1vw, 14px);
+      break-inside: avoid;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--cream);
+      line-height: 0;
+    }
+    .social-tight-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 900px) { .social-tight-grid { column-count: 3; } }
+    @media (max-width: 520px) { .social-tight-grid { column-count: 2; } }
+
     /* Block — gallery (variable) */
     .gallery-five {
       display: grid;
@@ -419,6 +544,162 @@
     }
     @media (max-width: 900px) { .gallery-five { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .gallery-five { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ============================================================
+       IDENTITY HERO SYSTEM — Vitra-style brand block.
+       Logo lockup → mnemonic system → palette → typography →
+       apparel application. Each lives in its own card so the page
+       reads as brand-book spreads rather than a single dense panel.
+       ============================================================ */
+    .identity-hero {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: clamp(64px, 9vw, 130px) clamp(40px, 6vw, 100px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .identity-hero img {
+      max-width: 720px;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Lockup variations — primary positive + negative side-by-side. */
+    .lockup-variants {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .lockup-variants figure { margin: 0; }
+    .lockup-variants .variant-card {
+      border-radius: var(--radius-md);
+      padding: clamp(40px, 5.5vw, 90px) clamp(28px, 4vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .lockup-variants .variant-card.is-positive { background: #FFFFFF; }
+    .lockup-variants .variant-card.is-negative { background: #111111; }
+    .lockup-variants img { max-width: 100%; height: auto; display: block; }
+    @media (max-width: 700px) {
+      .lockup-variants { grid-template-columns: 1fr; }
+    }
+
+    .id-subhead {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin: clamp(56px, 7vw, 80px) 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .id-subhead::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--forest);
+    }
+
+    /* Mnemonic system — 5 SVG compositions in a 3+1+1 layout.
+       Cards sit on the brand-paper tone (#F0F4F7) so the chevrons
+       read clean — same surface the brand book uses. */
+    .mnemonic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .mnemonic-grid figure {
+      margin: 0;
+      background: var(--afa-paper);
+      border-radius: var(--radius-md);
+      padding: clamp(24px, 3.5vw, 44px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .mnemonic-grid figure.is-wide {
+      grid-column: 1 / -1;
+      min-height: auto;
+      padding: clamp(28px, 3.5vw, 48px) clamp(40px, 6vw, 80px);
+    }
+    .mnemonic-grid img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 180px;
+      display: block;
+    }
+    .mnemonic-grid figure.is-wide img { max-height: 110px; }
+    @media (max-width: 700px) {
+      .mnemonic-grid { grid-template-columns: 1fr; }
+      .mnemonic-grid figure { min-height: 180px; }
+    }
+
+    /* Full palette — two rows of five with section labels. */
+    .palette-stack { display: grid; gap: clamp(20px, 2.5vw, 30px); }
+    .palette-stack .palette-row { gap: clamp(8px, 1vw, 12px); }
+    .palette-stack .palette-label { margin: 0 0 12px; }
+
+    /* Typography stack — display Open Sans samples with specs. */
+    .type-stack {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
+    }
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .type-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .type-sample {
+      font-family: var(--font-display);
+      color: var(--ink);
+      line-height: 1.05;
+      flex: 1;
+      min-width: 0;
+    }
+    .type-spec {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (max-width: 700px) {
+      .type-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+
+    /* Apparel mockup grid — 4-up colorway showcase. */
+    .apparel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(8px, 1vw, 14px);
+    }
+    .apparel-grid figure {
+      margin: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--cream);
+      aspect-ratio: 4 / 3;
+    }
+    .apparel-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 800px) {
+      .apparel-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     /* Block — identity_system (logo + palette + chevrons) */
     .identity-stage {
@@ -798,14 +1079,24 @@
       </div>
     </section>
 
-    <!-- ======================= FULL BLEED HERO IMAGE ======================= -->
+    <!-- ======================= FULL BLEED HERO FILM ======================= -->
     <div class="case-bleed">
-      <img src="../assets/work/acceleration-for-all/kv-hero.jpg" alt="Acceleration For All key visual — 30 founders' faces around the campaign lockup with arrow chevrons." loading="eager" />
+      <iframe
+        src="https://www.youtube.com/embed/xfx9rrUjCCA?rel=0&modestbranding=1"
+        title="Acceleration For All — Campaign film"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="eager"></iframe>
+    </div>
+    <div class="bleed-caption">
+      <strong>Campaign film · Acceleration For All.</strong>
+      <span>Hero · 2021</span>
     </div>
 
     <!-- ======================= STORY ======================= -->
     <section class="story">
-      <div class="wrap-text">
+      <div class="wrap">
 
         <div class="story-block">
           <div class="eyebrow">The shift</div>
@@ -814,11 +1105,16 @@
           <p>The "future of work" wasn't a deck slide anymore. It was happening. And the accelerator playbook — Sand Hill Road, warm intros, six-figure cheques to people who already had them — hadn't caught up.</p>
         </div>
 
-        <div class="story-block">
-          <div class="eyebrow">The brief</div>
-          <h2>Two partners, one missing on-ramp.</h2>
-          <p>ViewSonic and Hustle Fund — a global hardware brand and an early-stage venture fund — wanted to launch a joint accelerator. Hustle Fund needed reach beyond Silicon Valley. ViewSonic wanted to evolve from business <em>supplier</em> to business <em>partner</em>.</p>
-          <p>Both believed the existing accelerator model was too narrow: too male, too credentialed, too capital-heavy, too geographically concentrated. Our brief was to build the program, the brand, and the experience — and to get founders who'd never see themselves in an accelerator pitch deck to apply anyway.</p>
+        <div class="lockup-row is-flipped">
+          <div class="story-block">
+            <div class="eyebrow">The brief</div>
+            <h2>Two partners, one missing on-ramp.</h2>
+            <p>ViewSonic and Hustle Fund — a global hardware brand and an early-stage venture fund — wanted to launch a joint accelerator. Hustle Fund needed reach beyond Silicon Valley. ViewSonic wanted to evolve from business <em>supplier</em> to business <em>partner</em>.</p>
+            <p>Both believed the existing accelerator model was too narrow: too male, too credentialed, too capital-heavy, too geographically concentrated. Our brief was to build the program, the brand, and the experience — and to get founders who'd never see themselves in an accelerator pitch deck to apply anyway.</p>
+          </div>
+          <figure class="lockup-image">
+            <img src="../assets/work/acceleration-for-all/social-grid-9.jpg" alt="Three founder portraits arranged in chevrons — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
+          </figure>
         </div>
 
       </div>
@@ -836,12 +1132,17 @@
 
     <!-- ======================= APPROACH ======================= -->
     <section class="story">
-      <div class="wrap-text">
-        <div class="story-block">
-          <div class="eyebrow">The move</div>
-          <h2>Treat it as a brand, not a program.</h2>
-          <p>We named it <em>Acceleration For All</em> and built the whole experience as a single piece of campaign IP — a unifying mark, an unflinchingly inclusive cast, and an end-to-end flow stitched together by one promise: <em>Let's help build the future of work by redefining the future of entrepreneurship together.</em></p>
-          <p>Pre-launch teasers. A microsite with a low-friction submission flow. Two online qualifying rounds. A hybrid award ceremony broadcast from Silicon Valley. And a sustain layer of post-event content designed to recruit next year's cohort. Same brand, every step.</p>
+      <div class="wrap">
+        <div class="lockup-row">
+          <div class="story-block">
+            <div class="eyebrow">The move</div>
+            <h2>Treat it as a brand, not a program.</h2>
+            <p>We named it <em>Acceleration For All</em> and built the whole experience as a single piece of campaign IP — a unifying mark, an unflinchingly inclusive cast, and an end-to-end flow stitched together by one promise: <em>Let's help build the future of work by redefining the future of entrepreneurship together.</em></p>
+            <p>Pre-launch teasers. A microsite with a low-friction submission flow. Two online qualifying rounds. A hybrid award ceremony broadcast from Silicon Valley. And a sustain layer of post-event content designed to recruit next year's cohort. Same brand, every step.</p>
+          </div>
+          <figure class="lockup-image lockup-image--svg">
+            <img src="../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Four chevrons arranged in a row — navy, graphite, coral, yellow — the supporting graphic kit that runs through every campaign asset." loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>
@@ -850,8 +1151,8 @@
     <section class="work-intro">
       <div class="wrap">
         <div class="eyebrow">The work</div>
-        <h2>One brand, every door.</h2>
-        <p>From the opening hype film to a global social system, every touchpoint was built to enrol new founders into the program — and to flatten the wall between watching and entering.</p>
+        <h2>One brand. Every door.</h2>
+        <p>Six chapters, one campaign — from the opening manifesto to the awards-night recap. Every touchpoint built to enrol new founders into the program, and to flatten the wall between watching and entering.</p>
       </div>
     </section>
 
@@ -873,17 +1174,23 @@
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                      allowfullscreen></iframe>
         -->
-        <figure class="block-full" style="background: transparent;">
-          <div class="film-frame" data-yt-id="" aria-label="Manifesto film placeholder — replace with YouTube embed">
-            <div class="film-placeholder">
-              <div class="film-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <div class="hero-stage">
+          <figure class="block-full" style="background: transparent;">
+            <div class="film-frame" data-yt-id="" aria-label="Manifesto film placeholder — replace with YouTube embed">
+              <div class="film-placeholder">
+                <div class="film-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <div class="film-label">Manifesto film · 60s</div>
+                <div class="film-note">YouTube embed will live here. Replace this placeholder block with the YouTube iframe once the link is ready.</div>
               </div>
-              <div class="film-label">Manifesto film · 60s</div>
-              <div class="film-note">YouTube embed will live here. Replace this placeholder block with the YouTube iframe once the link is ready.</div>
             </div>
-          </div>
-        </figure>
+            <figcaption class="hero-caption">
+              <strong>Manifesto film · 60s opener.</strong>
+              <span>Direction · Edit · Score</span>
+            </figcaption>
+          </figure>
+        </div>
 
         <figure class="block-quote">
           <blockquote>"So follow your pipe dreams. <em>We're here to help.</em>"</blockquote>
@@ -891,50 +1198,163 @@
         </figure>
       </section>
 
-      <!-- The Identity -->
+      <!-- The Identity — full brand hero block (Vitra-style). -->
       <section class="work-section">
         <div class="work-section-head">
           <div class="eyebrow">02 · The identity</div>
-          <h3>A logo that points forward.</h3>
-          <p>Three chevrons for the three stages of the program — <em>gather, reward, celebrate</em> — set against a cast and palette built to read inclusive at any scale, from a 1080×1080 social tile to a 15-foot stage backdrop.</p>
+          <h3>A wordmark that points forward.</h3>
+          <p>The lockup turns the "A" of <em>Acceleration</em> into a chevron — the same forward-pointing mark that drives the rest of the system. A handwritten <span class="script">for all</span> reframes the year-stamp as a promise. Built to read at any scale, on any surface, in any of six regions.</p>
         </div>
 
-        <div class="identity-stage">
-          <div class="identity-mark">
-            <img src="../assets/work/acceleration-for-all/logo-lockup.jpg" alt="ViewSonic × Hustle Fund — Acceleration For All lockup with three forward chevrons." loading="lazy" />
-            <div class="chevron-row" aria-hidden="true">
-              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-purple)"/></svg>
-              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-teal)"/></svg>
-              <svg class="chev" viewBox="0 0 36 36" fill="none"><path d="M6 4 L26 18 L6 32 L14 18 Z" fill="var(--afa-navy)"/></svg>
-            </div>
-            <span class="mark-caption">The three-chevron mark — gather, reward, celebrate.</span>
-          </div>
+        <!-- Key visual — the lockup applied at hero scale -->
+        <div class="hero-stage">
+          <figure class="block-full" style="background: transparent; margin: 0;">
+            <img src="../assets/work/acceleration-for-all/kv-hero.jpg" alt="Acceleration For All key visual — 30 founders' faces arranged around the campaign lockup with arrow chevrons." loading="lazy" />
+            <figcaption class="hero-caption">
+              <strong>Key visual · the lockup, applied to a 30-founder hero frame.</strong>
+              <span>16:9 · Hero composition</span>
+            </figcaption>
+          </figure>
+        </div>
 
+        <!-- Lockup variations — primary positive + negative -->
+        <div class="id-subhead">Lockup variations</div>
+        <div class="lockup-variants">
+          <figure>
+            <div class="variant-card is-positive">
+              <img src="../assets/work/acceleration-for-all/lockup-light.jpg" alt="Primary lockup, positive — black on white." loading="lazy" />
+            </div>
+            <figcaption class="hero-caption">
+              <strong>Primary · positive.</strong>
+              <span>Black on white</span>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="variant-card is-negative">
+              <img src="../assets/work/acceleration-for-all/lockup-dark.jpg" alt="Primary lockup, negative — white on black." loading="lazy" />
+            </div>
+            <figcaption class="hero-caption">
+              <strong>Primary · negative.</strong>
+              <span>White on black</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Mnemonic system — 5 chevron compositions -->
+        <div class="id-subhead">Mnemonic system</div>
+        <div class="mnemonic-grid">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/mnemonic-3.svg" alt="Brand mnemonic — diamond composition built from chevrons in coral, navy, yellow, and paper." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/mnemonic-2.svg" alt="Brand mnemonic — full chevron composition spanning coral, navy, purple, yellow, paper, and graphite." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/mnemonic-4.svg" alt="Brand mnemonic — square chevron composition spanning the full six-tone palette." loading="lazy" />
+          </figure>
+          <figure class="is-wide">
+            <img src="../assets/work/acceleration-for-all/mnemonic-1.svg" alt="Brand mnemonic — three chevrons in a row: purple, graphite, coral." loading="lazy" />
+          </figure>
+          <figure class="is-wide">
+            <img src="../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Brand mnemonic — four chevrons in a row: navy, graphite, coral, yellow." loading="lazy" />
+          </figure>
+        </div>
+
+        <!-- Palette — full 10-tone system -->
+        <div class="id-subhead">Palette</div>
+        <div class="palette-stack">
           <div>
+            <div class="palette-label">Main · Background</div>
             <div class="palette-row">
+              <div class="swatch" style="background: var(--afa-yellow); color: var(--afa-navy);">
+                <span class="swatch-name">Yellow</span>
+                <span class="swatch-hex">#FFC200</span>
+              </div>
               <div class="swatch" style="background: var(--afa-coral); color: #fff;">
                 <span class="swatch-name">Coral</span>
-                <span class="swatch-hex">#E36256</span>
+                <span class="swatch-hex">#FD6051</span>
               </div>
-              <div class="swatch" style="background: var(--afa-purple); color: #fff;">
-                <span class="swatch-name">Purple</span>
-                <span class="swatch-hex">#7969C7</span>
+              <div class="swatch" style="background: var(--afa-white); color: var(--afa-navy); box-shadow: inset 0 0 0 1px var(--line);">
+                <span class="swatch-name">White</span>
+                <span class="swatch-hex">#FFFFFF</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-paper); color: var(--afa-navy);">
+                <span class="swatch-name">Paper</span>
+                <span class="swatch-hex">#F0F4F7</span>
               </div>
               <div class="swatch" style="background: var(--afa-navy); color: #fff;">
                 <span class="swatch-name">Navy</span>
-                <span class="swatch-hex">#2D3786</span>
+                <span class="swatch-hex">#1E2782</span>
               </div>
-              <div class="swatch" style="background: var(--afa-yellow); color: #2D3786;">
-                <span class="swatch-name">Yellow</span>
-                <span class="swatch-hex">#F2C53D</span>
+            </div>
+          </div>
+          <div>
+            <div class="palette-label">Secondary</div>
+            <div class="palette-row">
+              <div class="swatch" style="background: var(--afa-red); color: #fff;">
+                <span class="swatch-name">Deep Red</span>
+                <span class="swatch-hex">#990000</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-purple-deep); color: #fff;">
+                <span class="swatch-name">Purple</span>
+                <span class="swatch-hex">#9636A4</span>
               </div>
               <div class="swatch" style="background: var(--afa-teal); color: #fff;">
                 <span class="swatch-name">Teal</span>
-                <span class="swatch-hex">#2EBBC8</span>
+                <span class="swatch-hex">#2FB2D6</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-graphite); color: #fff;">
+                <span class="swatch-name">Graphite</span>
+                <span class="swatch-hex">#404555</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-purple); color: #fff;">
+                <span class="swatch-name">Lilac</span>
+                <span class="swatch-hex">#6F59D8</span>
               </div>
             </div>
-            <div class="palette-label">Five-tone palette — built for every cast member, every category, every region.</div>
           </div>
+        </div>
+
+        <!-- Typography stack -->
+        <div class="id-subhead">Typography</div>
+        <div class="type-stack">
+          <div class="type-row">
+            <div class="type-sample" style="font-weight: 700; font-size: clamp(40px, 6vw, 60px);">Open Sans</div>
+            <div class="type-spec">Display family</div>
+          </div>
+          <div class="type-row">
+            <div class="type-sample" style="font-weight: 700; font-size: clamp(34px, 5vw, 48px);">Heading 2 — Bold 48</div>
+            <div class="type-spec">Bold · 48</div>
+          </div>
+          <div class="type-row">
+            <div class="type-sample" style="font-weight: 600; font-size: clamp(26px, 3.4vw, 34px);">Heading 3 — SemiBold 34</div>
+            <div class="type-spec">SemiBold · 34</div>
+          </div>
+          <div class="type-row">
+            <div class="type-sample" style="font-weight: 600; font-size: clamp(20px, 2.4vw, 24px);">Heading 4 — SemiBold 24</div>
+            <div class="type-spec">SemiBold · 24</div>
+          </div>
+          <div class="type-row">
+            <div class="type-sample" style="font-weight: 400; font-size: 16px;">Body — Regular 16. The system is one type family across nine roles, so a Top&nbsp;100 reveal and a People's Choice CTA stay obviously the same campaign.</div>
+            <div class="type-spec">Regular · 16</div>
+          </div>
+        </div>
+
+        <!-- Apparel application — palette in the wild -->
+        <div class="id-subhead">Apparel · palette in the wild</div>
+        <div class="apparel-grid">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt — coral colorway, white lockup with yellow chevron." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/tshirt-yellow.jpg" alt="Event t-shirt — yellow colorway." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/tshirt-navy.jpg" alt="Event t-shirt — navy colorway." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/tshirt-black.jpg" alt="Event t-shirt — black colorway." loading="lazy" />
+          </figure>
         </div>
       </section>
 
@@ -946,18 +1366,65 @@
           <p>A coming-soon page on day one, then a Typeform-driven submission flow, then a public content hub that doubled as the voting platform for the People's Choice award. Every screen was built to lower the cost of applying.</p>
         </div>
 
-        <figure class="block-full">
-          <img src="../assets/work/acceleration-for-all/microsite.jpg" alt="The Acceleration For All coming-soon page — full landing, scroll detail, and mobile view shown together." loading="lazy" />
-          <figcaption class="block-caption">Coming-soon page — desktop and mobile.</figcaption>
-        </figure>
+        <div class="hero-stage">
+          <figure class="block-full">
+            <img src="../assets/work/acceleration-for-all/microsite.jpg" alt="The Acceleration For All coming-soon page — full landing, scroll detail, and mobile view shown together." loading="lazy" />
+            <figcaption class="hero-caption">
+              <strong>Coming-soon · submission · vote — one site, three jobs.</strong>
+              <span>Desktop · Mobile</span>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
-      <!-- The Top 5 -->
+      <!-- The Drumbeat — full campaign social cadence -->
       <section class="work-section">
         <div class="work-section-head">
-          <div class="eyebrow">04 · The finalists</div>
+          <div class="eyebrow">04 · The drumbeat</div>
+          <h3>Same brand. Every beat. One funnel.</h3>
+          <p>A sustained social cadence — founder spotlights, submission countdowns, a Top&nbsp;100 reveal, a Top&nbsp;20 ballot, a People's Choice vote, an event RSVP — each post built from the same chevrons, the same five colours, and the same quiet promise. Localised across AZ, DACH, FR, NL, TR, and UK so a founder in Istanbul saw the same invitation as a founder in Manchester.</p>
+        </div>
+
+        <div class="social-tight-grid">
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-6.jpg" alt="Founder spotlight — Eric Bahn, Co-Founder & GP, Hustle Fund." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-7.jpg" alt="Founder quote card — Elizabeth Yin, Co-Founder & GP, Hustle Fund." loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-9.jpg" alt="LinkedIn card — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-10.jpg" alt="Submission countdown — 'Submissions close in 4 days.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-17.jpg" alt="Top 100 announcement — 'Introducing the AFA Top 100 Startups.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-19-01.jpg" alt="Top 20 announcement — 'Meet the AFA Top 20 Finalists.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-18.jpg" alt="Top 20 reveal — 'Meet the Top 20 and pick your #1 — Vote Now.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-20.jpg" alt="People's Choice vote prompt — 'You be the VC. Vote Now.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-21.jpg" alt="RSVP card — 'The Acceleration For All Awards · January 12th · 5pm PT.'" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="../assets/work/acceleration-for-all/social-grid-22.jpg" alt="Countdown — 'Just one more sleep till #TheAffies.'" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- The Finalists — Top 5 reveal -->
+      <section class="work-section">
+        <div class="work-section-head">
+          <div class="eyebrow">05 · The finalists</div>
           <h3>Five hustles, five categories.</h3>
-          <p>The inaugural Top 5 — pulled from a global pool spanning tiny business, B2B, social enterprise, and innovation. Each was given brand-level treatment in the run-up to the live final.</p>
+          <p>By the time the drumbeat had run its course, a global pool had narrowed to a Top&nbsp;100, a Top&nbsp;20, and an inaugural Top&nbsp;5 — spanning tiny business, B2B, social enterprise, and innovation. Each finalist got brand-level treatment in the run-up to the live final.</p>
         </div>
 
         <div class="gallery-five">
@@ -984,30 +1451,6 @@
         </div>
       </section>
 
-      <!-- The Social System -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">05 · The social system</div>
-          <h3>One look. Six regions.</h3>
-          <p>Localised across AZ, DACH, FR, NL, TR, and UK — a single visual system, regionally voiced. The 30-founder grid showed up at every scale, because the brand promise was inclusion and the casting had to carry it.</p>
-        </div>
-
-        <div class="block-pair">
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-1.jpg" alt="LinkedIn story frame — coral key art with the three chevrons and AfA wordmark." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-2.jpg" alt="LinkedIn story frame — purple variant with founder portrait." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-3.jpg" alt="LinkedIn story frame — yellow variant announcing categories." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-4.jpg" alt="LinkedIn story frame — navy variant with submission CTA." loading="lazy" />
-          </figure>
-        </div>
-      </section>
-
       <!-- The Live Event -->
       <section class="work-section">
         <div class="work-section-head">
@@ -1021,7 +1464,7 @@
             <img src="../assets/work/acceleration-for-all/rsvp-banner.jpg" alt="RSVP banner — Acceleration For All event invitation in coral and navy." loading="lazy" />
           </figure>
           <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt.jpg" alt="Event t-shirt mockup — coral tee with chevron logo on the front." loading="lazy" />
+            <img src="../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt mockup — coral tee with the Acceleration For All lockup, white type and yellow chevron." loading="lazy" />
           </figure>
           <figure>
             <img src="../assets/work/acceleration-for-all/top5.jpg" alt="Top 5 announcement graphic — five-up grid of finalist headshots." loading="lazy" />
