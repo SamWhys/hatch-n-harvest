@@ -479,21 +479,35 @@
       z-index: 0;
     }
     .manifesto .wrap { position: relative; z-index: 1; }
-    .process { overflow: hidden; }
-    .process .section-decor {
+    .process {
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+    .process .process-mnemonic {
       position: absolute;
-      bottom: -40px;
-      left: -50px;
-      width: clamp(140px, 14vw, 220px);
-      opacity: 0.16;
-      transform: rotate(-18deg);
+      top: 0;
+      right: -8%;
+      width: clamp(420px, 55vw, 780px);
+      max-width: none;
+      height: auto;
+      opacity: 0.55;
+      transform: none;
+      z-index: -1;
       pointer-events: none;
-      z-index: 0;
+      user-select: none;
     }
     .process .wrap { position: relative; z-index: 1; }
+    @media (max-width: 800px) {
+      .process .process-mnemonic {
+        width: clamp(360px, 100vw, 600px);
+        top: 2%;
+        right: -40%;
+        opacity: 0.3;
+      }
+    }
     @media (max-width: 760px) {
-      .manifesto .section-decor,
-      .process .section-decor { display: none; }
+      .manifesto .section-decor { display: none; }
     }
     .manifesto .eyebrow { margin-bottom: 26px; }
     .manifesto h2 {

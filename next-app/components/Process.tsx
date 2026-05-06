@@ -84,8 +84,8 @@ export function Process() {
   return (
     <section className="process" id="process">
       <img
-        className="section-decor"
-        src="assets/brand/mnemonic-bean-2.png"
+        className="section-decor process-mnemonic"
+        src="assets/brand/mnemonic-5.svg"
         alt=""
         aria-hidden="true"
       />
