@@ -71,6 +71,12 @@ const lockedCases = [
 export function Work() {
   return (
     <section className="work" id="work">
+      <img
+        className="work-mnemonic"
+        src="assets/brand/mnemonic-4.svg"
+        alt=""
+        aria-hidden="true"
+      />
       <div className="wrap">
         <div className="work-head">
           <div>

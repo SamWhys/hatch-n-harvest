@@ -556,10 +556,36 @@
     /* ============================================================
        WORK / CASE STUDIES
        ============================================================ */
-    .work { background: var(--forest-deep); color: var(--ink); }
+    .work {
+      background: var(--forest-deep);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
     .work h2 { color: var(--ink); max-width: 16ch; }
     .work .eyebrow { color: var(--marigold); }
     .work .eyebrow::before { background: var(--marigold); }
+
+    .work-mnemonic {
+      position: absolute;
+      top: -8%;
+      left: -28%;
+      width: clamp(1100px, 155vw, 2000px);
+      max-width: none;
+      height: auto;
+      z-index: -1;
+      pointer-events: none;
+      user-select: none;
+    }
+    @media (max-width: 800px) {
+      .work-mnemonic {
+        width: clamp(700px, 200vw, 1200px);
+        top: -3%;
+        left: -50%;
+      }
+    }
+    .work .wrap { position: relative; }
 
     .work-head {
       display: grid;
