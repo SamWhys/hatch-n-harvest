@@ -571,16 +571,17 @@
       position: absolute;
       top: -8%;
       left: -28%;
-      width: clamp(1100px, 155vw, 2000px);
+      width: clamp(770px, 109vw, 1400px);
       max-width: none;
       height: auto;
+      opacity: 0.55;
       z-index: -1;
       pointer-events: none;
       user-select: none;
     }
     @media (max-width: 800px) {
       .work-mnemonic {
-        width: clamp(700px, 200vw, 1200px);
+        width: clamp(490px, 140vw, 840px);
         top: -3%;
         left: -50%;
       }
