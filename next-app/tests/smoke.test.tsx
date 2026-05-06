@@ -13,8 +13,33 @@ describe("HomePage smoke tests", () => {
     render(<HomePage />);
     expect(screen.getByText("We")).toBeInTheDocument();
     expect(screen.getByText("hatch")).toBeInTheDocument();
+    expect(screen.getByText("and")).toBeInTheDocument();
     expect(screen.getByText("harvest")).toBeInTheDocument();
     expect(screen.getByText("big ideas.")).toBeInTheDocument();
+  });
+
+  it("renders the ticker with all 8 service categories twice (for marquee loop)", () => {
+    const { container } = render(<HomePage />);
+    const ticker = container.querySelector(".ticker-track");
+    expect(ticker).not.toBeNull();
+    const dots = ticker?.querySelectorAll(".dot") ?? [];
+    expect(dots.length).toBe(16);
+    expect(ticker?.textContent).toContain("Strategy");
+    expect(ticker?.textContent).toContain("Wayfinding");
+  });
+
+  it("renders the contact script line and the studio sticker", () => {
+    render(<HomePage />);
+    expect(screen.getByText("Have a seed of an idea?")).toBeInTheDocument();
+    expect(screen.getByText("Brand people. Not tech people.")).toBeInTheDocument();
+  });
+
+  it("renders footer copyright + 4 footer links", () => {
+    render(<HomePage />);
+    expect(screen.getByText(/© 2026 Hatch & Harvest · Taipei, Taiwan/)).toBeInTheDocument();
+    const footerNav = screen.getByRole("navigation", { name: "Footer" });
+    const links = footerNav.querySelectorAll("a");
+    expect(links.length).toBe(4);
   });
 
   it("renders the four belief cards with correct numbers", () => {

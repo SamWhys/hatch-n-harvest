@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const items = [
   "Strategy",
   "Identity",
@@ -13,9 +15,9 @@ function TickerRow() {
   return (
     <span>
       {items.map((label, i) => (
-        <span key={i}>
+        <Fragment key={i}>
           {label} <span className="dot"></span>{" "}
-        </span>
+        </Fragment>
       ))}
     </span>
   );
