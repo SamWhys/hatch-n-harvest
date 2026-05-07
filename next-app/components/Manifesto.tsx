@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import { useParallaxScroll } from "./useParallaxScroll";
+
 const beliefs = [
   {
     num: "01",
@@ -22,11 +27,15 @@ const beliefs = [
 ];
 
 export function Manifesto() {
+  const mnemonicRef = useRef<HTMLImageElement>(null);
+  useParallaxScroll(mnemonicRef, { intensity: 0.15 });
+
   return (
     <section className="manifesto">
       <img
-        className="section-decor"
-        src="assets/brand/mnemonic-h-1.png"
+        ref={mnemonicRef}
+        className="section-decor manifesto-mnemonic parallax-mnemonic"
+        src="assets/brand/brand-mnemonic-1.svg"
         alt=""
         aria-hidden="true"
       />

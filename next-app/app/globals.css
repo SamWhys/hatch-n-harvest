@@ -435,11 +435,17 @@
     .manifesto { overflow: hidden; }
     .manifesto .section-decor {
       position: absolute;
-      top: 8%;
-      right: -60px;
-      width: clamp(160px, 18vw, 260px);
-      opacity: 0.18;
-      transform: rotate(8deg);
+      top: -219.492px;
+      right: -628.069px;
+      width: 807.433px;
+      height: 556.629px;
+      aspect-ratio: 132 / 91;
+      transform:
+        translate3d(0, var(--scroll-y, 0px), 0)
+        rotate(-45deg)
+        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
+        rotate(var(--float-r, 0deg));
+      animation: mnemonic-float-a 8s ease-in-out infinite;
       pointer-events: none;
       z-index: 0;
     }
