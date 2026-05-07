@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import { useParallaxScroll } from "./useParallaxScroll";
+
 function ArrowIcon({ size = 14 }: { size?: number }) {
   return (
     <svg
@@ -69,10 +74,13 @@ const lockedCases = [
 ];
 
 export function Work() {
+  const mnemonicRef = useRef<HTMLImageElement>(null);
+  useParallaxScroll(mnemonicRef, { intensity: 0.20 });
   return (
     <section className="work" id="work">
       <img
-        className="work-mnemonic"
+        ref={mnemonicRef}
+        className="work-mnemonic parallax-mnemonic"
         src="assets/brand/mnemonic-4.svg"
         alt=""
         aria-hidden="true"

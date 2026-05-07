@@ -592,6 +592,11 @@
       z-index: -1;
       pointer-events: none;
       user-select: none;
+      transform:
+        translate3d(0, var(--scroll-y, 0px), 0)
+        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
+        rotate(var(--float-r, 0deg));
+      animation: mnemonic-float-a 6s ease-in-out infinite;
     }
     @media (max-width: 800px) {
       .work-mnemonic {

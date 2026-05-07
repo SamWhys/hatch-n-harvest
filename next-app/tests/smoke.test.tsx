@@ -89,4 +89,11 @@ describe("HomePage smoke tests", () => {
       expect(img.src).toMatch(/assets\/(brand|work)\//);
     });
   });
+
+  it("Work mnemonic carries the parallax-mnemonic class", () => {
+    const { container } = render(<HomePage />);
+    const img = container.querySelector(".work-mnemonic");
+    expect(img).not.toBeNull();
+    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
+  });
 });
