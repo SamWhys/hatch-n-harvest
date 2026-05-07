@@ -1055,10 +1055,26 @@
     .contact-decor {
       position: absolute;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 1;
     }
-    .contact-decor.left { bottom: 0; left: 4%; width: 160px; transform: rotate(-12deg); }
-    .contact-decor.right { top: 24px; right: 4%; width: 130px; transform: rotate(18deg); }
+    .contact-decor.left {
+      bottom: -25%;
+      left: -16%;
+      width: clamp(280px, 28vw, 460px);
+      transform: rotate(-38deg);
+    }
+    .contact-decor.right {
+      top: -753.555px;
+      right: -909.547px;
+      width: 1145.622px;
+      height: 1180.343px;
+      aspect-ratio: 33 / 34;
+      transform: rotate(18deg);
+    }
+    @media (max-width: 1024px) {
+      .contact-decor.left { width: clamp(180px, 22vw, 280px); bottom: -6%; left: -10%; }
+      .contact-decor.right { width: clamp(160px, 20vw, 260px); top: -8%; right: -8%; }
+    }
     @media (max-width: 700px) {
       .contact-decor { display: none; }
     }
