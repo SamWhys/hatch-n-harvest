@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import { useParallaxScroll } from "./useParallaxScroll";
+
 const services = [
   {
     title: "Strategy",
@@ -81,10 +86,14 @@ const services = [
 ];
 
 export function Process() {
+  const mnemonicRef = useRef<HTMLImageElement>(null);
+  useParallaxScroll(mnemonicRef, { intensity: 0.15 });
+
   return (
     <section className="process" id="process">
       <img
-        className="section-decor process-mnemonic"
+        ref={mnemonicRef}
+        className="section-decor process-mnemonic parallax-mnemonic"
         src="assets/brand/mnemonic-5.svg"
         alt=""
         aria-hidden="true"

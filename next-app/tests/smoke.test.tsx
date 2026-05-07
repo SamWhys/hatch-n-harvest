@@ -96,4 +96,11 @@ describe("HomePage smoke tests", () => {
     expect(img).not.toBeNull();
     expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
   });
+
+  it("Process mnemonic carries the parallax-mnemonic class", () => {
+    const { container } = render(<HomePage />);
+    const img = container.querySelector(".process-mnemonic");
+    expect(img).not.toBeNull();
+    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
+  });
 });
