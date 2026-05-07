@@ -486,9 +486,9 @@
     }
     .process .process-mnemonic {
       position: absolute;
-      top: 0;
-      right: -8%;
-      width: clamp(420px, 55vw, 780px);
+      top: -4%;
+      right: -28%;
+      width: clamp(900px, 120vw, 1500px);
       max-width: none;
       height: auto;
       opacity: 0.55;
@@ -500,9 +500,9 @@
     .process .wrap { position: relative; z-index: 1; }
     @media (max-width: 800px) {
       .process .process-mnemonic {
-        width: clamp(360px, 100vw, 600px);
-        top: 2%;
-        right: -40%;
+        width: clamp(700px, 180vw, 1100px);
+        top: -2%;
+        right: -55%;
         opacity: 0.3;
       }
     }
