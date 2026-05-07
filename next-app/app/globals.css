@@ -1080,6 +1080,50 @@
     }
 
     /* ============================================================
+       PARALLAX — ambient float + scroll-coupled drift for brand mnemonics
+       ============================================================ */
+    @property --float-x { syntax: '<length>'; inherits: false; initial-value: 0px; }
+    @property --float-y { syntax: '<length>'; inherits: false; initial-value: 0px; }
+    @property --float-r { syntax: '<angle>';  inherits: false; initial-value: 0deg; }
+    @property --scroll-y { syntax: '<length>'; inherits: false; initial-value: 0px; }
+
+    .parallax-mnemonic {
+      will-change: transform;
+      transform-origin: center;
+    }
+
+    @keyframes mnemonic-float-a {
+      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      50%  { --float-x: 12px;  --float-y: -28px; --float-r: 3deg; }
+      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+    }
+    @keyframes mnemonic-float-b {
+      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      50%  { --float-x: -10px; --float-y: -36px; --float-r: -4deg; }
+      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+    }
+    @keyframes mnemonic-float-c {
+      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      50%  { --float-x: 14px;  --float-y: -22px; --float-r: 5deg; }
+      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+    }
+    @keyframes mnemonic-float-d {
+      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      50%  { --float-x: -8px;  --float-y: -32px; --float-r: -3deg; }
+      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .parallax-mnemonic {
+        animation: none !important;
+        --float-x: 0px;
+        --float-y: 0px;
+        --float-r: 0deg;
+        --scroll-y: 0px;
+      }
+    }
+
+    /* ============================================================
        FOOTER
        ============================================================ */
     footer {
