@@ -1070,7 +1070,12 @@
       bottom: -25%;
       left: -16%;
       width: clamp(280px, 28vw, 460px);
-      transform: rotate(-38deg);
+      transform:
+        translate3d(0, var(--scroll-y, 0px), 0)
+        rotate(-38deg)
+        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
+        rotate(var(--float-r, 0deg));
+      animation: mnemonic-float-c 5s ease-in-out infinite;
     }
     .contact-decor.right {
       top: -753.555px;
@@ -1078,7 +1083,12 @@
       width: 1145.622px;
       height: 1180.343px;
       aspect-ratio: 33 / 34;
-      transform: rotate(18deg);
+      transform:
+        translate3d(0, var(--scroll-y, 0px), 0)
+        rotate(18deg)
+        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
+        rotate(var(--float-r, 0deg));
+      animation: mnemonic-float-d 6.5s ease-in-out infinite;
     }
     @media (max-width: 1024px) {
       .contact-decor.left { width: clamp(180px, 22vw, 280px); bottom: -6%; left: -10%; }

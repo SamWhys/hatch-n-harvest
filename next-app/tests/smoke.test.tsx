@@ -103,4 +103,18 @@ describe("HomePage smoke tests", () => {
     expect(img).not.toBeNull();
     expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
   });
+
+  it("Contact-left mnemonic carries the parallax-mnemonic class", () => {
+    const { container } = render(<HomePage />);
+    const img = container.querySelector(".contact-decor.left");
+    expect(img).not.toBeNull();
+    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
+  });
+
+  it("Contact-right mnemonic carries the parallax-mnemonic class", () => {
+    const { container } = render(<HomePage />);
+    const img = container.querySelector(".contact-decor.right");
+    expect(img).not.toBeNull();
+    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
+  });
 });

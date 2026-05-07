@@ -1,4 +1,14 @@
+"use client";
+
+import { useRef } from "react";
+import { useParallaxScroll } from "./useParallaxScroll";
+
 export function Contact() {
+  const leftRef = useRef<HTMLImageElement>(null);
+  const rightRef = useRef<HTMLImageElement>(null);
+  useParallaxScroll(leftRef, { intensity: 0.18 });
+  useParallaxScroll(rightRef, { intensity: 0.10 });
+
   return (
     <section className="contact" id="contact">
       <div className="wrap">
@@ -12,13 +22,15 @@ export function Contact() {
         </div>
 
         <img
-          className="contact-decor left"
+          ref={leftRef}
+          className="contact-decor left parallax-mnemonic"
           src="assets/brand/brand-mnemonic-1.svg"
           alt=""
           aria-hidden="true"
         />
         <img
-          className="contact-decor right"
+          ref={rightRef}
+          className="contact-decor right parallax-mnemonic"
           src="assets/brand/brand-mnemonic-4.svg"
           alt=""
           aria-hidden="true"
