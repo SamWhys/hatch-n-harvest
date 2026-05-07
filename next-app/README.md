@@ -46,10 +46,14 @@ npm run dev          # http://localhost:3000/hatch-n-harvest
 
 ```bash
 cd next-app
-npm run build        # next build → out/ → moved to ../docs/ + .nojekyll
+npm run build        # local/preview build — basePath="/hatch-n-harvest"
+npm run build:prod   # production build for custom domain (hatchnharvest.com) — no basePath
 ```
 
-After build, the repo top-level `/docs/` folder contains the static site ready for GitHub Pages.
+Use `build:prod` for any commit that updates `/docs/` for deploy. The default
+`build` produces a basePath-prefixed bundle that works under
+`username.github.io/hatch-n-harvest/`, but every asset will 404 on
+hatchnharvest.com because the CNAME serves from the domain root.
 
 ## Test
 

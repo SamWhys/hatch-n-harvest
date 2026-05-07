@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node ./scripts/postbuild.mjs",
+    "build:prod": "CUSTOM_DOMAIN=true next build && node ./scripts/postbuild.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
