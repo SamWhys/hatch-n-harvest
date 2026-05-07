@@ -13,19 +13,9 @@ describe("HomePage smoke tests", () => {
     render(<HomePage />);
     expect(screen.getByText("We")).toBeInTheDocument();
     expect(screen.getByText("hatch")).toBeInTheDocument();
-    expect(screen.getByText("and")).toBeInTheDocument();
+    expect(screen.getByText("&")).toBeInTheDocument();
     expect(screen.getByText("harvest")).toBeInTheDocument();
     expect(screen.getByText("big ideas.")).toBeInTheDocument();
-  });
-
-  it("renders the ticker with all 8 service categories twice (for marquee loop)", () => {
-    const { container } = render(<HomePage />);
-    const ticker = container.querySelector(".ticker-track");
-    expect(ticker).not.toBeNull();
-    const dots = ticker?.querySelectorAll(".dot") ?? [];
-    expect(dots.length).toBe(16);
-    expect(ticker?.textContent).toContain("Strategy");
-    expect(ticker?.textContent).toContain("Wayfinding");
   });
 
   it("renders the contact script line and the studio sticker", () => {

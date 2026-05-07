@@ -1,6 +1,5 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
-import { Ticker } from "@/components/Ticker";
 import { Manifesto } from "@/components/Manifesto";
 import { Work } from "@/components/Work";
 import { Process } from "@/components/Process";
@@ -14,7 +13,6 @@ export default function HomePage() {
       <Nav />
       <main id="top">
         <Hero />
-        <Ticker />
         <Manifesto />
         <Work />
         <Process />
