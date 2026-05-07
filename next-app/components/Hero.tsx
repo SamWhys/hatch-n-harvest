@@ -6,13 +6,11 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="wrap">
-        <div className="eyebrow">Who we are</div>
-
         <h1>
           <span className="line">
             <span className="word" style={word(0)}>We</span>{" "}
             <span className="word" style={word(1)}>hatch</span>{" "}
-            <span className="word" style={word(2)}>and</span>{" "}
+            <span className="word" style={word(2)}>&amp;</span>{" "}
             <span className="word" style={word(3)}>harvest</span>{" "}
             <em className="word" style={word(4)}>big ideas.</em>
           </span>

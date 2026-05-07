@@ -143,12 +143,12 @@
     }
     .logo svg { flex: none; color: var(--forest); }
     .logo-icon {
-      height: 32px;
+      height: 40px;
       width: auto;
       flex: none;
     }
     .logo-wordmark {
-      height: 22px;
+      height: 27.5px;
       width: auto;
       flex: none;
     }
@@ -193,7 +193,7 @@
        HERO
        ============================================================ */
     .hero {
-      padding-top: clamp(60px, 9vw, 120px);
+      padding-top: 100px;
       padding-bottom: clamp(70px, 10vw, 140px);
       position: relative;
       overflow: hidden;
@@ -301,10 +301,10 @@
     }
     .hero-meta {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: clamp(24px, 4vw, 60px);
+      grid-template-columns: 1fr;
+      gap: 20px;
       align-items: start;
-      margin-top: clamp(36px, 4vw, 56px);
+      margin-top: 24px;
       max-width: 900px;
     }
     .hero-lead {
@@ -317,7 +317,6 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 20px;
     }
     .btn {
       display: inline-flex;
