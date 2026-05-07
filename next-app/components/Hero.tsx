@@ -14,23 +14,7 @@ export function Hero() {
             <span className="word" style={word(1)}>hatch</span>{" "}
             <span className="word" style={word(2)}>and</span>{" "}
             <span className="word" style={word(3)}>harvest</span>{" "}
-            <em className="word" style={word(4)}>
-              big ideas.
-              <svg
-                className="squiggle"
-                viewBox="0 0 300 18"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M3 11 C 40 2, 80 16, 130 8 S 220 2, 297 10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </em>
+            <em className="word" style={word(4)}>big ideas.</em>
           </span>
         </h1>
 
