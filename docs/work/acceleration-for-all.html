@@ -716,7 +716,11 @@
     .mnemonic-grid figure.is-wide {
       grid-column: 1 / -1;
       min-height: auto;
-      padding: clamp(28px, 4.2vw, 48px) clamp(32px, 7vw, 80px);
+      padding: 24px 39px;
+      justify-content: center;
+      align-items: center;
+      background: #F0F4F7;
+      border-radius: 14px;
     }
     .mnemonic-grid img {
       width: auto;
@@ -727,15 +731,23 @@
     }
     .mnemonic-grid figure.is-half img { max-height: 110px; }
 
-    /* Wide palette strip — 10 swatches in one row. */
-    .mnemonic-grid .palette-strip {
+    /* Wide palette strip — 10 swatches in one row.
+       Outer figure (.is-wide.palette-strip) is the rounded paper panel.
+       .palette-strip-inner is the row of swatches (Figma spec: 1066 × 157,
+       gap 0 12px, flex-wrap to allow wrap on narrow viewports). */
+    .palette-strip-inner {
       display: flex;
-      gap: clamp(6px, 0.8vw, 12px);
-      align-items: stretch;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1066px;
+      align-items: flex-start;
+      gap: 0 12px;
     }
     .mnemonic-grid .palette-strip .swatch {
-      flex: 1;
-      min-height: 157px;
+      flex: 0 0 calc((100% - 9 * 12px) / 10);
+      height: 157px;
+      min-width: 0;
+      aspect-ratio: auto;
       padding: 10px;
       border-radius: 6px;
       display: flex;
@@ -759,16 +771,18 @@
       .mnemonic-grid figure,
       .mnemonic-grid figure.is-half { grid-column: span 1; }
       .mnemonic-grid figure.is-wide { grid-column: 1 / -1; }
-      .mnemonic-grid .palette-strip { flex-wrap: wrap; }
+      .palette-strip-inner { row-gap: 12px; }
       .mnemonic-grid .palette-strip .swatch {
-        flex: 1 1 calc(20% - 8px);
-        min-height: 110px;
+        flex: 0 0 calc((100% - 4 * 12px) / 5);
+        height: 110px;
       }
     }
     @media (max-width: 520px) {
       .mnemonic-grid { grid-template-columns: 1fr; }
       .mnemonic-grid figure { min-height: 180px; }
-      .mnemonic-grid .palette-strip .swatch { flex: 1 1 calc(33.333% - 8px); }
+      .mnemonic-grid .palette-strip .swatch {
+        flex: 0 0 calc((100% - 2 * 12px) / 3);
+      }
     }
 
     /* Typography stack — display Open Sans samples with specs. */
@@ -1388,45 +1402,47 @@
             <img src="../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Brand mnemonic — four chevrons in a row: navy, graphite, coral, yellow." loading="lazy" />
           </figure>
           <figure class="is-wide palette-strip" aria-label="Full ten-tone palette">
-            <div class="swatch" style="background: var(--afa-yellow); color: var(--afa-navy);">
-              <span class="swatch-name">Yellow</span>
-              <span class="swatch-hex">#FFC200</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-coral); color: #fff;">
-              <span class="swatch-name">Coral</span>
-              <span class="swatch-hex">#FD6051</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-white); color: var(--afa-navy); box-shadow: inset 0 0 0 1px var(--line);">
-              <span class="swatch-name">White</span>
-              <span class="swatch-hex">#FFFFFF</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-paper); color: var(--afa-navy);">
-              <span class="swatch-name">Paper</span>
-              <span class="swatch-hex">#F0F4F7</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-navy); color: #fff;">
-              <span class="swatch-name">Navy</span>
-              <span class="swatch-hex">#1E2782</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-red); color: #fff;">
-              <span class="swatch-name">Deep Red</span>
-              <span class="swatch-hex">#990000</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-teal); color: #fff;">
-              <span class="swatch-name">Teal</span>
-              <span class="swatch-hex">#2FB2D6</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-purple); color: #fff;">
-              <span class="swatch-name">Lilac</span>
-              <span class="swatch-hex">#6F59D8</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-purple-deep); color: #fff;">
-              <span class="swatch-name">Purple</span>
-              <span class="swatch-hex">#9636A4</span>
-            </div>
-            <div class="swatch" style="background: var(--afa-graphite); color: #fff;">
-              <span class="swatch-name">Graphite</span>
-              <span class="swatch-hex">#404555</span>
+            <div class="palette-strip-inner">
+              <div class="swatch" style="background: var(--afa-yellow); color: var(--afa-navy);">
+                <span class="swatch-name">Yellow</span>
+                <span class="swatch-hex">#FFC200</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-coral); color: #fff;">
+                <span class="swatch-name">Coral</span>
+                <span class="swatch-hex">#FD6051</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-white); color: var(--afa-navy); box-shadow: inset 0 0 0 1px var(--line);">
+                <span class="swatch-name">White</span>
+                <span class="swatch-hex">#FFFFFF</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-paper); color: var(--afa-navy);">
+                <span class="swatch-name">Paper</span>
+                <span class="swatch-hex">#F0F4F7</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-navy); color: #fff;">
+                <span class="swatch-name">Navy</span>
+                <span class="swatch-hex">#1E2782</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-red); color: #fff;">
+                <span class="swatch-name">Deep Red</span>
+                <span class="swatch-hex">#990000</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-teal); color: #fff;">
+                <span class="swatch-name">Teal</span>
+                <span class="swatch-hex">#2FB2D6</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-purple); color: #fff;">
+                <span class="swatch-name">Lilac</span>
+                <span class="swatch-hex">#6F59D8</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-purple-deep); color: #fff;">
+                <span class="swatch-name">Purple</span>
+                <span class="swatch-hex">#9636A4</span>
+              </div>
+              <div class="swatch" style="background: var(--afa-graphite); color: #fff;">
+                <span class="swatch-name">Graphite</span>
+                <span class="swatch-hex">#404555</span>
+              </div>
             </div>
           </figure>
         </div>
@@ -1468,24 +1484,6 @@
       </section>
 
       <!-- The Microsite -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">03 · The microsite</div>
-          <h3>A door wide enough to walk through.</h3>
-          <p>A coming-soon page on day one, then a Typeform-driven submission flow, then a public content hub that doubled as the voting platform for the People's Choice award. Every screen was built to lower the cost of applying.</p>
-        </div>
-
-        <div class="hero-stage">
-          <figure class="block-full">
-            <img src="../assets/work/acceleration-for-all/microsite.jpg" alt="The Acceleration For All coming-soon page — full landing, scroll detail, and mobile view shown together." loading="lazy" />
-            <figcaption class="hero-caption">
-              <strong>Coming-soon · submission · vote — one site, three jobs.</strong>
-              <span>Desktop · Mobile</span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
       <!-- Social media — campaign cadence (v3 layout: wide RSVP → 2-up → 6-up → wide countdown) -->
       <section class="work-section solution-social">
         <div class="social-stack">
@@ -1581,42 +1579,6 @@
               <div class="metric-num">Live</div>
               <div class="metric-label">Award ceremony hosted by comedian Irene Tu</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= REFLECTION ======================= -->
-    <section class="reflection">
-      <div class="wrap-text">
-        <div class="eyebrow">What we learned</div>
-        <h2>If the promise is inclusion, every asset has to carry it.</h2>
-        <p>A tagline alone won't do the work. The 30-founder grid wasn't decoration — it was the strategy made visible at every scale. Casting, palette, and the small choices in every social tile carried more weight than any single hero film. Build the brand promise into the smallest unit of work and the biggest unit takes care of itself.</p>
-      </div>
-    </section>
-
-    <!-- ======================= CREDITS ======================= -->
-    <section class="credits">
-      <div class="wrap">
-        <div class="eyebrow">Credits</div>
-        <div class="credits-grid">
-          <div class="credits-block">
-            <h4>Hatch n Harvest</h4>
-            <ul class="credits-list">
-              <li>Campaign concept & naming<span class="credits-role">Strategy</span></li>
-              <li>Brand identity & lockup<span class="credits-role">Design</span></li>
-              <li>Microsite design<span class="credits-role">Digital</span></li>
-              <li>Manifesto film & 30s sizzle<span class="credits-role">Film</span></li>
-              <li>Global social system<span class="credits-role">Campaign</span></li>
-              <li>Event identity & merch<span class="credits-role">Environmental</span></li>
-            </ul>
-          </div>
-          <div class="credits-block">
-            <h4>Partners</h4>
-            <ul class="credits-list">
-              <li>ViewSonic<span class="credits-role">Co-lead · Hardware</span></li>
-              <li>Hustle Fund<span class="credits-role">Co-lead · Investment</span></li>
-            </ul>
           </div>
         </div>
       </div>
