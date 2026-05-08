@@ -575,6 +575,21 @@
       height: auto;
     }
 
+    /* Identity key visual (v3) — campaign hero in a dark-brown rounded frame. */
+    .identity-kv {
+      background: #2B2722;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 0;
+    }
+    .identity-kv img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
     /* Lockup variations — primary positive + negative side-by-side. */
     .lockup-variants {
       display: grid;
@@ -615,16 +630,18 @@
       background: var(--forest);
     }
 
-    /* Mnemonic system — 5 SVG compositions in a 3+1+1 layout.
-       Cards sit on the brand-paper tone (#F0F4F7) so the chevrons
-       read clean — same surface the brand book uses. */
+    /* Brand color & Mnemonic system — 5 SVG chevron compositions in a
+       3+2 layout, with a wide palette strip as the bottom row.
+       Cards sit on the brand-paper tone (#F0F4F7) so the chevrons read
+       clean — same surface the brand book uses. */
     .mnemonic-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: clamp(12px, 1.5vw, 20px);
     }
     .mnemonic-grid figure {
       margin: 0;
+      grid-column: span 2;
       background: var(--afa-paper);
       border-radius: var(--radius-md);
       padding: clamp(24px, 3.5vw, 44px);
@@ -633,10 +650,15 @@
       justify-content: center;
       min-height: 220px;
     }
+    .mnemonic-grid figure.is-half {
+      grid-column: span 3;
+      min-height: 160px;
+      padding: clamp(24px, 3vw, 40px) clamp(32px, 5vw, 64px);
+    }
     .mnemonic-grid figure.is-wide {
       grid-column: 1 / -1;
       min-height: auto;
-      padding: clamp(28px, 3.5vw, 48px) clamp(40px, 6vw, 80px);
+      padding: clamp(20px, 2.5vw, 32px) clamp(20px, 2.5vw, 32px);
     }
     .mnemonic-grid img {
       width: auto;
@@ -645,16 +667,51 @@
       max-height: 180px;
       display: block;
     }
-    .mnemonic-grid figure.is-wide img { max-height: 110px; }
-    @media (max-width: 700px) {
-      .mnemonic-grid { grid-template-columns: 1fr; }
-      .mnemonic-grid figure { min-height: 180px; }
+    .mnemonic-grid figure.is-half img { max-height: 110px; }
+
+    /* Wide palette strip — 10 swatches in one row. */
+    .mnemonic-grid .palette-strip {
+      display: flex;
+      gap: clamp(6px, 0.8vw, 12px);
+      align-items: stretch;
+    }
+    .mnemonic-grid .palette-strip .swatch {
+      flex: 1;
+      min-height: 158px;
+      padding: 14px 12px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 2px;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+    .mnemonic-grid .palette-strip .swatch-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .mnemonic-grid .palette-strip .swatch-hex {
+      opacity: 0.85;
+      font-feature-settings: "tnum" 1;
     }
 
-    /* Full palette — two rows of five with section labels. */
-    .palette-stack { display: grid; gap: clamp(20px, 2.5vw, 30px); }
-    .palette-stack .palette-row { gap: clamp(8px, 1vw, 12px); }
-    .palette-stack .palette-label { margin: 0 0 12px; }
+    @media (max-width: 900px) {
+      .mnemonic-grid { grid-template-columns: repeat(2, 1fr); }
+      .mnemonic-grid figure,
+      .mnemonic-grid figure.is-half { grid-column: span 1; }
+      .mnemonic-grid figure.is-wide { grid-column: 1 / -1; }
+      .mnemonic-grid .palette-strip { flex-wrap: wrap; }
+      .mnemonic-grid .palette-strip .swatch {
+        flex: 1 1 calc(20% - 8px);
+        min-height: 110px;
+      }
+    }
+    @media (max-width: 520px) {
+      .mnemonic-grid { grid-template-columns: 1fr; }
+      .mnemonic-grid figure { min-height: 180px; }
+      .mnemonic-grid .palette-strip .swatch { flex: 1 1 calc(33.333% - 8px); }
+    }
 
     /* Typography stack — display Open Sans samples with specs. */
     .type-stack {
@@ -689,26 +746,65 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+    .type-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+    .type-sub-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 18px;
+    }
     @media (max-width: 700px) {
       .type-row { flex-direction: column; align-items: flex-start; gap: 6px; }
     }
 
-    /* Apparel mockup grid — 4-up colorway showcase. */
+    /* Identity foot — Typography + Apparel side-by-side dark panels (v3). */
+    .identity-foot {
+      display: flex;
+      gap: clamp(16px, 1.7vw, 24px);
+      align-items: stretch;
+      margin-top: clamp(56px, 7vw, 80px);
+    }
+    .identity-foot .type-stack,
+    .identity-foot .apparel-grid {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Apparel panel — flex-wrap; 2 t-shirts top row, 1 wraps centred. */
     .apparel-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(8px, 1vw, 14px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(12px, 1.4vw, 24px);
+      justify-content: center;
+      align-content: center;
+      background: #2B2722;
+      border-radius: var(--radius-md);
+      padding: clamp(20px, 2.6vw, 33px) clamp(16px, 2vw, 25px);
     }
     .apparel-grid figure {
       margin: 0;
-      border-radius: var(--radius-sm);
+      flex: 1 1 calc(50% - 24px);
+      max-width: calc(50% - 12px);
+      border-radius: var(--radius-md);
       overflow: hidden;
-      background: var(--cream);
-      aspect-ratio: 4 / 3;
+      background: var(--cream-deep);
+      aspect-ratio: 275.5 / 206.63;
     }
     .apparel-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @media (max-width: 800px) {
-      .apparel-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) {
+      .identity-foot { flex-direction: column; }
+      .apparel-grid figure { flex: 1 1 calc(50% - 12px); max-width: calc(50% - 6px); }
     }
 
     /* Block — identity_system (logo + palette + chevrons) */
@@ -792,6 +888,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .solution-manifesto .film-frame {
+      box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.65);
     }
     .film-frame iframe {
       position: absolute;
@@ -1166,70 +1265,38 @@
     <!-- ======================= WORK INTRO ======================= -->
     <section class="work-intro">
       <div class="wrap">
-        <div class="eyebrow">The work</div>
-        <h2>One brand. Every door.</h2>
-        <p>Six chapters, one campaign — from the opening manifesto to the awards-night recap. Every touchpoint built to enrol new founders into the program, and to flatten the wall between watching and entering.</p>
+        <h2>The Solution</h2>
+        <p>To help level the playing field, ViewSonic launched Acceleration — a program designed to support emerging entrepreneurs with the tools, exposure, and partnerships needed to grow their ideas. By creating opportunities outside the traditional accelerator model, the campaign focused on empowering underrepresented founders through collaboration, mentorship, technology, and funding support. The initiative transformed ViewSonic from a technology brand into a catalyst for innovation and opportunity.</p>
       </div>
     </section>
 
     <!-- ======================= WORK SECTIONS ======================= -->
     <div class="wrap">
 
-      <!-- The Manifesto -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">01 · The manifesto</div>
-          <h3>Permission, not pitch.</h3>
-          <p>An opening film and a tagline that gave permission. The message wasn't <em>enter our accelerator</em> — it was <em>follow your pipe dreams. We're here to help.</em></p>
+      <!-- The Manifesto — film embed only (per v3 design) -->
+      <section class="work-section solution-manifesto">
+        <div class="film-frame" data-yt-id="xfx9rrUjCCA">
+          <iframe
+            src="https://www.youtube.com/embed/xfx9rrUjCCA?rel=0&modestbranding=1"
+            title="Acceleration For All — Manifesto film"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"></iframe>
         </div>
-
-        <!-- HERO_FILM placeholder #1 — Manifesto film
-             To activate, replace the .film-placeholder with a YouTube iframe:
-             <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
-                     title="Acceleration For All — Manifesto film"
-                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                     allowfullscreen></iframe>
-        -->
-        <div class="hero-stage">
-          <figure class="block-full" style="background: transparent;">
-            <div class="film-frame" data-yt-id="xfx9rrUjCCA">
-              <iframe
-                src="https://www.youtube.com/embed/xfx9rrUjCCA?rel=0&modestbranding=1"
-                title="Acceleration For All — Manifesto film"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                loading="lazy"></iframe>
-            </div>
-            <figcaption class="hero-caption">
-              <strong>Manifesto film · 60s opener.</strong>
-              <span>Direction · Edit · Score</span>
-            </figcaption>
-          </figure>
-        </div>
-
-        <figure class="block-quote">
-          <blockquote>"So follow your pipe dreams. <em>We're here to help.</em>"</blockquote>
-          <span class="quote-attr">— Manifesto, opening line</span>
-        </figure>
       </section>
 
       <!-- The Identity — full brand hero block (Vitra-style). -->
       <section class="work-section">
         <div class="work-section-head">
-          <div class="eyebrow">02 · The identity</div>
-          <h3>A wordmark that points forward.</h3>
+          <h3>An identity</h3>
           <p>The lockup turns the "A" of <em>Acceleration</em> into a chevron — the same forward-pointing mark that drives the rest of the system. A handwritten <span class="script">for all</span> reframes the year-stamp as a promise. Built to read at any scale, on any surface, in any of six regions.</p>
         </div>
 
-        <!-- Key visual — the lockup applied at hero scale -->
+        <!-- Key visual — campaign hero "The inside scoop on what makes a startup stand out." -->
         <div class="hero-stage">
-          <figure class="block-full" style="background: transparent; margin: 0;">
-            <img src="../assets/work/acceleration-for-all/kv-hero.jpg" alt="Acceleration For All key visual — 30 founders' faces arranged around the campaign lockup with arrow chevrons." loading="lazy" />
-            <figcaption class="hero-caption">
-              <strong>Key visual · the lockup, applied to a 30-founder hero frame.</strong>
-              <span>16:9 · Hero composition</span>
-            </figcaption>
+          <figure class="block-full identity-kv">
+            <img src="../assets/work/acceleration-for-all/kv-inside-scoop.png" alt="Acceleration For All campaign hero — three founder portraits in coloured chevrons next to the line: 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
           </figure>
         </div>
 
@@ -1238,7 +1305,7 @@
         <div class="lockup-variants">
           <figure>
             <div class="variant-card is-positive">
-              <img src="../assets/work/acceleration-for-all/lockup-light.jpg" alt="Primary lockup, positive — black on white." loading="lazy" />
+              <img src="../assets/work/acceleration-for-all/lockup-light.svg" alt="Primary lockup, positive — black on white." loading="lazy" />
             </div>
             <figcaption class="hero-caption">
               <strong>Primary · positive.</strong>
@@ -1247,7 +1314,7 @@
           </figure>
           <figure>
             <div class="variant-card is-negative">
-              <img src="../assets/work/acceleration-for-all/lockup-dark.jpg" alt="Primary lockup, negative — white on black." loading="lazy" />
+              <img src="../assets/work/acceleration-for-all/lockup-dark.svg" alt="Primary lockup, negative — white on black." loading="lazy" />
             </div>
             <figcaption class="hero-caption">
               <strong>Primary · negative.</strong>
@@ -1256,8 +1323,8 @@
           </figure>
         </div>
 
-        <!-- Mnemonic system — 5 chevron compositions -->
-        <div class="id-subhead">Mnemonic system</div>
+        <!-- Brand color & Mnemonic system — 5 chevron compositions + palette strip -->
+        <div class="id-subhead">Brand color &amp; Mnemonic system</div>
         <div class="mnemonic-grid">
           <figure>
             <img src="../assets/work/acceleration-for-all/mnemonic-3.svg" alt="Brand mnemonic — diamond composition built from chevrons in coral, navy, yellow, and paper." loading="lazy" />
@@ -1268,109 +1335,89 @@
           <figure>
             <img src="../assets/work/acceleration-for-all/mnemonic-4.svg" alt="Brand mnemonic — square chevron composition spanning the full six-tone palette." loading="lazy" />
           </figure>
-          <figure class="is-wide">
+          <figure class="is-half">
             <img src="../assets/work/acceleration-for-all/mnemonic-1.svg" alt="Brand mnemonic — three chevrons in a row: purple, graphite, coral." loading="lazy" />
           </figure>
-          <figure class="is-wide">
+          <figure class="is-half">
             <img src="../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Brand mnemonic — four chevrons in a row: navy, graphite, coral, yellow." loading="lazy" />
           </figure>
+          <figure class="is-wide palette-strip" aria-label="Full ten-tone palette">
+            <div class="swatch" style="background: var(--afa-yellow); color: var(--afa-navy);">
+              <span class="swatch-name">Yellow</span>
+              <span class="swatch-hex">#FFC200</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-coral); color: #fff;">
+              <span class="swatch-name">Coral</span>
+              <span class="swatch-hex">#FD6051</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-white); color: var(--afa-navy); box-shadow: inset 0 0 0 1px var(--line);">
+              <span class="swatch-name">White</span>
+              <span class="swatch-hex">#FFFFFF</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-paper); color: var(--afa-navy);">
+              <span class="swatch-name">Paper</span>
+              <span class="swatch-hex">#F0F4F7</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-navy); color: #fff;">
+              <span class="swatch-name">Navy</span>
+              <span class="swatch-hex">#1E2782</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-red); color: #fff;">
+              <span class="swatch-name">Deep Red</span>
+              <span class="swatch-hex">#990000</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-teal); color: #fff;">
+              <span class="swatch-name">Teal</span>
+              <span class="swatch-hex">#2FB2D6</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-purple); color: #fff;">
+              <span class="swatch-name">Lilac</span>
+              <span class="swatch-hex">#6F59D8</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-purple-deep); color: #fff;">
+              <span class="swatch-name">Purple</span>
+              <span class="swatch-hex">#9636A4</span>
+            </div>
+            <div class="swatch" style="background: var(--afa-graphite); color: #fff;">
+              <span class="swatch-name">Graphite</span>
+              <span class="swatch-hex">#404555</span>
+            </div>
+          </figure>
         </div>
 
-        <!-- Palette — full 10-tone system -->
-        <div class="id-subhead">Palette</div>
-        <div class="palette-stack">
-          <div>
-            <div class="palette-label">Main · Background</div>
-            <div class="palette-row">
-              <div class="swatch" style="background: var(--afa-yellow); color: var(--afa-navy);">
-                <span class="swatch-name">Yellow</span>
-                <span class="swatch-hex">#FFC200</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-coral); color: #fff;">
-                <span class="swatch-name">Coral</span>
-                <span class="swatch-hex">#FD6051</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-white); color: var(--afa-navy); box-shadow: inset 0 0 0 1px var(--line);">
-                <span class="swatch-name">White</span>
-                <span class="swatch-hex">#FFFFFF</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-paper); color: var(--afa-navy);">
-                <span class="swatch-name">Paper</span>
-                <span class="swatch-hex">#F0F4F7</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-navy); color: #fff;">
-                <span class="swatch-name">Navy</span>
-                <span class="swatch-hex">#1E2782</span>
-              </div>
+        <!-- Typography + Apparel — side-by-side dark panels (v3) -->
+        <div class="identity-foot">
+          <div class="type-stack">
+            <div class="type-eyebrow">Typography</div>
+            <div class="type-sub-eyebrow">Display family</div>
+            <div class="type-row">
+              <div class="type-sample" style="font-weight: 700; font-size: clamp(40px, 6vw, 60px);">Open Sans</div>
+            </div>
+            <div class="type-row">
+              <div class="type-sample" style="font-weight: 700; font-size: clamp(32px, 4.6vw, 48px);">Heading 2 — Bold 48</div>
+            </div>
+            <div class="type-row">
+              <div class="type-sample" style="font-weight: 600; font-size: clamp(24px, 3vw, 34px);">Heading 3 — SemiBold 34</div>
+            </div>
+            <div class="type-row">
+              <div class="type-sample" style="font-weight: 600; font-size: clamp(18px, 2.2vw, 24px);">Heading 4 — SemiBold 24</div>
+            </div>
+            <div class="type-row">
+              <div class="type-sample" style="font-weight: 400; font-size: 16px;">Body — Regular 16.</div>
             </div>
           </div>
-          <div>
-            <div class="palette-label">Secondary</div>
-            <div class="palette-row">
-              <div class="swatch" style="background: var(--afa-red); color: #fff;">
-                <span class="swatch-name">Deep Red</span>
-                <span class="swatch-hex">#990000</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-purple-deep); color: #fff;">
-                <span class="swatch-name">Purple</span>
-                <span class="swatch-hex">#9636A4</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-teal); color: #fff;">
-                <span class="swatch-name">Teal</span>
-                <span class="swatch-hex">#2FB2D6</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-graphite); color: #fff;">
-                <span class="swatch-name">Graphite</span>
-                <span class="swatch-hex">#404555</span>
-              </div>
-              <div class="swatch" style="background: var(--afa-purple); color: #fff;">
-                <span class="swatch-name">Lilac</span>
-                <span class="swatch-hex">#6F59D8</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Typography stack -->
-        <div class="id-subhead">Typography</div>
-        <div class="type-stack">
-          <div class="type-row">
-            <div class="type-sample" style="font-weight: 700; font-size: clamp(40px, 6vw, 60px);">Open Sans</div>
-            <div class="type-spec">Display family</div>
+          <div class="apparel-grid">
+            <figure>
+              <img src="../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt — coral colorway, white lockup with yellow chevron." loading="lazy" />
+            </figure>
+            <figure>
+              <img src="../assets/work/acceleration-for-all/tshirt-navy.jpg" alt="Event t-shirt — navy colorway." loading="lazy" />
+            </figure>
+            <figure>
+              <img src="../assets/work/acceleration-for-all/tshirt-black.jpg" alt="Event t-shirt — black colorway." loading="lazy" />
+            </figure>
           </div>
-          <div class="type-row">
-            <div class="type-sample" style="font-weight: 700; font-size: clamp(34px, 5vw, 48px);">Heading 2 — Bold 48</div>
-            <div class="type-spec">Bold · 48</div>
-          </div>
-          <div class="type-row">
-            <div class="type-sample" style="font-weight: 600; font-size: clamp(26px, 3.4vw, 34px);">Heading 3 — SemiBold 34</div>
-            <div class="type-spec">SemiBold · 34</div>
-          </div>
-          <div class="type-row">
-            <div class="type-sample" style="font-weight: 600; font-size: clamp(20px, 2.4vw, 24px);">Heading 4 — SemiBold 24</div>
-            <div class="type-spec">SemiBold · 24</div>
-          </div>
-          <div class="type-row">
-            <div class="type-sample" style="font-weight: 400; font-size: 16px;">Body — Regular 16. The system is one type family across nine roles, so a Top&nbsp;100 reveal and a People's Choice CTA stay obviously the same campaign.</div>
-            <div class="type-spec">Regular · 16</div>
-          </div>
-        </div>
-
-        <!-- Apparel application — palette in the wild -->
-        <div class="id-subhead">Apparel · palette in the wild</div>
-        <div class="apparel-grid">
-          <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt — coral colorway, white lockup with yellow chevron." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt-yellow.jpg" alt="Event t-shirt — yellow colorway." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt-navy.jpg" alt="Event t-shirt — navy colorway." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt-black.jpg" alt="Event t-shirt — black colorway." loading="lazy" />
-          </figure>
         </div>
       </section>
 
