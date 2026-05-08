@@ -1,8 +1,14 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useRef, type CSSProperties } from "react";
+import { useParallaxScroll } from "./useParallaxScroll";
 
 const word = (i: number): CSSProperties => ({ "--i": i } as CSSProperties);
 
 export function Hero() {
+  const graphicRef = useRef<HTMLImageElement>(null);
+  useParallaxScroll(graphicRef, { intensity: 0.12 });
+
   return (
     <section className="hero">
       <div className="wrap">
@@ -41,13 +47,13 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-atmos" aria-hidden="true">
-          <div className="atmos-rotor">
-            <div className="blob blob-marigold"></div>
-            <div className="blob blob-clay"></div>
-            <div className="blob blob-forest"></div>
-          </div>
-        </div>
+        <img
+          ref={graphicRef}
+          className="hero-graphic parallax-mnemonic"
+          src="assets/brand/hh-hero-logo.svg"
+          alt=""
+          aria-hidden="true"
+        />
       </div>
     </section>
   );

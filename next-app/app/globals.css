@@ -288,15 +288,10 @@
       .hero .eyebrow,
       .hero-lead,
       .hero-ctas,
-      .hero-atmos,
-      .atmos-rotor {
+      .hero-graphic {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
-      }
-      .hero h1 em .squiggle path {
-        stroke-dashoffset: 0 !important;
-        animation: none !important;
       }
     }
     .hero-meta {
@@ -345,87 +340,37 @@
       position: absolute;
       pointer-events: none;
     }
-    /* ----- Hero atmosphere -----
-       Three heavily-blurred radial-gradient blobs, placed off-center
-       inside a rotating container. Because the blobs are asymmetric
-       within the container, rotating the container sweeps them around
-       the viewer — a slow, painterly "cloud turning" that reads as a
-       diffuse gradient rather than a hard shape.
-
-       Layering:
-         .hero-atmos  → handles entry (opacity + scale)
-         .atmos-rotor → handles perpetual slow rotation
-         .blob        → individual blurred color fields
-    */
-    .hero-atmos {
+    /* Hero brand graphic — HH monogram on the right side, bleeds off-edge.
+       Composes the parallax transform (scroll + float) the same way other
+       mnemonics do; entry animates opacity only so it doesn't clobber the
+       composed transform. */
+    .hero-graphic {
       position: absolute;
-      top: -25%;
-      right: -18%;
-      width: clamp(600px, 85vw, 1150px);
-      aspect-ratio: 1;
+      top: 0;
+      right: -10%;
+      width: clamp(650px, 78vw, 1300px);
+      height: auto;
       pointer-events: none;
+      user-select: none;
       opacity: 0;
-      transform: scale(0.82);
-      animation: atmos-enter 2.4s cubic-bezier(0.22, 1, 0.36, 1) 200ms forwards;
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
+      animation:
+        hero-graphic-enter 1.6s cubic-bezier(0.22, 1, 0.36, 1) 200ms forwards,
+        mnemonic-float-c 9s ease-in-out infinite;
       will-change: transform, opacity;
       z-index: -1; /* sits behind text; contained by .hero's isolation */
     }
-    .atmos-rotor {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      animation: atmos-rotate 55s linear infinite 2600ms;
-      transform-origin: center center;
-      will-change: transform;
-    }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      will-change: transform;
-    }
-    .blob-marigold {
-      width: 62%;
-      height: 62%;
-      top: 12%;
-      left: 22%;
-      background: radial-gradient(circle,
-        rgba(249, 123, 5, 0.85) 0%,
-        rgba(249, 123, 5, 0.55) 35%,
-        rgba(249, 123, 5, 0) 72%);
-    }
-    .blob-clay {
-      width: 52%;
-      height: 52%;
-      top: 44%;
-      left: 8%;
-      background: radial-gradient(circle,
-        rgba(255, 160, 60, 0.55) 0%,
-        rgba(255, 160, 60, 0.28) 40%,
-        rgba(255, 160, 60, 0) 75%);
-    }
-    .blob-forest {
-      /* legacy name; on dark mode this is a deep amber for warmth */
-      width: 48%;
-      height: 48%;
-      top: 52%;
-      left: 52%;
-      background: radial-gradient(circle,
-        rgba(140, 82, 18, 0.65) 0%,
-        rgba(140, 82, 18, 0.30) 40%,
-        rgba(140, 82, 18, 0) 75%);
-    }
-    @keyframes atmos-enter {
-      from { opacity: 0; transform: scale(0.82); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    @keyframes atmos-rotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    @keyframes hero-graphic-enter {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
     @media (max-width: 900px) {
-      .hero-atmos { width: 120vw; right: -30%; top: -20%; }
-      .blob { filter: blur(60px); }
+      .hero-graphic {
+        width: 120vw;
+        right: -40%;
+        top: 8%;
+        opacity: 0.4;
+      }
       .hero-meta { grid-template-columns: 1fr; }
     }
 
@@ -440,11 +385,7 @@
       width: 807.433px;
       height: 556.629px;
       aspect-ratio: 132 / 91;
-      transform:
-        translate3d(0, var(--scroll-y, 0px), 0)
-        rotate(-45deg)
-        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
-        rotate(var(--float-r, 0deg));
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-a 8s ease-in-out infinite;
       pointer-events: none;
       z-index: 0;
@@ -463,10 +404,7 @@
       max-width: none;
       height: auto;
       opacity: 0.55;
-      transform:
-        translate3d(0, var(--scroll-y, 0px), 0)
-        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
-        rotate(var(--float-r, 0deg));
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-b 7s ease-in-out infinite;
       z-index: -1;
       pointer-events: none;
@@ -567,10 +505,7 @@
       z-index: -1;
       pointer-events: none;
       user-select: none;
-      transform:
-        translate3d(0, var(--scroll-y, 0px), 0)
-        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
-        rotate(var(--float-r, 0deg));
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-a 6s ease-in-out infinite;
     }
     @media (max-width: 800px) {
@@ -1051,11 +986,7 @@
       bottom: -25%;
       left: -16%;
       width: clamp(280px, 28vw, 460px);
-      transform:
-        translate3d(0, var(--scroll-y, 0px), 0)
-        rotate(-38deg)
-        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
-        rotate(var(--float-r, 0deg));
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-c 5s ease-in-out infinite;
     }
     .contact-decor.right {
@@ -1064,11 +995,7 @@
       width: 1145.622px;
       height: 1180.343px;
       aspect-ratio: 33 / 34;
-      transform:
-        translate3d(0, var(--scroll-y, 0px), 0)
-        rotate(18deg)
-        translate3d(var(--float-x, 0px), var(--float-y, 0px), 0)
-        rotate(var(--float-r, 0deg));
+      transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-d 6.5s ease-in-out infinite;
     }
     @media (max-width: 1024px) {
@@ -1083,8 +1010,6 @@
        PARALLAX — ambient float + scroll-coupled drift for brand mnemonics
        ============================================================ */
     @property --float-x { syntax: '<length>'; inherits: false; initial-value: 0px; }
-    @property --float-y { syntax: '<length>'; inherits: false; initial-value: 0px; }
-    @property --float-r { syntax: '<angle>';  inherits: false; initial-value: 0deg; }
     @property --scroll-y { syntax: '<length>'; inherits: false; initial-value: 0px; }
 
     .parallax-mnemonic {
@@ -1093,32 +1018,26 @@
     }
 
     @keyframes mnemonic-float-a {
-      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
-      50%  { --float-x: 12px;  --float-y: -28px; --float-r: 3deg; }
-      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      0%, 100% { --float-x: 0px;   }
+      50%      { --float-x: 14px;  }
     }
     @keyframes mnemonic-float-b {
-      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
-      50%  { --float-x: -10px; --float-y: -36px; --float-r: -4deg; }
-      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      0%, 100% { --float-x: 0px;   }
+      50%      { --float-x: -12px; }
     }
     @keyframes mnemonic-float-c {
-      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
-      50%  { --float-x: 14px;  --float-y: -22px; --float-r: 5deg; }
-      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      0%, 100% { --float-x: 0px;   }
+      50%      { --float-x: 16px;  }
     }
     @keyframes mnemonic-float-d {
-      0%   { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
-      50%  { --float-x: -8px;  --float-y: -32px; --float-r: -3deg; }
-      100% { --float-x: 0px;   --float-y: 0px;   --float-r: 0deg; }
+      0%, 100% { --float-x: 0px;   }
+      50%      { --float-x: -10px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .parallax-mnemonic {
         animation: none !important;
         --float-x: 0px;
-        --float-y: 0px;
-        --float-r: 0deg;
         --scroll-y: 0px;
       }
     }
