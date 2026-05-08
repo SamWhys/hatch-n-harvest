@@ -94,7 +94,7 @@ export function Process() {
       <img
         ref={mnemonicRef}
         className="section-decor process-mnemonic parallax-mnemonic"
-        src="assets/brand/mnemonic-5.svg"
+        src="assets/brand/hh-logo-outline.svg"
         alt=""
         aria-hidden="true"
       />

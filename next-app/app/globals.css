@@ -347,7 +347,7 @@
     .hero-graphic {
       position: absolute;
       top: 0;
-      right: -10%;
+      right: calc(-10% - 40px);
       width: clamp(650px, 78vw, 1300px);
       height: auto;
       pointer-events: none;
@@ -398,12 +398,12 @@
     }
     .process .process-mnemonic {
       position: absolute;
-      top: -4%;
-      right: -28%;
-      width: clamp(900px, 120vw, 1500px);
+      top: -8%;
+      right: -22%;
+      width: clamp(1500px, 175vw, 2400px);
       max-width: none;
       height: auto;
-      opacity: 0.55;
+      opacity: 1;
       transform: translate3d(var(--float-x, 0px), var(--scroll-y, 0px), 0);
       animation: mnemonic-float-b 7s ease-in-out infinite;
       z-index: -1;
@@ -413,10 +413,10 @@
     .process .wrap { position: relative; z-index: 1; }
     @media (max-width: 800px) {
       .process .process-mnemonic {
-        width: clamp(700px, 180vw, 1100px);
-        top: -2%;
-        right: -55%;
-        opacity: 0.3;
+        width: clamp(900px, 220vw, 1600px);
+        top: -4%;
+        right: -50%;
+        opacity: 0.6;
       }
     }
     @media (max-width: 760px) {
