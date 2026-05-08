@@ -313,6 +313,38 @@
     }
 
     /* ============================================================
+       PROBLEM (v3) — heading + paragraph then full-width banner image
+       ============================================================ */
+    .problem {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
+    }
+    .problem-intro {
+      max-width: 633px;
+      margin-bottom: clamp(40px, 5vw, 80px);
+    }
+    .problem-intro h2 {
+      color: var(--ink);
+      max-width: 14ch;
+      margin-bottom: 18px;
+    }
+    .problem-intro p {
+      font-size: clamp(16px, 1.2vw, 19px);
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0;
+    }
+    .problem-graphic {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .problem-graphic img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ============================================================
        STORY — the brief / insight / approach
        ============================================================ */
     .story { padding: clamp(80px, 10vw, 140px) 0; }
@@ -684,7 +716,7 @@
     .mnemonic-grid figure.is-wide {
       grid-column: 1 / -1;
       min-height: auto;
-      padding: clamp(20px, 2.5vw, 32px) clamp(20px, 2.5vw, 32px);
+      padding: clamp(28px, 4.2vw, 48px) clamp(32px, 7vw, 80px);
     }
     .mnemonic-grid img {
       width: auto;
@@ -703,9 +735,9 @@
     }
     .mnemonic-grid .palette-strip .swatch {
       flex: 1;
-      min-height: 158px;
-      padding: 14px 12px;
-      border-radius: 10px;
+      min-height: 157px;
+      padding: 10px;
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -1271,62 +1303,17 @@
       <span>Hero · 2021</span>
     </div>
 
-    <!-- ======================= STORY ======================= -->
-    <section class="story">
+    <!-- ======================= THE PROBLEM (v3) ======================= -->
+    <section class="problem">
       <div class="wrap">
-
-        <div class="story-block">
-          <div class="eyebrow">The shift</div>
-          <h2>The future of work showed up early.</h2>
-          <p>Lockdowns rewrote the rules of work overnight. Layoffs collided with the largest wave of new-business formation in a decade — passion projects, side hustles, one-person "tiny businesses" starting from kitchens and spare rooms.</p>
-          <p>The "future of work" wasn't a deck slide anymore. It was happening. And the accelerator playbook — Sand Hill Road, warm intros, six-figure cheques to people who already had them — hadn't caught up.</p>
+        <div class="problem-intro">
+          <h2>The Problem</h2>
+          <p>For too many aspiring entrepreneurs, access is the biggest barrier to success. Great ideas exist everywhere—but mentorship, funding, and startup networks are often concentrated within the elite circles of Silicon Valley. ViewSonic recognized that talented founders outside traditional tech hubs were being overlooked simply because they lacked the right connections or resources.</p>
         </div>
 
-        <div class="lockup-row is-flipped">
-          <div class="story-block">
-            <div class="eyebrow">The brief</div>
-            <h2>Two partners, one missing on-ramp.</h2>
-            <p>ViewSonic and Hustle Fund — a global hardware brand and an early-stage venture fund — wanted to launch a joint accelerator. Hustle Fund needed reach beyond Silicon Valley. ViewSonic wanted to evolve from business <em>supplier</em> to business <em>partner</em>.</p>
-            <p>Both believed the existing accelerator model was too narrow: too male, too credentialed, too capital-heavy, too geographically concentrated. Our brief was to build the program, the brand, and the experience — and to get founders who'd never see themselves in an accelerator pitch deck to apply anyway.</p>
-          </div>
-          <figure class="lockup-image">
-            <img src="../assets/work/acceleration-for-all/social-grid-9.jpg" alt="Three founder portraits arranged in chevrons — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
-          </figure>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ======================= INSIGHT ======================= -->
-    <section class="insight">
-      <div class="wrap-text">
-        <span class="insight-label">The insight</span>
-        <blockquote>
-          The old accelerator was a <em>velvet rope.</em> The new one had to be a <em>starting line.</em>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ======================= APPROACH ======================= -->
-    <section class="story">
-      <div class="wrap">
-        <div class="lockup-row">
-          <div class="story-block">
-            <div class="eyebrow">The move</div>
-            <h2>Treat it as a brand, not a program.</h2>
-            <p>We named it <em>Acceleration For All</em> and built the whole experience as a single piece of campaign IP — a unifying mark, an unflinchingly inclusive cast, and an end-to-end flow stitched together by one promise: <em>Let's help build the future of work by redefining the future of entrepreneurship together.</em></p>
-            <p>Pre-launch teasers. A microsite with a low-friction submission flow. Two online qualifying rounds. A hybrid award ceremony broadcast from Silicon Valley. And a sustain layer of post-event content designed to recruit next year's cohort. Same brand, every step.</p>
-          </div>
-          <figure class="lockup-image lockup-image--video">
-            <iframe
-              src="https://www.youtube.com/embed/bDePq__LtMg?rel=0&modestbranding=1"
-              title="Acceleration For All — The move"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-              loading="lazy"></iframe>
-          </figure>
-        </div>
+        <figure class="problem-graphic">
+          <img src="../assets/work/acceleration-for-all/problem-build-future.jpg" alt="Acceleration For All campaign banner — coral background with three chevrons and the line 'Let's help build the future of work by redefining the future of entrepreneurship together.' next to ViewSonic × HUSTLE FUND lockup." loading="lazy" />
+        </figure>
       </div>
     </section>
 
@@ -1361,33 +1348,24 @@
           <p>The lockup turns the "A" of <em>Acceleration</em> into a chevron — the same forward-pointing mark that drives the rest of the system. A handwritten <span class="script">for all</span> reframes the year-stamp as a promise. Built to read at any scale, on any surface, in any of six regions.</p>
         </div>
 
-        <!-- Key visual — campaign hero "The inside scoop on what makes a startup stand out." -->
-        <div class="hero-stage">
-          <figure class="block-full identity-kv">
-            <img src="../assets/work/acceleration-for-all/kv-inside-scoop.png" alt="Acceleration For All campaign hero — three founder portraits in coloured chevrons next to the line: 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
-          </figure>
-        </div>
-
-        <!-- Lockup variations — primary positive + negative -->
-        <div class="id-subhead">Lockup variations</div>
+        <!-- Lockup variations — primary positive + negative (v3 places these first) -->
         <div class="lockup-variants">
           <figure>
             <div class="variant-card is-positive">
               <img src="../assets/work/acceleration-for-all/lockup-light.svg" alt="Primary lockup, positive — black on white." loading="lazy" />
             </div>
-            <figcaption class="hero-caption">
-              <strong>Primary · positive.</strong>
-              <span>Black on white</span>
-            </figcaption>
           </figure>
           <figure>
             <div class="variant-card is-negative">
               <img src="../assets/work/acceleration-for-all/lockup-dark.svg" alt="Primary lockup, negative — white on black." loading="lazy" />
             </div>
-            <figcaption class="hero-caption">
-              <strong>Primary · negative.</strong>
-              <span>White on black</span>
-            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Key visual — campaign hero "The inside scoop on what makes a startup stand out." (v3 places this below lockups) -->
+        <div class="hero-stage">
+          <figure class="block-full identity-kv">
+            <img src="../assets/work/acceleration-for-all/kv-inside-scoop.png" alt="Acceleration For All campaign hero — three founder portraits in coloured chevrons next to the line: 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
           </figure>
         </div>
 
