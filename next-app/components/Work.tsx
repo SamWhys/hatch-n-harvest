@@ -43,16 +43,6 @@ function LockIcon() {
 const lockedCases = [
   {
     href: null,
-    label: "Small Acre case study — coming soon",
-    img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80",
-    alt: "Wooden crate of fresh vegetables from a farm",
-    category: "Naming · Brand Strategy",
-    year: "2024",
-    name: "Small Acre",
-    oneLiner: "Farm-share, rethought for the city — a subscription built around seasons, not scrolls.",
-  },
-  {
-    href: null,
     label: "Moth & Bloom case study — coming soon",
     img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80",
     alt: "Amber glass bottles of natural skincare on a wooden surface",
@@ -151,6 +141,34 @@ export function Work() {
               <div className="case-name">Acceleration For All</div>
               <p className="case-one-liner">
                 A partnership campaign for ViewSonic × Hustle Fund — rebuilding the on-ramp to entrepreneurship for everyone the old playbook left out.
+              </p>
+              <span className="case-read-cta">
+                Read case study
+                <ArrowIcon size={11} />
+              </span>
+            </div>
+          </a>
+
+          <a
+            href="work/united-by-play.html"
+            className="case"
+            aria-label="United by Play — ViewSonic global gaming campaign case study"
+          >
+            <div className="case-image">
+              <img
+                src="assets/work/united-by-play/title-no-matter-how-you-game.jpg"
+                alt="United by Play campaign title card — 'No matter how you game' on a colourful gaming background."
+                loading="lazy"
+              />
+            </div>
+            <div className="case-meta">
+              <div className="case-label">
+                <span>Campaign · Manifesto · Docuseries</span>
+                <span className="year">2021</span>
+              </div>
+              <div className="case-name">United by Play</div>
+              <p className="case-one-liner">
+                A global ViewSonic campaign that challenged gaming stereotypes and proved we are all united by play.
               </p>
               <span className="case-read-cta">
                 Read case study

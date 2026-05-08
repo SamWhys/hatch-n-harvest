@@ -39,11 +39,11 @@ describe("HomePage smoke tests", () => {
     });
   });
 
-  it("renders the work section with featured + acceleration + 3 locked cases", () => {
+  it("renders the work section with featured + 2 active + 2 locked cases", () => {
     render(<HomePage />);
     expect(screen.getByText("Kestrel Coast")).toBeInTheDocument();
     expect(screen.getByText("Acceleration For All")).toBeInTheDocument();
-    expect(screen.getByText("Small Acre")).toBeInTheDocument();
+    expect(screen.getByText("United by Play")).toBeInTheDocument();
     expect(screen.getByText("Moth & Bloom")).toBeInTheDocument();
     expect(screen.getByText("Common Range")).toBeInTheDocument();
   });
