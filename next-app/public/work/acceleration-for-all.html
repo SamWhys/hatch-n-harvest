@@ -496,25 +496,51 @@
        Pinterest-style columns so each card keeps its native aspect
        and reads as a real campaign deliverable rather than a cropped
        thumbnail. Order in DOM follows the campaign timeline. */
-    .social-tight-grid {
-      column-count: 4;
-      column-gap: clamp(8px, 1vw, 14px);
+    /* Social media (v3) — 4-block cadence:
+         1) wide RSVP card
+         2) 2-up row (founder spotlight + animated submission prompt)
+         3) 6-up grid (3 cols × 2 rows)
+         4) wide countdown card
+    */
+    .social-stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.5vw, 20px);
     }
-    .social-tight-grid figure {
-      margin: 0 0 clamp(8px, 1vw, 14px);
-      break-inside: avoid;
-      border-radius: var(--radius-sm);
+    .social-card {
+      margin: 0;
+      border-radius: var(--radius-md);
       overflow: hidden;
       background: var(--cream);
       line-height: 0;
     }
-    .social-tight-grid img {
+    .social-card img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
-    @media (max-width: 900px) { .social-tight-grid { column-count: 3; } }
-    @media (max-width: 520px) { .social-tight-grid { column-count: 2; } }
+    .social-card.is-wide   { aspect-ratio: 1144 / 569; }
+    .social-card.is-square { aspect-ratio: 562 / 569; }
+    .social-card.is-small  { aspect-ratio: 373 / 210; }
+
+    .social-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .social-row-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    @media (max-width: 800px) {
+      .social-row-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .social-row-2 { grid-template-columns: 1fr; }
+      .social-row-6 { grid-template-columns: 1fr; }
+    }
 
     /* Block — gallery (variable) */
     .gallery-five {
@@ -975,30 +1001,72 @@
     .outcome .eyebrow { color: var(--marigold); margin-bottom: 22px; }
     .outcome .eyebrow::before { background: var(--marigold); }
     .outcome h2 { color: var(--ink); max-width: 18ch; margin-bottom: 24px; }
-    .outcome-lead {
-      font-size: clamp(17px, 1.3vw, 19px);
-      line-height: 1.6;
-      color: color-mix(in srgb, var(--ink) 80%, transparent);
-      max-width: 60ch;
-      margin: 0 0 clamp(48px, 6vw, 72px);
+
+    /* Results section (v3) — intro, Top 5 reveal image, finalists grid,
+       and a side-heading + metrics row at the bottom. */
+    .outcome.results h2 {
+      max-width: 14ch;
     }
+    .results-intro {
+      max-width: 70ch;
+      margin-bottom: clamp(40px, 5vw, 60px);
+    }
+    .results-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      margin: 0;
+    }
+    .results-top5 {
+      margin: 0 0 clamp(20px, 2.4vw, 32px);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .results-top5 img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .results-metrics {
+      display: grid;
+      grid-template-columns: minmax(280px, 358px) 1fr;
+      gap: clamp(24px, 3vw, 48px);
+      margin-top: clamp(40px, 5vw, 60px);
+      align-items: start;
+    }
+    .results-metrics-head {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3vw, 41.8px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+      padding-top: 25px;
+    }
+    @media (max-width: 800px) {
+      .results-metrics { grid-template-columns: 1fr; }
+      .results-metrics-head { padding-top: 0; }
+    }
+
     .metrics-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(20px, 2.4vw, 32px);
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.4vw, 24px);
     }
     .metric {
-      padding-top: 24px;
-      border-top: 1.5px solid var(--ink);
+      padding-top: 25px;
+      border-top: 1px solid var(--ink);
     }
     .metric-num {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(36px, 4.4vw, 60px);
-      line-height: 1;
+      font-size: clamp(32px, 3.2vw, 42px);
+      line-height: 1.15;
       letter-spacing: -0.02em;
       color: var(--marigold);
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
     .metric-label {
       font-size: 14px;
@@ -1440,55 +1508,62 @@
         </div>
       </section>
 
-      <!-- The Drumbeat — full campaign social cadence -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">04 · The drumbeat</div>
-          <h3>Same brand. Every beat. One funnel.</h3>
-          <p>A sustained social cadence — founder spotlights, submission countdowns, a Top&nbsp;100 reveal, a Top&nbsp;20 ballot, a People's Choice vote, an event RSVP — each post built from the same chevrons, the same five colours, and the same quiet promise. Localised across AZ, DACH, FR, NL, TR, and UK so a founder in Istanbul saw the same invitation as a founder in Manchester.</p>
-        </div>
-
-        <div class="social-tight-grid">
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-6.jpg" alt="Founder spotlight — Eric Bahn, Co-Founder & GP, Hustle Fund." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-7.jpg" alt="Founder quote card — Elizabeth Yin, Co-Founder & GP, Hustle Fund." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-9.jpg" alt="LinkedIn card — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-10.jpg" alt="Submission countdown — 'Submissions close in 4 days.'" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-17.jpg" alt="Top 100 announcement — 'Introducing the AFA Top 100 Startups.'" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-19-01.jpg" alt="Top 20 announcement — 'Meet the AFA Top 20 Finalists.'" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-18.jpg" alt="Top 20 reveal — 'Meet the Top 20 and pick your #1 — Vote Now.'" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/social-grid-20.jpg" alt="People's Choice vote prompt — 'You be the VC. Vote Now.'" loading="lazy" />
-          </figure>
-          <figure>
+      <!-- Social media — campaign cadence (v3 layout: wide RSVP → 2-up → 6-up → wide countdown) -->
+      <section class="work-section solution-social">
+        <div class="social-stack">
+          <figure class="social-card is-wide">
             <img src="../assets/work/acceleration-for-all/social-grid-21.jpg" alt="RSVP card — 'The Acceleration For All Awards · January 12th · 5pm PT.'" loading="lazy" />
           </figure>
-          <figure>
+
+          <div class="social-row-2">
+            <figure class="social-card is-square">
+              <img src="../assets/work/acceleration-for-all/social-grid-6.jpg" alt="Founder spotlight — Eric Bahn, Co-Founder & GP, Hustle Fund." loading="lazy" />
+            </figure>
+            <figure class="social-card is-square">
+              <img src="../assets/work/acceleration-for-all/pitch-us-now.gif" alt="Animated submission prompt — 'Submissions are open. Pitch us now.'" loading="lazy" />
+            </figure>
+          </div>
+
+          <div class="social-row-6">
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-9.jpg" alt="LinkedIn card — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
+            </figure>
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-10.jpg" alt="Submission countdown — 'Submissions close in 4 days.'" loading="lazy" />
+            </figure>
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-17.jpg" alt="Top 100 announcement — 'Introducing the AFA Top 100 Startups.'" loading="lazy" />
+            </figure>
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-18.jpg" alt="Top 20 reveal — 'Meet the Top 20 and pick your #1 — Vote Now.'" loading="lazy" />
+            </figure>
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-19-01.jpg" alt="Top 20 announcement — 'Meet the AFA Top 20 Finalists.'" loading="lazy" />
+            </figure>
+            <figure class="social-card is-small">
+              <img src="../assets/work/acceleration-for-all/social-grid-20.jpg" alt="People's Choice vote prompt — 'You be the VC. Vote Now.'" loading="lazy" />
+            </figure>
+          </div>
+
+          <figure class="social-card is-wide">
             <img src="../assets/work/acceleration-for-all/social-grid-22.jpg" alt="Countdown — 'Just one more sleep till #TheAffies.'" loading="lazy" />
           </figure>
         </div>
       </section>
 
-      <!-- The Finalists — Top 5 reveal -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">05 · The finalists</div>
-          <h3>Five hustles, five categories.</h3>
-          <p>By the time the drumbeat had run its course, a global pool had narrowed to a Top&nbsp;100, a Top&nbsp;20, and an inaugural Top&nbsp;5 — spanning tiny business, B2B, social enterprise, and innovation. Each finalist got brand-level treatment in the run-up to the live final.</p>
+    </div>
+
+    <!-- ======================= RESULTS (v3) ======================= -->
+    <section class="outcome results">
+      <div class="wrap">
+        <div class="results-intro">
+          <h2>The Results</h2>
+          <p class="results-lead">Acceleration For All helped position ViewSonic as a brand invested not just in products, but in people and progress. The campaign generated meaningful engagement within entrepreneurial communities, strengthened brand perception, and created authentic connections with the next generation of innovators. Most importantly, it opened doors for founders who otherwise may never have had access to the startup ecosystem.</p>
         </div>
+
+        <figure class="results-top5">
+          <img src="../assets/work/acceleration-for-all/results-top5.png" alt="Top 5 reveal — Acceleration For All 2022 award categories: Best B2B, Best Consumer, Best Frontier, Best Creator, People's Choice." loading="lazy" />
+        </figure>
 
         <div class="gallery-five">
           <figure>
@@ -1512,67 +1587,22 @@
             <figcaption class="finalist-name">TeleCalm<span class="finalist-cat">People's Choice</span></figcaption>
           </figure>
         </div>
-      </section>
 
-      <!-- The Live Event -->
-      <section class="work-section">
-        <div class="work-section-head">
-          <div class="eyebrow">06 · The live event</div>
-          <h3>Silicon Valley as host. Livestream as front door.</h3>
-          <p>A made-for-livestream award ceremony — built hybrid from inception so the audience watching from a laptop got the same room as the audience in seats. RSVP collateral, merch, and a 30-second sizzle film carried the brand into the room and into the feed.</p>
-        </div>
-
-        <div class="block-trio">
-          <figure>
-            <img src="../assets/work/acceleration-for-all/rsvp-banner.jpg" alt="RSVP banner — Acceleration For All event invitation in coral and navy." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt mockup — coral tee with the Acceleration For All lockup, white type and yellow chevron." loading="lazy" />
-          </figure>
-          <figure>
-            <img src="../assets/work/acceleration-for-all/top5.jpg" alt="Top 5 announcement graphic — five-up grid of finalist headshots." loading="lazy" />
-          </figure>
-        </div>
-
-        <!-- HERO_FILM placeholder #2 — 30s sizzle / hype film -->
-        <figure class="block-full" style="background: transparent; margin-top: clamp(28px, 4vw, 44px);">
-          <div class="film-frame" data-yt-id="" aria-label="30-second sizzle film placeholder — replace with YouTube embed" style="background: linear-gradient(135deg, var(--afa-yellow) 0%, var(--afa-coral) 50%, var(--afa-purple) 100%);">
-            <div class="film-placeholder">
-              <div class="film-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-              <div class="film-label">Sizzle film · 30s</div>
-              <div class="film-note">YouTube embed will live here. Replace this placeholder block with the YouTube iframe once the link is ready.</div>
+        <div class="results-metrics">
+          <h3 class="results-metrics-head">Five categories,<br />Five hustles.</h3>
+          <div class="metrics-row">
+            <div class="metric">
+              <div class="metric-num">1,500+</div>
+              <div class="metric-label">Pitches from over 30 industries around the world</div>
             </div>
-          </div>
-        </figure>
-      </section>
-
-    </div>
-
-    <!-- ======================= OUTCOME ======================= -->
-    <section class="outcome">
-      <div class="wrap">
-        <div class="eyebrow">What it built</div>
-        <h2>A front door, not a one-off.</h2>
-        <p class="outcome-lead">Acceleration For All gave a hardware brand and an early-stage fund a single, recognisable pop-cultural front door — and a content system that kept paying out long after the awards stage went dark.</p>
-
-        <div class="metrics-row">
-          <div class="metric">
-            <div class="metric-num">1,500+</div>
-            <div class="metric-label">Pitches from 30 industries</div>
-          </div>
-          <div class="metric">
-            <div class="metric-num">5</div>
-            <div class="metric-label">Award categories — Best B2B, Best Consumer, Best Creator, Best Frontier, People's Choice</div>
-          </div>
-          <div class="metric">
-            <div class="metric-num">Live</div>
-            <div class="metric-label">Award ceremony hosted by comedian Irene Tu</div>
-          </div>
-          <div class="metric">
-            <div class="metric-num">1<sup>st</sup></div>
-            <div class="metric-label">Co-branded accelerator under the ViewSonic × Hustle Fund partnership</div>
+            <div class="metric">
+              <div class="metric-num">5</div>
+              <div class="metric-label">Award categories — Best B2B, Best Consumer, Best Creator, Best Frontier, People's Choice</div>
+            </div>
+            <div class="metric">
+              <div class="metric-num">Live</div>
+              <div class="metric-label">Award ceremony hosted by comedian Irene Tu</div>
+            </div>
           </div>
         </div>
       </div>
