@@ -1260,21 +1260,8 @@
       margin: 0 0 clamp(24px, 3vw, 40px);
     }
 
-    /* Problem section — hero film at top, 2-col body + stat below */
-    .ubp-hero-film {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--cream);
-      margin-bottom: clamp(56px, 7vw, 96px);
-    }
-    .ubp-hero-film iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
+    /* Problem section — 2-col body + stat callout. Hero film lives
+       full-bleed in .case-bleed above this section. */
     .ubp-problem-cols {
       display: grid;
       grid-template-columns: minmax(0, 746fr) minmax(0, 396fr);
@@ -1394,13 +1381,15 @@
     .ubp-award    { aspect-ratio: 373 / 560; background: var(--cream-deep); }
     .ubp-waitress { aspect-ratio: 373 / 685; }
     .ubp-kid      { aspect-ratio: 373 / 210; }
-    /* Award logo — contain not cover so the trophy sits properly */
+    /* Award logo — fills the cell edge-to-edge (the trophy artwork
+       is composited on its own black background, so contain/cover
+       and no padding give the cleanest result). */
+    .ubp-award { background: #000; }
     .ubp-award img,
     .ubp-award video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      padding: clamp(24px, 4vw, 60px);
+      object-fit: cover;
       display: block;
     }
 
@@ -1572,20 +1561,24 @@
     </section>
 
 
+    <!-- ======================= FULL-BLEED HERO FILM ======================= -->
+    <div class="case-bleed">
+      <iframe
+        src="https://www.youtube.com/embed/Vd_Tt1iSO90?rel=0&modestbranding=1"
+        title="United by Play — Hero film"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="eager"></iframe>
+    </div>
+    <div class="bleed-caption">
+      <strong>Hero film · United by Play.</strong>
+      <span>Campaign · 2021</span>
+    </div>
+
     <!-- ======================= THE PROBLEM (UBP) ======================= -->
     <section class="problem ubp-problem">
       <div class="wrap">
-        <!-- Hero film embed — sits inside the Problem block, full content width -->
-        <div class="ubp-hero-film">
-          <iframe
-            src="https://www.youtube.com/embed/Vd_Tt1iSO90?rel=0&modestbranding=1"
-            title="United by Play — Hero film"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            loading="lazy"></iframe>
-        </div>
-
         <h2 class="ubp-section-h">The Problem</h2>
         <div class="ubp-problem-cols">
           <div class="ubp-problem-body">
@@ -1732,7 +1725,7 @@
         <p class="ubp-result-lead">The campaign delivered exceptional engagement and awareness on a global scale — turning a hardware brand pivot into a cultural conversation about who games and why.</p>
 
         <figure class="ubp-result-board">
-          <img src="../assets/work/united-by-play/social-result-board.jpg" alt="Social media result board — engagement metrics across markets." loading="lazy" />
+          <img src="../assets/work/united-by-play/results-overview.jpg" alt="United by Play campaign results overview — insight, strategy, and headline metrics: 128M total impressions, 24M unique users on social, 2M completed video views, 6.3M YouTube views." loading="lazy" />
         </figure>
       </div>
     </section>
