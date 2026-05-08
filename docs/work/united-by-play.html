@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>United by Play — ViewSonic · Hatch n Harvest</title>
+  <meta name="description" content="A global campaign that challenged gaming stereotypes and proved that no matter how you play, we are all united by play." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — mirror the homepage (dark mode).
+       Inlined here so the page is self-contained until we
+       migrate to a shared stylesheet.
+       ============================================================ */
+    :root {
+      --paper: #1C1C1C;
+      --cream: #2B2722;
+      --cream-deep: #3D342D;
+      --forest: #FF6105;
+      --forest-deep: #28231E;
+      --marigold: #F97B05;
+      --clay: #FFA03C;
+      --ink: #F2EBDA;
+      --stone: #B5AC9B;
+      --stone-soft: #9A9082;
+      --line: rgba(242, 235, 218, 0.14);
+
+      /* AfA brand palette — sourced from the campaign brand book.
+         Five mains drive the system; five secondaries widen the
+         range for category and regional variants. */
+      --afa-yellow: #FFC200;
+      --afa-coral: #FD6051;
+      --afa-white: #FFFFFF;
+      --afa-paper: #F0F4F7;
+      --afa-navy: #1E2782;
+      --afa-red: #990000;
+      --afa-purple-deep: #9636A4;
+      --afa-teal: #2FB2D6;
+      --afa-graphite: #404555;
+      --afa-purple: #6F59D8;
+
+      --font-display: 'Open Sans', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-script: 'Caveat', cursive;
+
+      --pad: clamp(20px, 4vw, 48px);
+      --maxw: 1240px;
+      --maxw-text: 780px;
+      --radius-sm: 4px;
+      --radius-md: 14px;
+      --radius-lg: 28px;
+
+      --paper-texture:
+        radial-gradient(circle at 20% 20%, rgba(249, 123, 5, 0.05) 0, transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(255, 160, 60, 0.03) 0, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(249, 123, 5, 0.04) 0, transparent 45%);
+    }
+
+    /* ============================================================
+       RESET + BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      background-image: var(--paper-texture);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img, svg { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    ::selection { background: var(--marigold); color: var(--forest-deep); }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 0.96;
+      color: var(--ink);
+      margin: 0 0 0.4em;
+    }
+    h1 { font-size: clamp(48px, 8vw, 112px); }
+    h2 { font-size: clamp(32px, 4.4vw, 60px); }
+    h3 { font-size: clamp(22px, 2.4vw, 32px); line-height: 1.05; }
+    h4 { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.1; }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--forest);
+      display: inline-block;
+    }
+    .script {
+      font-family: var(--font-script);
+      font-weight: 600;
+      color: var(--clay);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+    .wrap-text {
+      max-width: var(--maxw-text);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+
+    /* ============================================================
+       NAV — mirrors homepage
+       ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 20px 0;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon { height: 32px; width: auto; flex: none; }
+    .logo-wordmark { height: 22px; width: auto; flex: none; }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--ink);
+      position: relative;
+      padding-bottom: 3px;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+    .nav-cta {
+      padding: 10px 18px;
+      background: var(--marigold);
+      color: var(--paper);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .2s ease;
+    }
+    .nav-cta:hover { background: var(--forest); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* ============================================================
+       CASE HERO
+       ============================================================ */
+    .case-hero {
+      padding-top: clamp(50px, 7vw, 90px);
+      padding-bottom: clamp(40px, 5vw, 70px);
+    }
+    .back-link {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      color: var(--stone);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color .2s ease;
+    }
+    .back-link:hover { color: var(--forest); }
+    .case-hero .eyebrow { margin-bottom: 24px; }
+    .case-hero h1 { max-width: 16ch; margin-bottom: 24px; }
+    .case-hero h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .case-hero-kicker {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.45;
+      color: var(--stone);
+      max-width: 56ch;
+      margin: 0 0 clamp(36px, 4vw, 56px);
+    }
+
+    .case-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1.5px solid var(--line);
+    }
+    .meta-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    @media (max-width: 800px) {
+      .case-meta-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    /* ============================================================
+       FULL BLEED HERO IMAGE
+       Aspect-ratio matches the source KV (16:9) so the full grid
+       of founder rows shows without cropping.
+       ============================================================ */
+    .case-bleed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .case-bleed img { width: 100%; height: 100%; object-fit: cover; }
+    .case-bleed iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .bleed-caption {
+      max-width: var(--maxw);
+      margin: 18px auto 0;
+      padding: 0 var(--pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .bleed-caption strong {
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      text-transform: none;
+      font-size: 13px;
+    }
+
+    /* Hero-stage modifier — applied to in-wrap visual hero moments
+       (manifesto film, microsite). Adds breathing room + a soft
+       drop shadow + an editorial caption underneath, so each piece
+       reads as a chapter spread rather than a thumbnail. */
+    .hero-stage {
+      margin-top: clamp(20px, 3vw, 40px);
+    }
+    .hero-stage .block-full,
+    .hero-stage .film-frame {
+      box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.65);
+    }
+    .hero-caption {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .hero-caption strong {
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .bleed-caption, .hero-caption { flex-direction: column; gap: 6px; }
+    }
+
+    /* ============================================================
+       PROBLEM (v3) — heading + paragraph then full-width banner image
+       ============================================================ */
+    .problem {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
+    }
+    .problem-intro {
+      max-width: 633px;
+      margin-bottom: clamp(40px, 5vw, 80px);
+    }
+    .problem-intro h2 {
+      color: var(--ink);
+      max-width: 14ch;
+      margin-bottom: 18px;
+    }
+    .problem-intro p {
+      font-size: clamp(16px, 1.2vw, 19px);
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0;
+    }
+    .problem-graphic {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .problem-graphic img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ============================================================
+       STORY — the brief / insight / approach
+       ============================================================ */
+    .story { padding: clamp(80px, 10vw, 140px) 0; }
+    .story-block { margin-bottom: clamp(56px, 6vw, 80px); }
+    .story-block:last-child { margin-bottom: 0; }
+    .story-block .eyebrow { margin-bottom: 20px; }
+    .story-block h2 { margin-bottom: 24px; max-width: 18ch; }
+    .story-block p {
+      font-size: clamp(17px, 1.3vw, 19px);
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0 0 1em;
+    }
+    .story-block p:last-child { margin-bottom: 0; }
+
+    /* Horizontal lockup — text + image side-by-side editorial row.
+       Default: text left, image right. Add .is-flipped to swap. */
+    .lockup-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      padding: clamp(40px, 6vw, 70px) 0;
+    }
+    .lockup-row > .story-block { margin-bottom: 0; }
+    .lockup-row > .lockup-image {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .lockup-row > .lockup-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .lockup-row > .lockup-image--svg {
+      padding: clamp(36px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--afa-paper);
+    }
+    .lockup-row > .lockup-image--svg img {
+      max-height: 220px;
+      width: auto;
+      max-width: 100%;
+    }
+    .lockup-row > .lockup-image--video {
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .lockup-row > .lockup-image--video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .lockup-row.is-flipped > *:first-child { order: 2; }
+    .lockup-row.is-flipped > *:last-child { order: 1; }
+    @media (max-width: 800px) {
+      .lockup-row { grid-template-columns: 1fr; padding: 28px 0; gap: 22px; }
+      .lockup-row.is-flipped > * { order: 0; }
+    }
+
+    /* Pull-quote / insight */
+    .insight {
+      padding: clamp(60px, 8vw, 110px) 0;
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .insight blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 3.6vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 26ch;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .insight blockquote em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .insight .insight-label {
+      display: block;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+
+    /* ============================================================
+       WORK SECTIONS — grouped blocks
+       ============================================================ */
+    .work-intro { padding: clamp(80px, 10vw, 140px) 0 clamp(40px, 5vw, 60px); }
+    .work-intro .eyebrow { margin-bottom: 22px; }
+    .work-intro h2 { max-width: 16ch; margin-bottom: 24px; }
+    .work-intro p {
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    .work-section { padding: clamp(50px, 6vw, 80px) 0; }
+    .work-section + .work-section { border-top: 1px solid var(--line); }
+    .work-section-head {
+      margin-bottom: clamp(32px, 4vw, 48px);
+      max-width: var(--maxw-text);
+    }
+    .work-section-head .eyebrow { margin-bottom: 18px; }
+    .work-section-head h3 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+    .work-section-head p {
+      font-size: clamp(16px, 1.2vw, 18px);
+      color: var(--stone);
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    /* Block — image_full */
+    .block-full {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-full img { width: 100%; height: auto; display: block; }
+    .block-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--stone);
+      letter-spacing: 0.04em;
+    }
+
+    /* Block — image_pair */
+    .block-pair {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .block-pair figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-pair img { width: 100%; height: auto; display: block; }
+    @media (max-width: 700px) { .block-pair { grid-template-columns: 1fr; } }
+
+    /* Block — image_trio (3-up) */
+    .block-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .block-trio figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .block-trio img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; display: block; }
+    @media (max-width: 800px) { .block-trio { grid-template-columns: 1fr; } }
+
+    /* Block — social_tight_grid (campaign asset wall, masonry)
+       Pinterest-style columns so each card keeps its native aspect
+       and reads as a real campaign deliverable rather than a cropped
+       thumbnail. Order in DOM follows the campaign timeline. */
+    /* Social media (v3) — 4-block cadence:
+         1) wide RSVP card
+         2) 2-up row (founder spotlight + animated submission prompt)
+         3) 6-up grid (3 cols × 2 rows)
+         4) wide countdown card
+    */
+    .social-stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .social-card {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      line-height: 0;
+    }
+    .social-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .social-card.is-wide   { aspect-ratio: 1144 / 569; }
+    .social-card.is-square { aspect-ratio: 562 / 569; }
+    .social-card.is-small  { aspect-ratio: 373 / 210; }
+
+    .social-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .social-row-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    @media (max-width: 800px) {
+      .social-row-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .social-row-2 { grid-template-columns: 1fr; }
+      .social-row-6 { grid-template-columns: 1fr; }
+    }
+
+    /* Block — gallery (variable) */
+    .gallery-five {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(12px, 1.4vw, 20px);
+    }
+    .gallery-five figure {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      text-align: center;
+    }
+    .gallery-five img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: var(--cream-deep);
+    }
+    .finalist-name {
+      padding: 14px 8px 16px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .finalist-cat {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) { .gallery-five { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px) { .gallery-five { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ============================================================
+       IDENTITY HERO SYSTEM — Vitra-style brand block.
+       Logo lockup → mnemonic system → palette → typography →
+       apparel application. Each lives in its own card so the page
+       reads as brand-book spreads rather than a single dense panel.
+       ============================================================ */
+    .identity-hero {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: clamp(64px, 9vw, 130px) clamp(40px, 6vw, 100px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .identity-hero img {
+      max-width: 720px;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Identity key visual (v3) — campaign hero in a dark-brown rounded frame. */
+    .identity-kv {
+      background: #2B2722;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 0;
+    }
+    .identity-kv img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    /* Lockup variations — primary positive + negative side-by-side. */
+    .lockup-variants {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .lockup-variants figure { margin: 0; }
+    .lockup-variants .variant-card {
+      border-radius: var(--radius-md);
+      padding: clamp(40px, 5.5vw, 90px) clamp(28px, 4vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .lockup-variants .variant-card.is-positive { background: #FFFFFF; }
+    .lockup-variants .variant-card.is-negative { background: #111111; }
+    .lockup-variants img { max-width: 100%; height: auto; display: block; }
+    @media (max-width: 700px) {
+      .lockup-variants { grid-template-columns: 1fr; }
+    }
+
+    .id-subhead {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin: clamp(56px, 7vw, 80px) 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .id-subhead::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--forest);
+    }
+
+    /* Brand color & Mnemonic system — 5 SVG chevron compositions in a
+       3+2 layout, with a wide palette strip as the bottom row.
+       Cards sit on the brand-paper tone (#F0F4F7) so the chevrons read
+       clean — same surface the brand book uses. */
+    .mnemonic-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    .mnemonic-grid figure {
+      margin: 0;
+      grid-column: span 2;
+      background: var(--afa-paper);
+      border-radius: var(--radius-md);
+      padding: clamp(24px, 3.5vw, 44px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .mnemonic-grid figure.is-half {
+      grid-column: span 3;
+      min-height: 160px;
+      padding: clamp(24px, 3vw, 40px) clamp(32px, 5vw, 64px);
+    }
+    .mnemonic-grid figure.is-wide {
+      grid-column: 1 / -1;
+      min-height: auto;
+      padding: 24px 39px;
+      justify-content: center;
+      align-items: center;
+      background: #F0F4F7;
+      border-radius: 14px;
+    }
+    .mnemonic-grid img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 180px;
+      display: block;
+    }
+    .mnemonic-grid figure.is-half img { max-height: 110px; }
+
+    /* Wide palette strip — 10 swatches in one row.
+       Outer figure (.is-wide.palette-strip) is the rounded paper panel.
+       .palette-strip-inner is the row of swatches (Figma spec: 1066 × 157,
+       gap 0 12px, flex-wrap to allow wrap on narrow viewports). */
+    .palette-strip-inner {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1066px;
+      align-items: flex-start;
+      gap: 0 12px;
+    }
+    .mnemonic-grid .palette-strip .swatch {
+      flex: 0 0 calc((100% - 9 * 12px) / 10);
+      height: 157px;
+      min-width: 0;
+      aspect-ratio: auto;
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 2px;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+    .mnemonic-grid .palette-strip .swatch-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .mnemonic-grid .palette-strip .swatch-hex {
+      opacity: 0.85;
+      font-feature-settings: "tnum" 1;
+    }
+
+    @media (max-width: 900px) {
+      .mnemonic-grid { grid-template-columns: repeat(2, 1fr); }
+      .mnemonic-grid figure,
+      .mnemonic-grid figure.is-half { grid-column: span 1; }
+      .mnemonic-grid figure.is-wide { grid-column: 1 / -1; }
+      .palette-strip-inner { row-gap: 12px; }
+      .mnemonic-grid .palette-strip .swatch {
+        flex: 0 0 calc((100% - 4 * 12px) / 5);
+        height: 110px;
+      }
+    }
+    @media (max-width: 520px) {
+      .mnemonic-grid { grid-template-columns: 1fr; }
+      .mnemonic-grid figure { min-height: 180px; }
+      .mnemonic-grid .palette-strip .swatch {
+        flex: 0 0 calc((100% - 2 * 12px) / 3);
+      }
+    }
+
+    /* Typography stack — display Open Sans samples with specs. */
+    .type-stack {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
+    }
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .type-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .type-sample {
+      font-family: var(--font-display);
+      color: var(--ink);
+      line-height: 1.05;
+      flex: 1;
+      min-width: 0;
+    }
+    .type-spec {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .type-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+    .type-sub-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 18px;
+    }
+    @media (max-width: 700px) {
+      .type-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+
+    /* Identity foot — Typography + Apparel side-by-side dark panels (v3). */
+    .identity-foot {
+      display: flex;
+      gap: clamp(16px, 1.7vw, 24px);
+      align-items: stretch;
+      margin-top: clamp(56px, 7vw, 80px);
+    }
+    .identity-foot .type-stack,
+    .identity-foot .apparel-grid {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Apparel panel — flex-wrap; 2 t-shirts top row, 1 wraps centred. */
+    .apparel-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(12px, 1.4vw, 24px);
+      justify-content: center;
+      align-content: center;
+      background: #2B2722;
+      border-radius: var(--radius-md);
+      padding: clamp(20px, 2.6vw, 33px) clamp(16px, 2vw, 25px);
+    }
+    .apparel-grid figure {
+      margin: 0;
+      flex: 1 1 calc(50% - 24px);
+      max-width: calc(50% - 12px);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream-deep);
+      aspect-ratio: 275.5 / 206.63;
+    }
+    .apparel-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 900px) {
+      .identity-foot { flex-direction: column; }
+      .apparel-grid figure { flex: 1 1 calc(50% - 12px); max-width: calc(50% - 6px); }
+    }
+
+    /* Block — identity_system (logo + palette + chevrons) */
+    .identity-stage {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: clamp(40px, 6vw, 80px) clamp(24px, 4vw, 60px);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
+    }
+    .identity-stage img { max-width: 100%; }
+    .identity-mark {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .identity-mark img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+    }
+    .identity-mark .mark-caption {
+      font-size: 13px;
+      color: var(--stone);
+      letter-spacing: 0.06em;
+    }
+    .palette-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .swatch {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+    }
+    .swatch-name { display: block; }
+    .swatch-hex {
+      display: block;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+    .palette-label {
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .chevron-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .chev {
+      width: 36px;
+      height: 36px;
+      flex: none;
+    }
+    @media (max-width: 800px) {
+      .identity-stage { grid-template-columns: 1fr; padding: 36px 24px; }
+    }
+
+    /* Block — hero_film (placeholder for YouTube embed) */
+    .film-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--afa-coral) 0%, var(--afa-purple) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .solution-manifesto .film-frame {
+      box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.65);
+    }
+    .film-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .film-placeholder {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+      color: #fff;
+      padding: 24px;
+    }
+    .film-play {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .film-play svg { width: 32px; height: 32px; margin-left: 4px; }
+    .film-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .film-note {
+      font-size: 12px;
+      opacity: 0.85;
+      max-width: 38ch;
+      line-height: 1.5;
+    }
+
+    /* Block — quote */
+    .block-quote {
+      margin: 0;
+      padding: clamp(36px, 5vw, 64px) 0;
+    }
+    .block-quote blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      max-width: 28ch;
+    }
+    .block-quote blockquote em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .block-quote .quote-attr {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       OUTCOME — metrics row
+       ============================================================ */
+    .outcome {
+      background: var(--forest-deep);
+      padding: clamp(80px, 10vw, 140px) 0;
+    }
+    .outcome .eyebrow { color: var(--marigold); margin-bottom: 22px; }
+    .outcome .eyebrow::before { background: var(--marigold); }
+    .outcome h2 { color: var(--ink); max-width: 18ch; margin-bottom: 24px; }
+
+    /* Results section (v3) — intro, Top 5 reveal image, finalists grid,
+       and a side-heading + metrics row at the bottom. */
+    .outcome.results h2 {
+      max-width: 14ch;
+    }
+    .results-intro {
+      max-width: 70ch;
+      margin-bottom: clamp(40px, 5vw, 60px);
+    }
+    .results-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      margin: 0;
+    }
+    .results-top5 {
+      margin: 0 0 clamp(20px, 2.4vw, 32px);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .results-top5 img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .results-metrics {
+      display: grid;
+      grid-template-columns: minmax(280px, 358px) 1fr;
+      gap: clamp(24px, 3vw, 48px);
+      margin-top: clamp(40px, 5vw, 60px);
+      align-items: start;
+    }
+    .results-metrics-head {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3vw, 41.8px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+      padding-top: 25px;
+    }
+    @media (max-width: 800px) {
+      .results-metrics { grid-template-columns: 1fr; }
+      .results-metrics-head { padding-top: 0; }
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.4vw, 24px);
+    }
+    .metric {
+      padding-top: 25px;
+      border-top: 1px solid var(--ink);
+    }
+    .metric-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(32px, 3.2vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--marigold);
+      margin-bottom: 13px;
+    }
+    .metric-label {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) { .metrics-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .metrics-row { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       REFLECTION
+       ============================================================ */
+    .reflection { padding: clamp(80px, 10vw, 140px) 0; }
+    .reflection .eyebrow { margin-bottom: 22px; }
+    .reflection h2 { max-width: 16ch; margin-bottom: 24px; }
+    .reflection p {
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* ============================================================
+       CREDITS
+       ============================================================ */
+    .credits {
+      padding: clamp(60px, 8vw, 100px) 0;
+      border-top: 1px solid var(--line);
+    }
+    .credits .eyebrow { margin-bottom: 30px; }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 60px);
+    }
+    .credits-block h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin: 0 0 16px;
+    }
+    .credits-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .credits-list li {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .credits-list li:last-child { border-bottom: 1px solid var(--line); }
+    .credits-role {
+      color: var(--stone);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+    @media (max-width: 700px) { .credits-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       NEXT PROJECT
+       ============================================================ */
+    .next-project-section {
+      background: var(--forest-deep);
+      padding: clamp(80px, 10vw, 140px) 0;
+      text-align: center;
+    }
+    .next-project {
+      display: inline-block;
+      color: var(--ink);
+      transition: color .2s ease;
+    }
+    .next-project:hover { color: var(--marigold); }
+    .np-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--marigold);
+      margin-bottom: 14px;
+    }
+    .np-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 64px);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .np-note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: color-mix(in srgb, var(--ink) 65%, transparent);
+    }
+
+    /* ============================================================
+       FOOTER — mirrors homepage
+       ============================================================ */
+    footer {
+      padding: 64px 0 50px;
+      background: var(--forest-deep);
+      color: color-mix(in srgb, var(--ink) 70%, transparent);
+      border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    }
+    .footer-lockup {
+      display: flex;
+      margin-bottom: 40px;
+    }
+    .footer-lockup a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+    .footer-links a:hover { color: var(--marigold); }
+
+    /* ============================================================
+       UNITED BY PLAY — case-study specific styles
+       ============================================================ */
+    .ubp-section-h {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(36px, 4.6vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 clamp(24px, 3vw, 40px);
+    }
+
+    /* Problem section — hero film at top, 2-col body + stat below */
+    .ubp-hero-film {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      margin-bottom: clamp(56px, 7vw, 96px);
+    }
+    .ubp-hero-film iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .ubp-problem-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 746fr) minmax(0, 396fr);
+      gap: clamp(24px, 3vw, 60px);
+      align-items: start;
+    }
+    .ubp-problem-body p {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0 0 1.2em;
+    }
+    .ubp-problem-body p:last-child { margin-bottom: 0; }
+    .ubp-stat {
+      border-top: 1.5px solid var(--ink);
+      padding: 25px 0 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .ubp-stat-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(48px, 5.8vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--marigold);
+    }
+    .ubp-stat-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) {
+      .ubp-problem-cols { grid-template-columns: 1fr; }
+    }
+
+    /* Solution section + asset grid */
+    .ubp-solution {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(40px, 5vw, 60px);
+    }
+    .ubp-solution > .wrap > .ubp-section-h { margin-bottom: 24px; }
+    .ubp-solution-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(40px, 5vw, 80px);
+    }
+    .ubp-asset-wrap {
+      max-width: calc(1282px + 158px);
+      margin-inline: auto;
+      padding-inline: clamp(24px, 5.5vw, 79px);
+    }
+    .ubp-asset-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .ubp-cell {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      line-height: 0;
+    }
+    .ubp-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Row 1 — wide hero shot (1282 × 434) */
+    .ubp-hero-shot { aspect-ratio: 1282 / 434; }
+
+    /* Row 2 — two-column 885 / 373 split, 24px gap */
+    .ubp-row2 {
+      display: grid;
+      grid-template-columns: minmax(0, 885fr) minmax(0, 373fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .ubp-row2-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    /* Frame 26: horizontal — ChineseLady (452) + Frame25 (408) */
+    .ubp-frame26 {
+      display: grid;
+      grid-template-columns: minmax(0, 452fr) minmax(0, 408fr);
+      gap: 24px;
+      aspect-ratio: 885 / 841;
+    }
+    .ubp-chinese-lady { aspect-ratio: 452 / 841; }
+    /* Frame 25: vertical — Cop + Troll, two equal squares */
+    .ubp-frame25 {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 0;
+    }
+    .ubp-frame25 .ubp-cell { flex: 1 1 0; min-height: 0; }
+    .ubp-cop, .ubp-troll { aspect-ratio: 408 / 408; }
+    /* Bottom of left column — Portrait Man (885 × 885) */
+    .ubp-man { aspect-ratio: 885 / 885; }
+
+    /* Right column of row 2 (373 wide × 1750) — vertical stack */
+    .ubp-row2-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .ubp-fashion  { aspect-ratio: 373 / 222; }
+    .ubp-award    { aspect-ratio: 373 / 560; background: var(--cream-deep); }
+    .ubp-waitress { aspect-ratio: 373 / 685; }
+    .ubp-kid      { aspect-ratio: 373 / 210; }
+    /* Award logo — contain not cover so the trophy sits properly */
+    .ubp-award img,
+    .ubp-award video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: clamp(24px, 4vw, 60px);
+      display: block;
+    }
+
+    /* Row 3 — two equal cells side-by-side */
+    .ubp-row3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ubp-whiskey { aspect-ratio: 629 / 353; }
+    .ubp-title   { aspect-ratio: 629 / 354; }
+
+    /* RWD — collapse the asset grid */
+    @media (max-width: 1023px) {
+      .ubp-row2 { grid-template-columns: 1fr; }
+      .ubp-row2-right { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .ubp-fashion, .ubp-kid { aspect-ratio: 16 / 9; }
+    }
+    @media (max-width: 700px) {
+      .ubp-asset-grid { gap: 16px; }
+      .ubp-row2-left, .ubp-row2-right { gap: 16px; }
+      .ubp-frame26 { grid-template-columns: 1fr; aspect-ratio: auto; gap: 16px; }
+      .ubp-chinese-lady { aspect-ratio: 4 / 5; }
+      .ubp-frame25 { flex-direction: row; gap: 16px; }
+      .ubp-row2-right { grid-template-columns: 1fr; gap: 16px; }
+      .ubp-row3 { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* Docuseries section */
+    .ubp-docuseries {
+      padding: clamp(60px, 8vw, 110px) 0;
+    }
+    .ubp-docu-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(32px, 4vw, 56px);
+    }
+    .ubp-docu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .ubp-docu-grid figure { margin: 0; }
+    .ubp-docu-thumb {
+      position: relative;
+      display: block;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      aspect-ratio: 1280 / 740;
+      transition: transform .3s ease;
+    }
+    .ubp-docu-thumb:hover { transform: translateY(-2px); }
+    .ubp-docu-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease, filter .3s ease;
+    }
+    .ubp-docu-thumb:hover img {
+      transform: scale(1.03);
+      filter: brightness(0.85);
+    }
+    .ubp-docu-thumb .ubp-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .ubp-docu-thumb .ubp-play svg {
+      width: 64px;
+      height: 64px;
+      color: rgba(255, 255, 255, 0.92);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+    }
+    .ubp-docu-grid figcaption {
+      margin-top: 14px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(18px, 1.6vw, 22px);
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) {
+      .ubp-docu-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Result section */
+    .ubp-result {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
+    }
+    .ubp-result-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(40px, 5vw, 64px);
+    }
+    .ubp-result-board {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .ubp-result-board img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="logo" aria-label="Hatch n Harvest — home">
+        <img class="logo-icon" src="../assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+        <img class="logo-wordmark" src="../assets/brand/wordmark.svg" alt="Hatch n Harvest" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#studio">Studio</a>
+      </nav>
+      <a href="../index.html#contact" class="nav-cta">Start a project →</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================= CASE HERO ======================= -->
+    <section class="case-hero">
+      <div class="wrap">
+        <a href="../index.html#work" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M11 19l-7-7 7-7"/>
+          </svg>
+          All work
+        </a>
+        <div class="eyebrow">Campaign · 2021</div>
+        <h1>United <em>by Play.</em></h1>
+        <p class="case-hero-kicker">A global campaign that challenged gaming stereotypes and proved that no matter how you play, we are all united by play.</p>
+
+        <div class="case-meta-grid">
+          <div>
+            <div class="meta-label">Client</div>
+            <div class="meta-value">ViewSonic</div>
+          </div>
+          <div>
+            <div class="meta-label">Scope</div>
+            <div class="meta-value">Campaign · Manifesto · Docuseries · Social · Event</div>
+          </div>
+          <div>
+            <div class="meta-label">Year</div>
+            <div class="meta-value">2021</div>
+          </div>
+          <div>
+            <div class="meta-label">Reach</div>
+            <div class="meta-value">Global launch — gaming &amp; lifestyle audiences</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================= THE PROBLEM (UBP) ======================= -->
+    <section class="problem ubp-problem">
+      <div class="wrap">
+        <!-- Hero film embed — sits inside the Problem block, full content width -->
+        <div class="ubp-hero-film">
+          <iframe
+            src="https://www.youtube.com/embed/Vd_Tt1iSO90?rel=0&modestbranding=1"
+            title="United by Play — Hero film"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"></iframe>
+        </div>
+
+        <h2 class="ubp-section-h">The Problem</h2>
+        <div class="ubp-problem-cols">
+          <div class="ubp-problem-body">
+            <p>Despite more than 30 years in gaming displays and the successful launch of its high-performance ELITE monitors, ViewSonic discovered a major disconnect in the gaming market: over 60% of people who play games don't actually identify as "gamers."</p>
+            <p>Traditional gaming marketing often focused on stereotypes that excluded casual players and broader audiences.</p>
+            <p>With the launch of the OMNI line, ViewSonic saw an opportunity to reposition itself under the unified banner of "ViewSonic Gaming" and create a brand platform that embraced every type of player.</p>
+          </div>
+          <aside class="ubp-stat">
+            <div class="ubp-stat-num">&gt;60%</div>
+            <div class="ubp-stat-label">Of people who play games don't actually identify as "gamers."</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= THE SOLUTION + ASSET GRID (UBP) ======================= -->
+    <section class="ubp-solution">
+      <div class="wrap">
+        <h2 class="ubp-section-h">The Solution</h2>
+        <p class="ubp-solution-lead">ViewSonic launched the global "United by Play" campaign built around the message that no matter how, where, or why you play, we are all united by play. The platform reframed gaming as something inclusive — a shared experience that crosses age, gender, geography, and skill level.</p>
+      </div>
+
+      <!-- Solution Asset Grid — non-standard nested layout matching Figma -->
+      <div class="ubp-asset-wrap">
+        <div class="ubp-asset-grid">
+
+          <!-- Row 1: Gaming Hero Shot (full width) -->
+          <figure class="ubp-cell ubp-hero-shot">
+            <img src="../assets/work/united-by-play/gaming-hero-shot.jpg" alt="Gaming hero shot — United by Play campaign key visual." loading="lazy" />
+          </figure>
+
+          <!-- Row 2: two-column (885 left | 373 right) -->
+          <div class="ubp-row2">
+            <div class="ubp-row2-left">
+              <!-- Frame 26: top of left column (885x841) -->
+              <div class="ubp-frame26">
+                <figure class="ubp-cell ubp-chinese-lady">
+                  <img src="../assets/work/united-by-play/portrait-chinese-lady.jpg" alt="Portrait — Chinese lady gamer." loading="lazy" />
+                </figure>
+                <div class="ubp-frame25">
+                  <figure class="ubp-cell ubp-cop">
+                    <img src="../assets/work/united-by-play/portrait-cop.jpg" alt="Portrait — police officer gamer." loading="lazy" />
+                  </figure>
+                  <figure class="ubp-cell ubp-troll">
+                    <img src="../assets/work/united-by-play/portrait-troll-investors.jpg" alt="Portrait — Troll Investors group." loading="lazy" />
+                  </figure>
+                </div>
+              </div>
+              <!-- Bottom of left column: Portrait Man (885x885) -->
+              <figure class="ubp-cell ubp-man">
+                <img src="../assets/work/united-by-play/portrait-man.jpg" alt="Portrait — gamer at home." loading="lazy" />
+              </figure>
+            </div>
+
+            <div class="ubp-row2-right">
+              <figure class="ubp-cell ubp-fashion">
+                <img src="../assets/work/united-by-play/portrait-fashion-designer.jpg" alt="Portrait — fashion designer gamer." loading="lazy" />
+              </figure>
+              <figure class="ubp-cell ubp-award">
+                <video
+                  src="../assets/work/united-by-play/award-logo.mp4"
+                  poster="../assets/work/united-by-play/award-logo.png"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  aria-label="United by Play award trophy — animated reveal."></video>
+              </figure>
+              <figure class="ubp-cell ubp-waitress">
+                <img src="../assets/work/united-by-play/portrait-waitress.jpg" alt="Portrait — waitress gamer." loading="lazy" />
+              </figure>
+              <figure class="ubp-cell ubp-kid">
+                <img src="../assets/work/united-by-play/portrait-kid.jpg" alt="Portrait — kid gamer." loading="lazy" />
+              </figure>
+            </div>
+          </div>
+
+          <!-- Row 3: two cells (629 each) -->
+          <div class="ubp-row3">
+            <figure class="ubp-cell ubp-whiskey">
+              <img src="../assets/work/united-by-play/portrait-whiskey-guy.jpg" alt="Portrait — whiskey gamer." loading="lazy" />
+            </figure>
+            <figure class="ubp-cell ubp-title">
+              <img src="../assets/work/united-by-play/title-no-matter-how-you-game.jpg" alt="Title card — No matter how you game." loading="lazy" />
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= THE DOCUSERIES ======================= -->
+    <section class="ubp-docuseries">
+      <div class="wrap">
+        <h2 class="ubp-section-h">The Docuseries</h2>
+        <p class="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</p>
+
+        <div class="ubp-docu-grid">
+          <figure>
+            <a class="ubp-docu-thumb" href="https://www.youtube.com/watch?v=tRE3Mq6w5fo" target="_blank" rel="noopener noreferrer" aria-label="Watch — Tech Rehearsal">
+              <img src="../assets/work/united-by-play/docu-tech-rehearsal.jpg" alt="Tech Rehearsal — episode thumbnail." loading="lazy" />
+              <span class="ubp-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+            </a>
+            <figcaption>Tech Rehearsal</figcaption>
+          </figure>
+          <figure>
+            <a class="ubp-docu-thumb" href="https://www.youtube.com/watch?v=Dwo2JJKZviI" target="_blank" rel="noopener noreferrer" aria-label="Watch — The Forge">
+              <img src="../assets/work/united-by-play/docu-the-forge.jpg" alt="The Forge — episode thumbnail." loading="lazy" />
+              <span class="ubp-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+            </a>
+            <figcaption>The Forge</figcaption>
+          </figure>
+          <figure>
+            <a class="ubp-docu-thumb" href="https://www.youtube.com/watch?v=pGKBf9kV6mY" target="_blank" rel="noopener noreferrer" aria-label="Watch — The Gallery">
+              <img src="../assets/work/united-by-play/docu-the-gallery.jpg" alt="The Gallery — episode thumbnail." loading="lazy" />
+              <span class="ubp-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+            </a>
+            <figcaption>The Gallery</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= THE BATTLE FOR CHARITY ======================= -->
+    <section class="ubp-docuseries ubp-battle">
+      <div class="wrap">
+        <h2 class="ubp-section-h">The Battle For Charity</h2>
+        <p class="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</p>
+        <!-- Battle for Charity content placeholder — videos and assets to follow -->
+      </div>
+    </section>
+
+    <!-- ======================= THE RESULT ======================= -->
+    <section class="ubp-result">
+      <div class="wrap">
+        <h2 class="ubp-section-h">The Result</h2>
+        <p class="ubp-result-lead">The campaign delivered exceptional engagement and awareness on a global scale — turning a hardware brand pivot into a cultural conversation about who games and why.</p>
+
+        <figure class="ubp-result-board">
+          <img src="../assets/work/united-by-play/social-result-board.jpg" alt="Social media result board — engagement metrics across markets." loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================= NEXT PROJECT ======================= -->
+    <section class="next-project-section">
+      <div class="wrap">
+        <a class="next-project" href="../index.html#work">
+          <div class="np-eyebrow">More harvests →</div>
+          <div class="np-title">Back to all work</div>
+          <div class="np-note">Individual case studies for Hinterland Stays, Common Range, Small Acre, and Moth &amp; Bloom are on their way.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-lockup">
+        <a href="../index.html" aria-label="Hatch n Harvest — home">
+          <img class="logo-icon" src="../assets/brand/icon-main.svg" alt="" aria-hidden="true" />
+          <img class="logo-wordmark" src="../assets/brand/wordmark.svg" alt="Hatch n Harvest" />
+        </a>
+      </div>
+    </div>
+    <div class="wrap footer-inner">
+      <div>© 2026 Hatch &amp; Harvest · Taipei, Taiwan</div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:hello@hatchnharvest.studio">Email</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Are.na</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
