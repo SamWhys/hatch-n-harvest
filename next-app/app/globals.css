@@ -1091,3 +1091,59 @@
     .case-study-shell {
       /* Wrapper for case-study pages. Per-case CSS vars are injected here. */
     }
+
+    /* ---- CaseHero ---- */
+    .case-hero {
+      padding-top: clamp(50px, 7vw, 90px);
+      padding-bottom: clamp(40px, 5vw, 70px);
+    }
+    .case-hero .eyebrow { margin-bottom: 24px; }
+    .case-hero h1 { max-width: 16ch; margin-bottom: 24px; }
+    .case-hero h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .case-hero-kicker {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.45;
+      color: var(--stone);
+      max-width: 56ch;
+      margin: 0 0 clamp(36px, 4vw, 56px);
+    }
+
+    .case-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1.5px solid var(--line);
+      /* reset dl defaults */
+      margin: 0;
+      padding-left: 0;
+    }
+    /* Source uses .meta-label / .meta-value; component uses .case-meta-label / .case-meta-value */
+    .case-meta-grid > div,
+    .case-meta-row {
+      /* row wrapper — no extra styles needed; grid handles layout */
+    }
+    .meta-label,
+    .case-meta-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+      /* reset dt defaults */
+      font-weight: inherit;
+    }
+    .meta-value,
+    .case-meta-value {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+      /* reset dd defaults */
+      margin: 0;
+    }
+    @media (max-width: 800px) {
+      .case-meta-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
