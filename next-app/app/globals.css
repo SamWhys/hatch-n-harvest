@@ -1955,58 +1955,6 @@
       max-width: 70ch;
       margin: 0 0 clamp(32px, 4vw, 56px);
     }
-    .ubp-docu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(16px, 2vw, 28px);
-    }
-    .ubp-docu-grid figure { margin: 0; }
-    .ubp-docu-thumb {
-      position: relative;
-      display: block;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--cream);
-      aspect-ratio: 1280 / 740;
-      transition: transform .3s ease;
-    }
-    .ubp-docu-thumb:hover { transform: translateY(-2px); }
-    .ubp-docu-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .4s ease, filter .3s ease;
-    }
-    .ubp-docu-thumb:hover img {
-      transform: scale(1.03);
-      filter: brightness(0.85);
-    }
-    .ubp-docu-thumb .ubp-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .ubp-docu-thumb .ubp-play svg {
-      width: 64px;
-      height: 64px;
-      color: rgba(255, 255, 255, 0.92);
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
-    }
-    .ubp-docu-grid figcaption {
-      margin-top: 14px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(18px, 1.6vw, 22px);
-      letter-spacing: -0.01em;
-      color: var(--ink);
-    }
-    @media (max-width: 800px) {
-      .ubp-docu-grid { grid-template-columns: 1fr; }
-    }
 
     /* ---- Result section ---- */
     .ubp-result {

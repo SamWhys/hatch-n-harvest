@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
+import { DocuseriesDeck } from "@/components/case-study/DocuseriesDeck";
 
 export const metadata: Metadata = {
     title: "United by Play — ViewSonic · Hatch n Harvest",
@@ -138,35 +139,28 @@ export default function UnitedByPlayPage() {
                     <h2 className="ubp-section-h">The Docuseries</h2>
                     <p className="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</p>
 
-                    <div className="ubp-docu-grid">
-                        <figure>
-                            <a className="ubp-docu-thumb" href="https://www.youtube.com/watch?v=tRE3Mq6w5fo" target="_blank" rel="noopener noreferrer" aria-label="Watch — Tech Rehearsal">
-                                <img src="../../assets/work/united-by-play/docu-tech-rehearsal.jpg" alt="Tech Rehearsal — episode thumbnail." loading="lazy" />
-                                <span className="ubp-play" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                                </span>
-                            </a>
-                            <figcaption>Tech Rehearsal</figcaption>
-                        </figure>
-                        <figure>
-                            <a className="ubp-docu-thumb" href="https://www.youtube.com/watch?v=Dwo2JJKZviI" target="_blank" rel="noopener noreferrer" aria-label="Watch — The Forge">
-                                <img src="../../assets/work/united-by-play/docu-the-forge.jpg" alt="The Forge — episode thumbnail." loading="lazy" />
-                                <span className="ubp-play" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                                </span>
-                            </a>
-                            <figcaption>The Forge</figcaption>
-                        </figure>
-                        <figure>
-                            <a className="ubp-docu-thumb" href="https://www.youtube.com/watch?v=pGKBf9kV6mY" target="_blank" rel="noopener noreferrer" aria-label="Watch — The Gallery">
-                                <img src="../../assets/work/united-by-play/docu-the-gallery.jpg" alt="The Gallery — episode thumbnail." loading="lazy" />
-                                <span className="ubp-play" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                                </span>
-                            </a>
-                            <figcaption>The Gallery</figcaption>
-                        </figure>
-                    </div>
+                    <DocuseriesDeck
+                        episodes={[
+                            {
+                                title: "Tech Rehearsal",
+                                thumbnail: "../../assets/work/united-by-play/docu-tech-rehearsal.jpg",
+                                alt: "Tech Rehearsal — episode thumbnail.",
+                                href: "https://www.youtube.com/watch?v=tRE3Mq6w5fo",
+                            },
+                            {
+                                title: "The Forge",
+                                thumbnail: "../../assets/work/united-by-play/docu-the-forge.jpg",
+                                alt: "The Forge — episode thumbnail.",
+                                href: "https://www.youtube.com/watch?v=Dwo2JJKZviI",
+                            },
+                            {
+                                title: "The Gallery",
+                                thumbnail: "../../assets/work/united-by-play/docu-the-gallery.jpg",
+                                alt: "The Gallery — episode thumbnail.",
+                                href: "https://www.youtube.com/watch?v=pGKBf9kV6mY",
+                            },
+                        ]}
+                    />
                 </div>
             </section>
 
