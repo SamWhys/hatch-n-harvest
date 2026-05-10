@@ -193,11 +193,15 @@
        HERO
        ============================================================ */
     .hero {
+      min-height: 100vh;
       padding-top: 100px;
       padding-bottom: clamp(70px, 10vw, 140px);
       position: relative;
       overflow: hidden;
       isolation: isolate; /* contains the hero-atmos below text via z-index:-1 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .hero .eyebrow { margin-bottom: 28px; }
     .hero h1 {
@@ -349,6 +353,7 @@
       top: 0;
       right: calc(-10% - 40px);
       width: clamp(650px, 78vw, 1300px);
+      max-width: none; /* override global img max-width: 100% so width can exceed viewport */
       height: auto;
       pointer-events: none;
       user-select: none;
@@ -362,13 +367,13 @@
     }
     @keyframes hero-graphic-enter {
       from { opacity: 0; }
-      to   { opacity: 1; }
+      to   { opacity: 0.55; }
     }
     @media (max-width: 900px) {
       .hero-graphic {
-        width: 120vw;
+        width: 156vw;
         right: -40%;
-        top: 8%;
+        top: -10%;
         opacity: 0.4;
       }
       .hero-meta { grid-template-columns: 1fr; }
