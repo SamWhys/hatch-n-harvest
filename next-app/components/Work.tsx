@@ -122,7 +122,7 @@ export function Work() {
           </a>
 
           <a
-            href="work/acceleration-for-all.html"
+            href="work/acceleration-for-all/"
             className="case"
             aria-label="Acceleration For All — ViewSonic × Hustle Fund case study"
           >
@@ -150,7 +150,7 @@ export function Work() {
           </a>
 
           <a
-            href="work/united-by-play.html"
+            href="work/united-by-play/"
             className="case"
             aria-label="United by Play — ViewSonic global gaming campaign case study"
           >
