@@ -139,4 +139,25 @@ describe("United by Play page", () => {
         render(<UnitedByPlayPage />);
         expect(screen.getByText("ViewSonic")).toBeInTheDocument();
     });
+
+    it("wraps the asset grid in a reveal target with --reveal-index per cell", () => {
+        const { container } = render(<UnitedByPlayPage />);
+        const wrap = container.querySelector(".ubp-reveal-target");
+        expect(wrap).not.toBeNull();
+        const cells = wrap?.querySelectorAll(".ubp-cell") ?? [];
+        expect(cells.length).toBe(11);
+        cells.forEach((cell) => {
+            const style = (cell as HTMLElement).style;
+            expect(style.getPropertyValue("--reveal-index")).not.toBe("");
+        });
+        // Award video should be at index 3 per design order.
+        const award = wrap?.querySelector(".ubp-award") as HTMLElement | null;
+        expect(award?.style.getPropertyValue("--reveal-index")).toBe("3");
+        // Hero shot at index 0.
+        const hero = wrap?.querySelector(".ubp-hero-shot") as HTMLElement | null;
+        expect(hero?.style.getPropertyValue("--reveal-index")).toBe("0");
+        // Title card at index 10 (last).
+        const title = wrap?.querySelector(".ubp-title") as HTMLElement | null;
+        expect(title?.style.getPropertyValue("--reveal-index")).toBe("10");
+    });
 });
