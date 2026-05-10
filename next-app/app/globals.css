@@ -1097,6 +1097,19 @@
       padding-top: clamp(50px, 7vw, 90px);
       padding-bottom: clamp(40px, 5vw, 70px);
     }
+    .back-link {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      color: var(--stone);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      transition: color .2s ease;
+    }
+    .back-link:hover { color: var(--forest); }
     .case-hero .eyebrow { margin-bottom: 24px; }
     .case-hero h1 { max-width: 16ch; margin-bottom: 24px; }
     .case-hero h1 em {
