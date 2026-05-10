@@ -38,6 +38,15 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
       className="docuseries-deck"
       aria-roledescription="carousel"
       aria-label="Docuseries episodes"
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          advance(1);
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          advance(-1);
+        }
+      }}
     >
       <button
         type="button"

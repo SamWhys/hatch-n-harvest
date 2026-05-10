@@ -63,4 +63,18 @@ describe("DocuseriesDeck — scaffold", () => {
     expect(next.getAttribute("aria-hidden")).toBe("true");
     expect(next.getAttribute("tabindex")).toBe("-1");
   });
+
+  it("ArrowRight advances when focus is within the deck", () => {
+    const { container } = render(<DocuseriesDeck episodes={sample} />);
+    const section = container.querySelector(".docuseries-deck") as HTMLElement;
+    fireEvent.keyDown(section, { key: "ArrowRight" });
+    expect(screen.getByText("The Forge")).toBeInTheDocument();
+  });
+
+  it("ArrowLeft retreats when focus is within the deck", () => {
+    const { container } = render(<DocuseriesDeck episodes={sample} />);
+    const section = container.querySelector(".docuseries-deck") as HTMLElement;
+    fireEvent.keyDown(section, { key: "ArrowLeft" });
+    expect(screen.getByText("The Gallery")).toBeInTheDocument();
+  });
 });
