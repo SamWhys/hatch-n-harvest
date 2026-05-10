@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { RisingHeading } from "./case-study/RisingHeading";
 
 const beliefs = [
   {
@@ -41,10 +42,10 @@ export function Manifesto() {
       />
       <div className="wrap">
         <div className="eyebrow">What moves people</div>
-        <h2>
+        <RisingHeading as="h2">
           People don&apos;t buy marketing strategies. They buy{" "}
           <em>connection, belonging, meaning.</em>
-        </h2>
+        </RisingHeading>
         <p className="manifesto-lead">
           In the end, that&apos;s what moves people. Big ideas are just the vehicle — emotion is the engine.
         </p>

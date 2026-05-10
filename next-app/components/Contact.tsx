@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { RisingHeading } from "./case-study/RisingHeading";
 
 export function Contact() {
   const leftRef = useRef<HTMLImageElement>(null);
@@ -13,7 +14,7 @@ export function Contact() {
     <section className="contact" id="contact">
       <div className="wrap">
         <span className="script">Have a seed of an idea?</span>
-        <h2>For more info about us, click here.</h2>
+        <RisingHeading as="h2">For more info about us, click here.</RisingHeading>
         <a className="contact-email" href="mailto:hello@hatchnharvest.studio">
           hello@hatchnharvest.studio
         </a>
