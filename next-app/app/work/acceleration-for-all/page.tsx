@@ -4,6 +4,7 @@ import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { CaseSection } from "@/components/case-study/CaseSection";
+import { RisingHeading } from "@/components/case-study/RisingHeading";
 
 export const metadata: Metadata = {
     title: "Acceleration For All — ViewSonic × Hustle Fund · Hatch n Harvest",
@@ -55,7 +56,7 @@ export default function AccelerationForAllPage() {
             <section className="problem">
                 <div className="wrap">
                     <div className="problem-intro">
-                        <h2>The Problem</h2>
+                        <RisingHeading as="h2">The Problem</RisingHeading>
                         <p>For too many aspiring entrepreneurs, access is the biggest barrier to success. Great ideas exist everywhere—but mentorship, funding, and startup networks are often concentrated within the elite circles of Silicon Valley. ViewSonic recognized that talented founders outside traditional tech hubs were being overlooked simply because they lacked the right connections or resources.</p>
                     </div>
 
@@ -68,7 +69,7 @@ export default function AccelerationForAllPage() {
             {/* THE SOLUTION (work-intro) */}
             <section className="work-intro">
                 <div className="wrap">
-                    <h2>The Solution</h2>
+                    <RisingHeading as="h2">The Solution</RisingHeading>
                     <p>To help level the playing field, ViewSonic launched Acceleration — a program designed to support emerging entrepreneurs with the tools, exposure, and partnerships needed to grow their ideas. By creating opportunities outside the traditional accelerator model, the campaign focused on empowering underrepresented founders through collaboration, mentorship, technology, and funding support. The initiative transformed ViewSonic from a technology brand into a catalyst for innovation and opportunity.</p>
                 </div>
             </section>
@@ -267,7 +268,7 @@ export default function AccelerationForAllPage() {
             <section className="outcome results">
                 <div className="wrap">
                     <div className="results-intro">
-                        <h2>The Results</h2>
+                        <RisingHeading as="h2">The Results</RisingHeading>
                         <p className="results-lead">Acceleration For All helped position ViewSonic as a brand invested not just in products, but in people and progress. The campaign generated meaningful engagement within entrepreneurial communities, strengthened brand perception, and created authentic connections with the next generation of innovators. Most importantly, it opened doors for founders who otherwise may never have had access to the startup ecosystem.</p>
                     </div>
 

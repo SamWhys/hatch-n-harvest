@@ -5,6 +5,7 @@ import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { DocuseriesDeck } from "@/components/case-study/DocuseriesDeck";
 import { UbpAssetReveal } from "@/components/case-study/UbpAssetReveal";
+import { RisingHeading } from "@/components/case-study/RisingHeading";
 
 export const metadata: Metadata = {
     title: "United by Play — ViewSonic · Hatch n Harvest",
@@ -42,7 +43,7 @@ export default function UnitedByPlayPage() {
             {/* THE PROBLEM */}
             <section className="problem ubp-problem">
                 <div className="wrap">
-                    <h2 className="ubp-section-h">The Problem</h2>
+                    <RisingHeading as="h2" className="ubp-section-h">The Problem</RisingHeading>
                     <div className="ubp-problem-cols">
                         <div className="ubp-problem-body">
                             <p>Despite more than 30 years in gaming displays and the successful launch of its high-performance ELITE monitors, ViewSonic discovered a major disconnect in the gaming market: over 60% of people who play games don&#39;t actually identify as &#34;gamers.&#34;</p>
@@ -60,7 +61,7 @@ export default function UnitedByPlayPage() {
             {/* THE SOLUTION + ASSET GRID */}
             <section className="ubp-solution">
                 <div className="wrap">
-                    <h2 className="ubp-section-h">The Solution</h2>
+                    <RisingHeading as="h2" className="ubp-section-h">The Solution</RisingHeading>
                     <p className="ubp-solution-lead">ViewSonic launched the global &#34;United by Play&#34; campaign built around the message that no matter how, where, or why you play, we are all united by play. The platform reframed gaming as something inclusive — a shared experience that crosses age, gender, geography, and skill level.</p>
                 </div>
 
@@ -138,7 +139,7 @@ export default function UnitedByPlayPage() {
             {/* THE DOCUSERIES */}
             <section className="ubp-docuseries">
                 <div className="wrap">
-                    <h2 className="ubp-section-h">The Docuseries</h2>
+                    <RisingHeading as="h2" className="ubp-section-h">The Docuseries</RisingHeading>
                     <p className="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</p>
 
                     <DocuseriesDeck
@@ -169,7 +170,7 @@ export default function UnitedByPlayPage() {
             {/* THE BATTLE FOR CHARITY */}
             <section className="ubp-docuseries ubp-battle">
                 <div className="wrap">
-                    <h2 className="ubp-section-h">The Battle For Charity</h2>
+                    <RisingHeading as="h2" className="ubp-section-h">The Battle For Charity</RisingHeading>
                     <p className="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</p>
                     <div className="ubp-film-frame">
                         <iframe
@@ -187,7 +188,7 @@ export default function UnitedByPlayPage() {
             {/* THE RESULT */}
             <section className="ubp-result">
                 <div className="wrap">
-                    <h2 className="ubp-section-h">The Result</h2>
+                    <RisingHeading as="h2" className="ubp-section-h">The Result</RisingHeading>
                     <p className="ubp-result-lead">The campaign delivered exceptional engagement and awareness on a global scale — turning a hardware brand pivot into a cultural conversation about who games and why.</p>
 
                     <figure className="ubp-result-board">
