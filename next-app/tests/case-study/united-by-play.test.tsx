@@ -102,11 +102,15 @@ describe("United by Play page", () => {
         expect(ariaLabels).toContain("Episode 3: The Gallery");
     });
 
-    it("renders the problem stat with >60% figure", () => {
+    it("renders the problem stat with the count-up number and 10 person icons (6 filled)", () => {
         const { container } = render(<UnitedByPlayPage />);
+        // Stat starts at >0% before scroll-reveal fires; counts up to >60%.
         const stat = container.querySelector(".ubp-stat-num");
         expect(stat).not.toBeNull();
-        expect(stat?.textContent).toContain("60%");
+        expect(stat?.textContent).toMatch(/>\d+%/);
+        // 10 person icons, 6 marked as filled (orange when revealed).
+        expect(container.querySelectorAll(".ubp-person").length).toBe(10);
+        expect(container.querySelectorAll(".ubp-person.is-filled").length).toBe(6);
     });
 
     it("renders the result board image (results-overview.jpg)", () => {

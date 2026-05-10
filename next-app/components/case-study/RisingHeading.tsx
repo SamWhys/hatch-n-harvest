@@ -4,6 +4,7 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  useEffect,
   useRef,
   type CSSProperties,
   type ReactElement,
@@ -79,6 +80,31 @@ export function RisingHeading({
 }) {
   const ref = useRef<HTMLHeadingElement | null>(null);
   useScrollReveal(ref);
+
+  // Group word spans into visual lines by their Y position so each line
+  // can rise as a unit. Re-measure on resize since line breaks change with
+  // viewport width.
+  useEffect(() => {
+    const heading = ref.current;
+    if (!heading) return;
+    function measure() {
+      const words = heading!.querySelectorAll<HTMLSpanElement>(".word");
+      let currentTop = Number.POSITIVE_INFINITY;
+      let lineIndex = -1;
+      words.forEach((word) => {
+        const top = Math.round(word.getBoundingClientRect().top);
+        if (top !== currentTop) {
+          currentTop = top;
+          lineIndex += 1;
+        }
+        word.style.setProperty("--line-index", String(lineIndex));
+      });
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
   const Tag = as;
   const cls = ["rising-heading", className].filter(Boolean).join(" ");
   const { nodes } = splitNodes(children, 0);

@@ -480,6 +480,27 @@
       .beliefs { grid-template-columns: 1fr; }
     }
 
+    /* Belief cards stagger in when the .beliefs grid first scrolls into view.
+       useScrollReveal adds .is-revealed; each card delays by --reveal-index. */
+    .beliefs .belief {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 600ms cubic-bezier(0.32, 0.72, 0, 1),
+        transform 600ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition-delay: calc(var(--reveal-index, 0) * 120ms);
+    }
+    .beliefs.is-revealed .belief {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .beliefs .belief {
+        transition-duration: 0ms !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
     /* ============================================================
        WORK / CASE STUDIES
        ============================================================ */
@@ -848,6 +869,26 @@
     @media (max-width: 900px) {
       .process .process-head { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Service cards stagger in when the .process-grid first scrolls into view. */
+    .process-grid .service {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 600ms cubic-bezier(0.32, 0.72, 0, 1),
+        transform 600ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition-delay: calc(var(--reveal-index, 0) * 120ms);
+    }
+    .process-grid.is-revealed .service {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .process-grid .service {
+        transition-duration: 0ms !important;
+        transition-delay: 0ms !important;
+      }
     }
 
     /* ============================================================
@@ -1824,6 +1865,48 @@
       line-height: 1.25;
       color: var(--ink);
     }
+
+    /* Row of 10 person icons; 6 fill in orange sequentially as the
+       60% counter ticks up. Each filled icon gets a small bounce. */
+    .ubp-stat-people {
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+    }
+    .ubp-person {
+      flex: 1 1 0;
+      max-width: 36px;
+      display: inline-flex;
+      color: var(--stone);
+      transform-origin: 50% 100%;
+      transition: color 250ms ease-out;
+    }
+    .ubp-person svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .ubp-stat.is-revealed .ubp-person.is-filled {
+      color: var(--marigold);
+      transition-delay: calc(var(--reveal-index, 0) * 200ms);
+      animation: ubp-person-bounce 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: calc(var(--reveal-index, 0) * 200ms);
+    }
+    @keyframes ubp-person-bounce {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.28); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ubp-person {
+        transition: none !important;
+      }
+      .ubp-stat.is-revealed .ubp-person.is-filled {
+        animation: none !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
     @media (max-width: 800px) {
       .ubp-problem-cols { grid-template-columns: 1fr; }
     }
@@ -2240,7 +2323,10 @@
     }
     .rising-heading.is-revealed .word {
       animation: rising-heading-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: calc(var(--i, 0) * 140ms);
+      /* Words on the same visual line share a delay so each line rises as
+         a unit. JS sets --line-index after layout; default 0 keeps single-line
+         headings working before measurement runs. */
+      animation-delay: calc(var(--line-index, 0) * 200ms);
     }
     @keyframes rising-heading-rise {
       from { opacity: 0; transform: translateY(105%); }
@@ -2252,5 +2338,24 @@
         opacity: 1;
         transform: none;
         animation: none;
+      }
+    }
+
+    /* Body paragraphs that fade in slightly when they scroll into view.
+       Subtle only — no big lift, no large delay. */
+    .fade-in-p {
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-in-p.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in-p {
+        transition-duration: 0ms !important;
       }
     }

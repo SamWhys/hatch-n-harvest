@@ -1,4 +1,5 @@
 import { RisingHeading } from "./case-study/RisingHeading";
+import { FadeInP } from "./case-study/FadeInP";
 
 export function Studio() {
   return (
@@ -9,15 +10,15 @@ export function Studio() {
           <RisingHeading as="h2">
             An Ad Agency with <em>Decades</em> of Experience
           </RisingHeading>
-          <p>
+          <FadeInP>
             We&apos;re the best of both worlds — the depth and dedication of an in-house marketing department, with the independence and fresh eyes of an outside agency.
-          </p>
-          <p>
+          </FadeInP>
+          <FadeInP>
             We bring decades of marketing experience we want to share with other brands. We came up through the high-tech world, but we&apos;re brand people. Not tech people.
-          </p>
-          <p>
+          </FadeInP>
+          <FadeInP>
             Travel. Fast food. Cars. You name it, we&apos;ve done it. And we&apos;re ready to work on your business and your brand.
-          </p>
+          </FadeInP>
           <div className="studio-stats">
             <div>
               <div className="stat-num">Decades</div>
