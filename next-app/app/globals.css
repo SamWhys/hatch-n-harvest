@@ -1770,3 +1770,263 @@
       font-size: 14px;
       color: color-mix(in srgb, var(--ink) 65%, transparent);
     }
+
+    /* ============================================================
+       UNITED BY PLAY — case-specific styles
+       ============================================================ */
+
+    /* Shared section heading (replaces h2 in UbP sections) */
+    .ubp-section-h {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(36px, 4.6vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 clamp(24px, 3vw, 40px);
+    }
+
+    /* ---- Problem section ---- */
+    /* Problem section — 2-col body + stat callout. Hero film lives
+       full-bleed in .case-bleed above this section. */
+    .ubp-problem-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 746fr) minmax(0, 396fr);
+      gap: clamp(24px, 3vw, 60px);
+      align-items: start;
+    }
+    .ubp-problem-body p {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      margin: 0 0 1.2em;
+    }
+    .ubp-problem-body p:last-child { margin-bottom: 0; }
+    .ubp-stat {
+      border-top: 1.5px solid var(--ink);
+      padding: 25px 0 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .ubp-stat-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(48px, 5.8vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--marigold);
+    }
+    .ubp-stat-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) {
+      .ubp-problem-cols { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Solution section + asset grid ---- */
+    .ubp-solution {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(40px, 5vw, 60px);
+    }
+    .ubp-solution > .wrap > .ubp-section-h { margin-bottom: 24px; }
+    .ubp-solution-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(40px, 5vw, 80px);
+    }
+    .ubp-asset-wrap {
+      max-width: calc(1282px + 158px);
+      margin-inline: auto;
+      padding-inline: clamp(24px, 5.5vw, 79px);
+    }
+    .ubp-asset-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .ubp-cell {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      line-height: 0;
+    }
+    .ubp-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Row 1 — wide hero shot (1282 × 434) */
+    .ubp-hero-shot { aspect-ratio: 1282 / 434; }
+
+    /* Row 2 — two-column 885 / 373 split, 24px gap */
+    .ubp-row2 {
+      display: grid;
+      grid-template-columns: minmax(0, 885fr) minmax(0, 373fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .ubp-row2-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    /* Frame 26: horizontal — ChineseLady (452) + Frame25 (408) */
+    .ubp-frame26 {
+      display: grid;
+      grid-template-columns: minmax(0, 452fr) minmax(0, 408fr);
+      gap: 24px;
+      aspect-ratio: 885 / 841;
+    }
+    .ubp-chinese-lady { aspect-ratio: 452 / 841; }
+    /* Frame 25: vertical — Cop + Troll, two equal squares */
+    .ubp-frame25 {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 0;
+    }
+    .ubp-frame25 .ubp-cell { flex: 1 1 0; min-height: 0; }
+    .ubp-cop, .ubp-troll { aspect-ratio: 408 / 408; }
+    /* Bottom of left column — Portrait Man (885 × 885) */
+    .ubp-man { aspect-ratio: 885 / 885; }
+
+    /* Right column of row 2 (373 wide × 1750) — vertical stack */
+    .ubp-row2-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .ubp-fashion  { aspect-ratio: 373 / 222; }
+    .ubp-award    { aspect-ratio: 373 / 560; background: var(--cream-deep); }
+    .ubp-waitress { aspect-ratio: 373 / 685; }
+    .ubp-kid      { aspect-ratio: 373 / 210; }
+    /* Award logo — fills the cell edge-to-edge */
+    .ubp-award { background: #000; }
+    .ubp-award img,
+    .ubp-award video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Row 3 — two equal cells side-by-side */
+    .ubp-row3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ubp-whiskey { aspect-ratio: 629 / 353; }
+    .ubp-title   { aspect-ratio: 629 / 354; }
+
+    /* RWD — collapse the asset grid */
+    @media (max-width: 1023px) {
+      .ubp-row2 { grid-template-columns: 1fr; }
+      .ubp-row2-right { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .ubp-fashion, .ubp-kid { aspect-ratio: 16 / 9; }
+    }
+    @media (max-width: 700px) {
+      .ubp-asset-grid { gap: 16px; }
+      .ubp-row2-left, .ubp-row2-right { gap: 16px; }
+      .ubp-frame26 { grid-template-columns: 1fr; aspect-ratio: auto; gap: 16px; }
+      .ubp-chinese-lady { aspect-ratio: 4 / 5; }
+      .ubp-frame25 { flex-direction: row; gap: 16px; }
+      .ubp-row2-right { grid-template-columns: 1fr; gap: 16px; }
+      .ubp-row3 { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ---- Docuseries section ---- */
+    .ubp-docuseries {
+      padding: clamp(60px, 8vw, 110px) 0;
+    }
+    .ubp-docu-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(32px, 4vw, 56px);
+    }
+    .ubp-docu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+    }
+    .ubp-docu-grid figure { margin: 0; }
+    .ubp-docu-thumb {
+      position: relative;
+      display: block;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      aspect-ratio: 1280 / 740;
+      transition: transform .3s ease;
+    }
+    .ubp-docu-thumb:hover { transform: translateY(-2px); }
+    .ubp-docu-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease, filter .3s ease;
+    }
+    .ubp-docu-thumb:hover img {
+      transform: scale(1.03);
+      filter: brightness(0.85);
+    }
+    .ubp-docu-thumb .ubp-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .ubp-docu-thumb .ubp-play svg {
+      width: 64px;
+      height: 64px;
+      color: rgba(255, 255, 255, 0.92);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+    }
+    .ubp-docu-grid figcaption {
+      margin-top: 14px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(18px, 1.6vw, 22px);
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) {
+      .ubp-docu-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Result section ---- */
+    .ubp-result {
+      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
+    }
+    .ubp-result-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 clamp(40px, 5vw, 64px);
+    }
+    .ubp-result-board {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .ubp-result-board img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
