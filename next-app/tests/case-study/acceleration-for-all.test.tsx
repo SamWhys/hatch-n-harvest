@@ -37,10 +37,13 @@ describe("Acceleration For All page", () => {
         expect(back).toHaveAttribute("href", "../../#work");
     });
 
-    it("renders the campaign film iframe", () => {
+    it("renders the campaign film via AutoplayVideo (poster swaps for iframe on viewport entry)", () => {
         const { container } = render(<AccelerationForAllPage />);
-        const iframe = container.querySelector('iframe[src*="jUR5gdbGKjE"]');
-        expect(iframe).not.toBeNull();
+        // Before scroll-reveal fires, the AutoplayVideo wrapper renders a YouTube poster image.
+        const poster = container.querySelector('img[src*="jUR5gdbGKjE"]');
+        expect(poster).not.toBeNull();
+        // The wrapper class identifies the autoplay video region.
+        expect(container.querySelector(".autoplay-video")).not.toBeNull();
     });
 
     it("renders the bleed caption", () => {

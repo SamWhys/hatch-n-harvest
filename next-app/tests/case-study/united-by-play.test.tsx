@@ -36,10 +36,12 @@ describe("United by Play page", () => {
         expect(back).toHaveAttribute("href", "../../#work");
     });
 
-    it("renders the hero film iframe", () => {
+    it("renders the hero film via AutoplayVideo (poster swaps for iframe on viewport entry)", () => {
         const { container } = render(<UnitedByPlayPage />);
-        const iframe = container.querySelector('iframe[src*="Vd_Tt1iSO90"]');
-        expect(iframe).not.toBeNull();
+        // Before scroll-reveal fires, AutoplayVideo renders the YouTube poster image.
+        const poster = container.querySelector('img[src*="Vd_Tt1iSO90"]');
+        expect(poster).not.toBeNull();
+        expect(container.querySelector(".autoplay-video")).not.toBeNull();
     });
 
     it("renders the bleed caption", () => {

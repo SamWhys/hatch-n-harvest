@@ -5,6 +5,7 @@ import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { CaseSection } from "@/components/case-study/CaseSection";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
+import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
 
 export const metadata: Metadata = {
     title: "Acceleration For All — ViewSonic × Hustle Fund · Hatch n Harvest",
@@ -42,14 +43,7 @@ export default function AccelerationForAllPage() {
             />
 
             <CaseBleed caption={{ title: "Campaign film · Acceleration For All.", meta: "Hero · 2021" }}>
-                <iframe
-                    src="https://www.youtube.com/embed/jUR5gdbGKjE?rel=0&modestbranding=1"
-                    title="Acceleration For All — Campaign film"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading="eager"
-                />
+                <AutoplayVideo videoId="jUR5gdbGKjE" title="Acceleration For All — Campaign film" />
             </CaseBleed>
 
             {/* THE PROBLEM */}
@@ -80,14 +74,7 @@ export default function AccelerationForAllPage() {
                 {/* The Manifesto — film embed */}
                 <section className="work-section solution-manifesto">
                     <div className="film-frame">
-                        <iframe
-                            src="https://www.youtube.com/embed/xfx9rrUjCCA?rel=0&modestbranding=1"
-                            title="Acceleration For All — Manifesto film"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                            loading="lazy"
-                        />
+                        <AutoplayVideo videoId="xfx9rrUjCCA" title="Acceleration For All — Manifesto film" />
                     </div>
                 </section>
 
