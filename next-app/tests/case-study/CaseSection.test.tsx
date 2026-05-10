@@ -4,7 +4,7 @@ import { CaseSection } from "@/components/case-study/CaseSection";
 
 describe("CaseSection", () => {
   it("renders eyebrow, heading, and children", () => {
-    render(
+    const { container } = render(
       <CaseSection eyebrow="The problem" heading="A real problem">
         <p>Body copy.</p>
       </CaseSection>
@@ -12,6 +12,10 @@ describe("CaseSection", () => {
     expect(screen.getByText("The problem")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: "A real problem" })).toBeInTheDocument();
     expect(screen.getByText("Body copy.")).toBeInTheDocument();
+    // After RisingHeading retrofit, the heading is the rising-heading element with word spans.
+    const h2 = container.querySelector("h2.rising-heading") as HTMLElement;
+    expect(h2).not.toBeNull();
+    expect(h2.querySelectorAll(".word").length).toBeGreaterThan(0);
   });
 
   it("omits eyebrow and heading when not provided", () => {
