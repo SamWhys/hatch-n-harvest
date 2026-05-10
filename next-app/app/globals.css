@@ -2033,3 +2033,172 @@
       height: auto;
       display: block;
     }
+
+    /* ============================================================
+       DOCUSERIES DECK
+       Single-card center + side-peek carousel for the UbP "The
+       Docuseries" section. State is owned by DocuseriesDeck.tsx;
+       this stylesheet only handles layout/transition.
+       ============================================================ */
+
+    .docuseries-deck {
+      --dd-card-width: clamp(280px, 56vw, 760px);
+      --dd-card-aspect: 16 / 9;
+      --dd-peek-overflow: 24%;
+      --dd-gap: clamp(16px, 2vw, 32px);
+
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--dd-gap);
+      max-width: var(--maxw);
+      margin: clamp(24px, 4vw, 48px) auto 0;
+      padding: 0 var(--pad);
+    }
+
+    .dd-prev,
+    .dd-next {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: border-color .2s ease, color .2s ease, transform .2s ease;
+    }
+    .dd-prev:hover,
+    .dd-next:hover {
+      border-color: var(--marigold);
+      color: var(--marigold);
+    }
+    .dd-prev:active,
+    .dd-next:active { transform: scale(0.96); }
+
+    .dd-stage {
+      position: relative;
+      height: calc(var(--dd-card-width) * 9 / 16);
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .dd-card {
+      position: absolute;
+      top: 0;
+      width: var(--dd-card-width);
+      aspect-ratio: var(--dd-card-aspect);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      transition: transform 450ms cubic-bezier(0.32, 0.72, 0, 1);
+      will-change: transform;
+    }
+    .dd-stage[data-state="dragging"] .dd-card {
+      transition: none;
+    }
+
+    .dd-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .dd-card-active {
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .dd-card-prev {
+      right: calc(50% + var(--dd-card-width) / 2 - var(--dd-peek-overflow));
+      z-index: 1;
+    }
+    .dd-card-next {
+      left: calc(50% + var(--dd-card-width) / 2 - var(--dd-peek-overflow));
+      z-index: 1;
+    }
+
+    .dd-card-active .dd-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: rgba(28, 28, 28, 0.7);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      transition: background .2s ease, transform .2s ease;
+    }
+    .dd-card-active:hover .dd-play {
+      background: var(--marigold);
+      color: var(--forest-deep);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .dd-controls {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: clamp(16px, 2vw, 24px);
+    }
+    .dd-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(20px, 2vw, 26px);
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--ink);
+    }
+    .dd-dots {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dd-dot {
+      display: block;
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: var(--line);
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .dd-dot:hover { background: var(--stone); }
+    .dd-dot.is-active {
+      background: var(--marigold);
+      transform: scale(1.25);
+    }
+
+    @media (max-width: 640px) {
+      .docuseries-deck {
+        --dd-peek-overflow: 8px;
+        --dd-card-width: min(86vw, 520px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dd-card,
+      .dd-prev,
+      .dd-next,
+      .dd-dot,
+      .dd-card-active .dd-play {
+        transition-duration: 50ms !important;
+      }
+    }
