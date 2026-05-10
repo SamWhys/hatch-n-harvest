@@ -3,30 +3,46 @@ import { render, screen } from "@testing-library/react";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 
 describe("CaseBleed", () => {
-  it("renders the image with src and alt", () => {
-    render(<CaseBleed src="../../assets/work/x/hero.jpg" alt="Hero shot" />);
-    const img = screen.getByAltText("Hero shot") as HTMLImageElement;
-    expect(img).toBeInTheDocument();
+  it("renders children inside .case-bleed wrapper", () => {
+    const { container } = render(
+      <CaseBleed>
+        <iframe title="Test video" src="https://www.youtube.com/embed/x" />
+      </CaseBleed>
+    );
+    const bleed = container.querySelector(".case-bleed");
+    expect(bleed).not.toBeNull();
+    expect(bleed?.querySelector("iframe")).not.toBeNull();
+    expect(screen.getByTitle("Test video")).toBeInTheDocument();
+  });
+
+  it("supports an <img> child", () => {
+    render(
+      <CaseBleed>
+        <img src="../../assets/work/x/hero.jpg" alt="Hero" />
+      </CaseBleed>
+    );
+    const img = screen.getByAltText("Hero") as HTMLImageElement;
     expect(img.getAttribute("src")).toBe("../../assets/work/x/hero.jpg");
   });
 
-  it("defaults to the 'full' variant class", () => {
-    const { container } = render(<CaseBleed src="x" alt="" />);
-    expect(container.querySelector(".case-bleed.case-bleed-full")).not.toBeNull();
+  it("renders a structured bleed-caption sibling when caption provided", () => {
+    const { container } = render(
+      <CaseBleed caption={{ title: "Campaign film · Acceleration For All.", meta: "Hero · 2021" }}>
+        <iframe title="x" src="x" />
+      </CaseBleed>
+    );
+    const cap = container.querySelector(".bleed-caption");
+    expect(cap).not.toBeNull();
+    expect(cap?.querySelector("strong")?.textContent).toBe("Campaign film · Acceleration For All.");
+    expect(cap?.querySelector("span")?.textContent).toBe("Hero · 2021");
   });
 
-  it("applies the 'wide' variant class when variant='wide'", () => {
-    const { container } = render(<CaseBleed src="x" alt="" variant="wide" />);
-    expect(container.querySelector(".case-bleed.case-bleed-wide")).not.toBeNull();
-  });
-
-  it("renders a caption when provided", () => {
-    render(<CaseBleed src="x" alt="" caption="A caption" />);
-    expect(screen.getByText("A caption")).toBeInTheDocument();
-  });
-
-  it("renders no <figcaption> when caption omitted", () => {
-    const { container } = render(<CaseBleed src="x" alt="" />);
-    expect(container.querySelector("figcaption")).toBeNull();
+  it("omits .bleed-caption when caption not provided", () => {
+    const { container } = render(
+      <CaseBleed>
+        <iframe title="x" src="x" />
+      </CaseBleed>
+    );
+    expect(container.querySelector(".bleed-caption")).toBeNull();
   });
 });

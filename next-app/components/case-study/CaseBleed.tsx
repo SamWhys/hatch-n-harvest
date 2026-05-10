@@ -1,18 +1,21 @@
+import type { ReactNode } from "react";
+
 export function CaseBleed({
-  src,
-  alt,
+  children,
   caption,
-  variant = "full",
 }: {
-  src: string;
-  alt: string;
-  caption?: string;
-  variant?: "full" | "wide";
+  children: ReactNode;
+  caption?: { title: string; meta: string };
 }) {
   return (
-    <figure className={`case-bleed case-bleed-${variant}`}>
-      <img src={src} alt={alt} loading="lazy" />
-      {caption ? <figcaption>{caption}</figcaption> : null}
-    </figure>
+    <>
+      <div className="case-bleed">{children}</div>
+      {caption ? (
+        <div className="bleed-caption">
+          <strong>{caption.title}</strong>
+          <span>{caption.meta}</span>
+        </div>
+      ) : null}
+    </>
   );
 }

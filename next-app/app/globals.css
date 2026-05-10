@@ -1170,22 +1170,26 @@
     }
     .case-bleed img { width: 100%; height: 100%; object-fit: cover; }
     .case-bleed iframe { width: 100%; height: 100%; border: 0; display: block; }
-    .case-bleed-full {
-      /* edge-to-edge: full viewport width regardless of container */
-      width: 100vw;
-      margin-left: 50%;
-      transform: translateX(-50%);
-    }
-    .case-bleed-wide {
-      /* wider-than-text but constrained to content max-width */
+    .bleed-caption {
       max-width: var(--maxw);
-      margin-left: auto;
-      margin-right: auto;
+      margin: 18px auto 0;
       padding: 0 var(--pad);
-    }
-    .case-bleed figcaption {
-      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--stone);
-      margin-top: 0.5rem;
-      padding: 0 var(--pad);
+    }
+    .bleed-caption strong {
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      text-transform: none;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .bleed-caption { flex-direction: column; gap: 6px; }
     }
