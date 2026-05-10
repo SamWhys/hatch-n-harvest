@@ -171,7 +171,16 @@ export default function UnitedByPlayPage() {
                 <div className="wrap">
                     <h2 className="ubp-section-h">The Battle For Charity</h2>
                     <p className="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</p>
-                    {/* Battle for Charity content placeholder — videos and assets to follow */}
+                    <div className="ubp-film-frame">
+                        <iframe
+                            src="https://www.youtube.com/embed/7clzHwb4aCI?rel=0&modestbranding=1"
+                            title="United by Play — Battle for Charity highlights"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            loading="lazy"
+                        />
+                    </div>
                 </div>
             </section>
 
