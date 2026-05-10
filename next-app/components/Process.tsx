@@ -101,7 +101,6 @@ export function Process() {
       <div className="wrap">
         <div className="process-head">
           <div>
-            <div className="eyebrow">How we work</div>
             <h2>We grow brands in three seasons.</h2>
           </div>
           <p>

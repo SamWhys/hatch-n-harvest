@@ -3,7 +3,6 @@ export function Studio() {
     <section className="studio" id="studio">
       <div className="wrap studio-inner">
         <div className="studio-copy">
-          <div className="eyebrow">The studio</div>
           <h2>
             An Ad Agency with <em>Decades</em> of Experience
           </h2>

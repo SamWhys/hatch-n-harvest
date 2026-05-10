@@ -40,7 +40,6 @@ export function Manifesto() {
         aria-hidden="true"
       />
       <div className="wrap">
-        <div className="eyebrow">What moves people</div>
         <h2>
           People don&apos;t buy marketing strategies. They buy{" "}
           <em>connection, belonging, meaning.</em>
