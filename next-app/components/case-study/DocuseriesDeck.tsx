@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, type PointerEvent as ReactPointerEvent } from "react";
 
 export type DocuseriesEpisode = {
   title: string;
@@ -9,8 +9,18 @@ export type DocuseriesEpisode = {
   href: string;
 };
 
+const DRAG_ADVANCE_RATIO = 0.25;
+const CLICK_SUPPRESSION_PX = 6;
+
 export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [dragOffsetPx, setDragOffsetPx] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const startXRef = useRef(0);
+  const startYRef = useRef(0);
+  const pointerMovedRef = useRef(false);
   const len = episodes.length;
 
   const advance = useCallback(
@@ -27,11 +37,62 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
     [len]
   );
 
+  const handlePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    // Only handle primary pointer (left mouse, single touch, pen).
+    if (e.button !== 0 && e.pointerType === "mouse") return;
+    startXRef.current = e.clientX;
+    startYRef.current = e.clientY;
+    pointerMovedRef.current = false;
+    setIsDragging(true);
+    setDragOffsetPx(0);
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const dx = e.clientX - startXRef.current;
+    const dy = e.clientY - startYRef.current;
+    if (Math.abs(dx) > CLICK_SUPPRESSION_PX || Math.abs(dy) > CLICK_SUPPRESSION_PX) {
+      pointerMovedRef.current = true;
+    }
+    setDragOffsetPx(dx);
+  };
+
+  const handlePointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const stage = stageRef.current;
+    const cardWidth = stage ? stage.getBoundingClientRect().width : 0;
+    const threshold = cardWidth * DRAG_ADVANCE_RATIO;
+    const dx = dragOffsetPx;
+    setIsDragging(false);
+    setDragOffsetPx(0);
+    (e.currentTarget as HTMLDivElement).releasePointerCapture(e.pointerId);
+    if (dx <= -threshold) {
+      advance(1);
+    } else if (dx >= threshold) {
+      advance(-1);
+    }
+    // else: rubber-band back to 0 (already done by setDragOffsetPx(0))
+  };
+
+  const handleActiveCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pointerMovedRef.current) {
+      e.preventDefault();
+    }
+  };
+
   const prevIdx = (activeIndex - 1 + len) % len;
   const nextIdx = (activeIndex + 1) % len;
   const active = episodes[activeIndex];
   const prev = episodes[prevIdx];
   const next = episodes[nextIdx];
+
+  const dragStyle = isDragging
+    ? { transform: `translateX(${dragOffsetPx}px)` }
+    : undefined;
+  const activeDragStyle = isDragging
+    ? { transform: `translateX(calc(-50% + ${dragOffsetPx}px))` }
+    : undefined;
 
   return (
     <section
@@ -59,13 +120,24 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
         </svg>
       </button>
 
-      <div className="dd-stage" role="group" aria-live="polite">
+      <div
+        ref={stageRef}
+        className="dd-stage"
+        role="group"
+        aria-live="polite"
+        data-state={isDragging ? "dragging" : "idle"}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
         <a
           className="dd-card dd-card-prev"
           href={prev.href}
           aria-hidden="true"
           tabIndex={-1}
-          onClick={(e) => { e.preventDefault(); advance(-1); }}
+          style={dragStyle}
+          onClick={(e) => { e.preventDefault(); if (!pointerMovedRef.current) advance(-1); }}
         >
           <img src={prev.thumbnail} alt="" loading="lazy" />
         </a>
@@ -74,6 +146,8 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
           href={active.href}
           target="_blank"
           rel="noopener noreferrer"
+          style={activeDragStyle}
+          onClick={handleActiveCardClick}
         >
           <img src={active.thumbnail} alt={active.alt} loading="lazy" />
           <span className="dd-play" aria-hidden="true">
@@ -85,7 +159,8 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
           href={next.href}
           aria-hidden="true"
           tabIndex={-1}
-          onClick={(e) => { e.preventDefault(); advance(1); }}
+          style={dragStyle}
+          onClick={(e) => { e.preventDefault(); if (!pointerMovedRef.current) advance(1); }}
         >
           <img src={next.thumbnail} alt="" loading="lazy" />
         </a>
