@@ -1080,3 +1080,14 @@
        SMALL BITS
        ============================================================ */
     .mark-sun { width: 28px; height: 28px; }
+
+    /* ============================================================
+       CASE STUDIES
+       Shared layout & typography for /work/<slug>/ pages.
+       Per-case brand variables (e.g. --afa-yellow) are scoped to
+       each page via inline style on .case-study-shell.
+       ============================================================ */
+
+    .case-study-shell {
+      /* Wrapper for case-study pages. Per-case CSS vars are injected here. */
+    }
