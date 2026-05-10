@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { RisingHeading } from "./RisingHeading";
 
 export function CaseSection({
   className,
@@ -17,7 +18,7 @@ export function CaseSection({
     <section className={className} id={id}>
       <div className="wrap">
         {eyebrow ? <div className="eyebrow">{eyebrow}</div> : null}
-        {heading ? <h2>{heading}</h2> : null}
+        {heading ? <RisingHeading as="h2">{heading}</RisingHeading> : null}
         {children}
       </div>
     </section>

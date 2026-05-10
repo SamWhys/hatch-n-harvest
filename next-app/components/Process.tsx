@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { RisingHeading } from "./case-study/RisingHeading";
 
 const services = [
   {
@@ -102,7 +103,7 @@ export function Process() {
         <div className="process-head">
           <div>
             <div className="eyebrow">How we work</div>
-            <h2>We grow brands in three seasons.</h2>
+            <RisingHeading as="h2">We grow brands in three seasons.</RisingHeading>
           </div>
           <p>
             Every engagement moves through these three phases — sometimes in sequence, sometimes in loops. The pacing is ours to set together.

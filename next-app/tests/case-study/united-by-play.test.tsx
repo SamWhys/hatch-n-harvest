@@ -132,7 +132,7 @@ describe("United by Play page", () => {
 
     it("renders the Battle For Charity section heading", () => {
         render(<UnitedByPlayPage />);
-        expect(screen.getByText("The Battle For Charity")).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 2, name: "The Battle For Charity" })).toBeInTheDocument();
     });
 
     it("renders the ViewSonic client value", () => {

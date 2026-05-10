@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { RisingHeading } from "./case-study/RisingHeading";
 
 function ArrowIcon({ size = 14 }: { size?: number }) {
   return (
@@ -79,7 +80,7 @@ export function Work() {
         <div className="work-head">
           <div>
             <div className="eyebrow">Recent harvests</div>
-            <h2>Brands we&apos;ve helped grow.</h2>
+            <RisingHeading as="h2">Brands we&apos;ve helped grow.</RisingHeading>
           </div>
           <p>
             A selection from the past three seasons. Each of these began as a conversation, a napkin sketch, or a founder with more conviction than cash. We&apos;re glad they called.

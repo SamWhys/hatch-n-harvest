@@ -1,12 +1,14 @@
+import { RisingHeading } from "./case-study/RisingHeading";
+
 export function Studio() {
   return (
     <section className="studio" id="studio">
       <div className="wrap studio-inner">
         <div className="studio-copy">
           <div className="eyebrow">The studio</div>
-          <h2>
+          <RisingHeading as="h2">
             An Ad Agency with <em>Decades</em> of Experience
-          </h2>
+          </RisingHeading>
           <p>
             We&apos;re the best of both worlds — the depth and dedication of an in-house marketing department, with the independence and fresh eyes of an outside agency.
           </p>

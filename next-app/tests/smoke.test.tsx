@@ -11,11 +11,12 @@ describe("HomePage smoke tests", () => {
 
   it("renders the hero headline words", () => {
     render(<HomePage />);
-    expect(screen.getByText("We")).toBeInTheDocument();
-    expect(screen.getByText("hatch")).toBeInTheDocument();
-    expect(screen.getByText("&")).toBeInTheDocument();
-    expect(screen.getByText("harvest")).toBeInTheDocument();
-    expect(screen.getByText("big ideas.")).toBeInTheDocument();
+    const h1 = screen.getByRole("heading", { level: 1 });
+    expect(h1.textContent).toContain("We");
+    expect(h1.textContent).toContain("hatch");
+    expect(h1.textContent).toContain("&");
+    expect(h1.textContent).toContain("harvest");
+    expect(h1.textContent).toContain("big ideas.");
   });
 
   it("renders the contact script line and the studio sticker", () => {
