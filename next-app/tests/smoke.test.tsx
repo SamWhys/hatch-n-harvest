@@ -70,6 +70,24 @@ describe("HomePage smoke tests", () => {
     expect(screen.getByRole("link", { name: "Start a project →" })).toHaveAttribute("href", "#contact");
   });
 
+  it("links AfA and UbP cards to clean URLs and leaves Kestrel Coast unchanged", () => {
+    render(<HomePage />);
+    const afaLink = screen.getByLabelText(
+      "Acceleration For All — ViewSonic × Hustle Fund case study"
+    );
+    expect(afaLink).toHaveAttribute("href", "work/acceleration-for-all/");
+
+    const ubpLink = screen.getByLabelText(
+      "United by Play — ViewSonic global gaming campaign case study"
+    );
+    expect(ubpLink).toHaveAttribute("href", "work/united-by-play/");
+
+    const kcLink = screen.getByLabelText(
+      "Kestrel Coast — destination rebrand case study"
+    );
+    expect(kcLink).toHaveAttribute("href", "work/kestrel-coast.html");
+  });
+
   it("does not render any broken asset paths (assets/ prefix only)", () => {
     const { container } = render(<HomePage />);
     const imgs = Array.from(container.querySelectorAll("img"));

@@ -1,18 +1,18 @@
-export function Footer() {
+export function Footer({ homeHref = "" }: { homeHref?: string }) {
   return (
     <footer>
       <div className="wrap">
         <div className="footer-lockup">
-          <a href="#top" aria-label="Hatch n Harvest — home">
+          <a href={`${homeHref}#top`} aria-label="Hatch n Harvest — home">
             <img
               className="logo-icon"
-              src="assets/brand/icon-main.svg"
+              src={`${homeHref}assets/brand/icon-main.svg`}
               alt=""
               aria-hidden="true"
             />
             <img
               className="logo-wordmark"
-              src="assets/brand/wordmark.svg"
+              src={`${homeHref}assets/brand/wordmark.svg`}
               alt="Hatch n Harvest"
             />
           </a>
