@@ -76,4 +76,60 @@ describe("RisingHeading scaffold", () => {
     lastInstance!.trigger([{ target: h, isIntersecting: true }]);
     expect(h.classList.contains("is-revealed")).toBe(true);
   });
+
+  it("splits a plain-string child into word spans with sequential --i", () => {
+    const { container } = render(<RisingHeading>Hello cruel world</RisingHeading>);
+    const words = container.querySelectorAll(".rising-heading .word");
+    expect(words.length).toBe(3);
+    expect(words[0].textContent).toBe("Hello");
+    expect((words[0] as HTMLElement).style.getPropertyValue("--i")).toBe("0");
+    expect(words[1].textContent).toBe("cruel");
+    expect((words[1] as HTMLElement).style.getPropertyValue("--i")).toBe("1");
+    expect(words[2].textContent).toBe("world");
+    expect((words[2] as HTMLElement).style.getPropertyValue("--i")).toBe("2");
+  });
+
+  it("preserves <em> wrappers and continues --i across them", () => {
+    const { container } = render(
+      <RisingHeading>
+        People buy <em>connection, belonging.</em>
+      </RisingHeading>
+    );
+    const h = container.querySelector("h2") as HTMLElement;
+    const allWords = h.querySelectorAll(".word");
+    expect(allWords.length).toBe(4);
+    // First two ("People", "buy") are direct children of .line.
+    expect(allWords[0].textContent).toBe("People");
+    expect((allWords[0] as HTMLElement).style.getPropertyValue("--i")).toBe("0");
+    expect(allWords[1].textContent).toBe("buy");
+    expect((allWords[1] as HTMLElement).style.getPropertyValue("--i")).toBe("1");
+    // Next two ("connection,", "belonging.") are inside an <em>.
+    const em = h.querySelector("em") as HTMLElement;
+    const emWords = em.querySelectorAll(".word");
+    expect(emWords.length).toBe(2);
+    expect(emWords[0].textContent).toBe("connection,");
+    expect((emWords[0] as HTMLElement).style.getPropertyValue("--i")).toBe("2");
+    expect(emWords[1].textContent).toBe("belonging.");
+    expect((emWords[1] as HTMLElement).style.getPropertyValue("--i")).toBe("3");
+  });
+
+  it("preserves visible whitespace between words", () => {
+    const { container } = render(<RisingHeading>Hello world</RisingHeading>);
+    const h = container.querySelector("h2") as HTMLElement;
+    expect(h.textContent).toBe("Hello world");
+  });
+
+  it("handles trailing/leading whitespace in string children gracefully", () => {
+    const { container } = render(
+      <RisingHeading>
+        People buy{" "}
+        <em>connection.</em>
+      </RisingHeading>
+    );
+    const h = container.querySelector("h2") as HTMLElement;
+    // textContent collapses whitespace from JSX literals; just verify content.
+    expect(h.textContent?.trim()).toBe("People buy connection.");
+    const allWords = h.querySelectorAll(".word");
+    expect(allWords.length).toBe(3);
+  });
 });

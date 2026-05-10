@@ -2218,3 +2218,39 @@
       border: 0;
       display: block;
     }
+
+    /* ============================================================
+       RISING HEADING
+       Adapts the homepage hero's word-rise animation to any heading.
+       Triggered when the heading scrolls into view (via the
+       useScrollReveal hook adding `is-revealed`).
+       ============================================================ */
+
+    .rising-heading .line {
+      display: block;
+      overflow: hidden;
+      padding-top: 0.08em;
+      padding-bottom: 0.22em;
+    }
+    .rising-heading .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(105%);
+      will-change: transform, opacity;
+    }
+    .rising-heading.is-revealed .word {
+      animation: rising-heading-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: calc(var(--i, 0) * 140ms);
+    }
+    @keyframes rising-heading-rise {
+      from { opacity: 0; transform: translateY(105%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rising-heading .word {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
