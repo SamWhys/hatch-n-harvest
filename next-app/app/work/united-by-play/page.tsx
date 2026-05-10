@@ -188,6 +188,9 @@ export default function UnitedByPlayPage() {
                     <figure className="ubp-result-board">
                         <img src="../../assets/work/united-by-play/results-overview.jpg" alt="United by Play campaign results overview — insight, strategy, and headline metrics: 128M total impressions, 24M unique users on social, 2M completed video views, 6.3M YouTube views." loading="lazy" />
                     </figure>
+                    <figure className="ubp-result-board">
+                        <img src="../../assets/work/united-by-play/social-result-board.jpg" alt="United by Play social post board — phone mockups showing campaign social media posts and engagement." loading="lazy" />
+                    </figure>
                 </div>
             </section>
 

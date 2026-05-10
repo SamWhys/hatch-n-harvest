@@ -2025,6 +2025,9 @@
       overflow: hidden;
       background: var(--cream);
     }
+    .ubp-result-board + .ubp-result-board {
+      margin-top: clamp(20px, 2.5vw, 36px);
+    }
     .ubp-result-board img {
       width: 100%;
       height: auto;
