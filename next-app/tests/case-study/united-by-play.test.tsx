@@ -78,19 +78,28 @@ describe("United by Play page", () => {
         });
     });
 
-    it("renders the docuseries grid with 3 episode thumbnails", () => {
+    it("renders the docuseries deck with three episodes", () => {
         const { container } = render(<UnitedByPlayPage />);
-        const docu = container.querySelector(".ubp-docu-grid");
-        expect(docu).not.toBeNull();
-        const figures = docu?.querySelectorAll("figure");
-        expect(figures?.length).toBe(3);
+        expect(container.querySelector(".docuseries-deck")).not.toBeNull();
+        const cards = container.querySelectorAll(".docuseries-deck .dd-card");
+        expect(cards.length).toBe(3);
+        const html = container.innerHTML;
+        expect(html).toContain("tRE3Mq6w5fo");
+        expect(html).toContain("Dwo2JJKZviI");
+        expect(html).toContain("pGKBf9kV6mY");
     });
 
-    it("renders the three docuseries episode titles", () => {
-        render(<UnitedByPlayPage />);
+    it("renders the three docuseries episode titles via episode controls", () => {
+        const { container } = render(<UnitedByPlayPage />);
+        // The active episode title is shown
         expect(screen.getByText("Tech Rehearsal")).toBeInTheDocument();
-        expect(screen.getByText("The Forge")).toBeInTheDocument();
-        expect(screen.getByText("The Gallery")).toBeInTheDocument();
+        // All three titles are accessible via the episode buttons' aria-labels
+        const buttons = container.querySelectorAll(".dd-dot");
+        expect(buttons.length).toBe(3);
+        const ariaLabels = Array.from(buttons).map((btn) => btn.getAttribute("aria-label"));
+        expect(ariaLabels).toContain("Episode 1: Tech Rehearsal");
+        expect(ariaLabels).toContain("Episode 2: The Forge");
+        expect(ariaLabels).toContain("Episode 3: The Gallery");
     });
 
     it("renders the problem stat with >60% figure", () => {
