@@ -8,6 +8,7 @@ import { UbpAssetReveal } from "@/components/case-study/UbpAssetReveal";
 import { UbpProblemStat } from "@/components/case-study/UbpProblemStat";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { FadeInP } from "@/components/case-study/FadeInP";
+import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
 
 export const metadata: Metadata = {
     title: "United by Play — ViewSonic · Hatch n Harvest",
@@ -32,14 +33,7 @@ export default function UnitedByPlayPage() {
             />
 
             <CaseBleed caption={{ title: "Hero film · United by Play.", meta: "Campaign · 2021" }}>
-                <iframe
-                    src="https://www.youtube.com/embed/Vd_Tt1iSO90?rel=0&modestbranding=1"
-                    title="United by Play — Hero film"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading="eager"
-                />
+                <AutoplayVideo videoId="Vd_Tt1iSO90" title="United by Play — Hero film" />
             </CaseBleed>
 
             {/* THE PROBLEM */}
@@ -172,14 +166,7 @@ export default function UnitedByPlayPage() {
                     <RisingHeading as="h2" className="ubp-section-h">The Battle For Charity</RisingHeading>
                     <FadeInP className="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</FadeInP>
                     <div className="ubp-film-frame">
-                        <iframe
-                            src="https://www.youtube.com/embed/7clzHwb4aCI?rel=0&modestbranding=1"
-                            title="United by Play — Battle for Charity highlights"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                            loading="lazy"
-                        />
+                        <AutoplayVideo videoId="7clzHwb4aCI" title="United by Play — Battle for Charity highlights" />
                     </div>
                 </div>
             </section>
