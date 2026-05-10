@@ -1,17 +1,17 @@
-export function Nav() {
+export function Nav({ homeHref = "" }: { homeHref?: string }) {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <a href="#top" className="logo" aria-label="Hatch n Harvest — home">
-          <img className="logo-icon" src="assets/brand/icon-main.svg" alt="" aria-hidden="true" />
-          <img className="logo-wordmark" src="assets/brand/wordmark.svg" alt="Hatch n Harvest" />
+        <a href={`${homeHref}#top`} className="logo" aria-label="Hatch n Harvest — home">
+          <img className="logo-icon" src={`${homeHref}assets/brand/icon-main.svg`} alt="" aria-hidden="true" />
+          <img className="logo-wordmark" src={`${homeHref}assets/brand/wordmark.svg`} alt="Hatch n Harvest" />
         </a>
         <nav className="nav-links" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#process">Process</a>
-          <a href="#studio">Studio</a>
+          <a href={`${homeHref}#work`}>Work</a>
+          <a href={`${homeHref}#process`}>Process</a>
+          <a href={`${homeHref}#studio`}>Studio</a>
         </nav>
-        <a href="#contact" className="nav-cta">Start a project →</a>
+        <a href={`${homeHref}#contact`} className="nav-cta">Start a project →</a>
       </div>
     </header>
   );
