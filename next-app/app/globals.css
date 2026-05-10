@@ -1190,10 +1190,6 @@
       text-transform: none;
       font-size: 13px;
     }
-    @media (max-width: 600px) {
-      .bleed-caption { flex-direction: column; gap: 6px; }
-    }
-
     /* ---- Hero-stage (in-wrap editorial visual moments) ---- */
     .hero-stage {
       margin-top: clamp(20px, 3vw, 40px);
@@ -1222,7 +1218,7 @@
       font-size: 13px;
     }
     @media (max-width: 600px) {
-      .hero-caption { flex-direction: column; gap: 6px; }
+      .bleed-caption, .hero-caption { flex-direction: column; gap: 6px; }
     }
 
     /* ============================================================
