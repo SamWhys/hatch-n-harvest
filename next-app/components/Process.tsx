@@ -1,8 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { useScrollReveal } from "./case-study/useScrollReveal";
 import { RisingHeading } from "./case-study/RisingHeading";
+import { FadeInP } from "./case-study/FadeInP";
 
 const services = [
   {
@@ -90,6 +92,9 @@ export function Process() {
   const mnemonicRef = useRef<HTMLImageElement>(null);
   useParallaxScroll(mnemonicRef, { intensity: 0.15 });
 
+  const gridRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(gridRef);
+
   return (
     <section className="process" id="process">
       <img
@@ -105,14 +110,18 @@ export function Process() {
             <div className="eyebrow">How we work</div>
             <RisingHeading as="h2">We grow brands in three seasons.</RisingHeading>
           </div>
-          <p>
+          <FadeInP>
             Every engagement moves through these three phases — sometimes in sequence, sometimes in loops. The pacing is ours to set together.
-          </p>
+          </FadeInP>
         </div>
 
-        <div className="process-grid">
-          {services.map((s) => (
-            <div className="service" key={s.title}>
+        <div ref={gridRef} className="process-grid">
+          {services.map((s, i) => (
+            <div
+              className="service"
+              key={s.title}
+              style={{ "--reveal-index": i } as CSSProperties}
+            >
               {s.icon}
               <h3>{s.title}</h3>
               <p>{s.body}</p>

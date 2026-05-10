@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
 import { RisingHeading } from "./case-study/RisingHeading";
+import { FadeInP } from "./case-study/FadeInP";
 
 function ArrowIcon({ size = 14 }: { size?: number }) {
   return (
@@ -82,9 +83,9 @@ export function Work() {
             <div className="eyebrow">Recent harvests</div>
             <RisingHeading as="h2">Brands we&apos;ve helped grow.</RisingHeading>
           </div>
-          <p>
+          <FadeInP>
             A selection from the past three seasons. Each of these began as a conversation, a napkin sketch, or a founder with more conviction than cash. We&apos;re glad they called.
-          </p>
+          </FadeInP>
         </div>
 
         <div className="case-grid">

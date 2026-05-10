@@ -5,7 +5,9 @@ import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { DocuseriesDeck } from "@/components/case-study/DocuseriesDeck";
 import { UbpAssetReveal } from "@/components/case-study/UbpAssetReveal";
+import { UbpProblemStat } from "@/components/case-study/UbpProblemStat";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
+import { FadeInP } from "@/components/case-study/FadeInP";
 
 export const metadata: Metadata = {
     title: "United by Play — ViewSonic · Hatch n Harvest",
@@ -46,14 +48,11 @@ export default function UnitedByPlayPage() {
                     <RisingHeading as="h2" className="ubp-section-h">The Problem</RisingHeading>
                     <div className="ubp-problem-cols">
                         <div className="ubp-problem-body">
-                            <p>Despite more than 30 years in gaming displays and the successful launch of its high-performance ELITE monitors, ViewSonic discovered a major disconnect in the gaming market: over 60% of people who play games don&#39;t actually identify as &#34;gamers.&#34;</p>
-                            <p>Traditional gaming marketing often focused on stereotypes that excluded casual players and broader audiences.</p>
-                            <p>With the launch of the OMNI line, ViewSonic saw an opportunity to reposition itself under the unified banner of &#34;ViewSonic Gaming&#34; and create a brand platform that embraced every type of player.</p>
+                            <FadeInP>Despite more than 30 years in gaming displays and the successful launch of its high-performance ELITE monitors, ViewSonic discovered a major disconnect in the gaming market: over 60% of people who play games don&#39;t actually identify as &#34;gamers.&#34;</FadeInP>
+                            <FadeInP>Traditional gaming marketing often focused on stereotypes that excluded casual players and broader audiences.</FadeInP>
+                            <FadeInP>With the launch of the OMNI line, ViewSonic saw an opportunity to reposition itself under the unified banner of &#34;ViewSonic Gaming&#34; and create a brand platform that embraced every type of player.</FadeInP>
                         </div>
-                        <aside className="ubp-stat">
-                            <div className="ubp-stat-num">&gt;60%</div>
-                            <div className="ubp-stat-label">Of people who play games don&#39;t actually identify as &#34;gamers.&#34;</div>
-                        </aside>
+                        <UbpProblemStat />
                     </div>
                 </div>
             </section>
@@ -62,7 +61,7 @@ export default function UnitedByPlayPage() {
             <section className="ubp-solution">
                 <div className="wrap">
                     <RisingHeading as="h2" className="ubp-section-h">The Solution</RisingHeading>
-                    <p className="ubp-solution-lead">ViewSonic launched the global &#34;United by Play&#34; campaign built around the message that no matter how, where, or why you play, we are all united by play. The platform reframed gaming as something inclusive — a shared experience that crosses age, gender, geography, and skill level.</p>
+                    <FadeInP className="ubp-solution-lead">ViewSonic launched the global &#34;United by Play&#34; campaign built around the message that no matter how, where, or why you play, we are all united by play. The platform reframed gaming as something inclusive — a shared experience that crosses age, gender, geography, and skill level.</FadeInP>
                 </div>
 
                 {/* Solution Asset Grid — non-standard nested layout matching source */}
@@ -140,7 +139,7 @@ export default function UnitedByPlayPage() {
             <section className="ubp-docuseries">
                 <div className="wrap">
                     <RisingHeading as="h2" className="ubp-section-h">The Docuseries</RisingHeading>
-                    <p className="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</p>
+                    <FadeInP className="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</FadeInP>
 
                     <DocuseriesDeck
                         episodes={[
@@ -171,7 +170,7 @@ export default function UnitedByPlayPage() {
             <section className="ubp-docuseries ubp-battle">
                 <div className="wrap">
                     <RisingHeading as="h2" className="ubp-section-h">The Battle For Charity</RisingHeading>
-                    <p className="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</p>
+                    <FadeInP className="ubp-docu-lead">A streamed gaming showdown that turned the launch into a charity drive — communities lining up around the United by Play platform to play, vote, and give.</FadeInP>
                     <div className="ubp-film-frame">
                         <iframe
                             src="https://www.youtube.com/embed/7clzHwb4aCI?rel=0&modestbranding=1"
@@ -189,7 +188,7 @@ export default function UnitedByPlayPage() {
             <section className="ubp-result">
                 <div className="wrap">
                     <RisingHeading as="h2" className="ubp-section-h">The Result</RisingHeading>
-                    <p className="ubp-result-lead">The campaign delivered exceptional engagement and awareness on a global scale — turning a hardware brand pivot into a cultural conversation about who games and why.</p>
+                    <FadeInP className="ubp-result-lead">The campaign delivered exceptional engagement and awareness on a global scale — turning a hardware brand pivot into a cultural conversation about who games and why.</FadeInP>
 
                     <figure className="ubp-result-board">
                         <img src="../../assets/work/united-by-play/results-overview.jpg" alt="United by Play campaign results overview — insight, strategy, and headline metrics: 128M total impressions, 24M unique users on social, 2M completed video views, 6.3M YouTube views." loading="lazy" />

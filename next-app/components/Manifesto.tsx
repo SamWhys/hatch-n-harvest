@@ -1,8 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { useScrollReveal } from "./case-study/useScrollReveal";
 import { RisingHeading } from "./case-study/RisingHeading";
+import { FadeInP } from "./case-study/FadeInP";
 
 const beliefs = [
   {
@@ -31,6 +33,9 @@ export function Manifesto() {
   const mnemonicRef = useRef<HTMLImageElement>(null);
   useParallaxScroll(mnemonicRef, { intensity: 0.15 });
 
+  const beliefsRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(beliefsRef);
+
   return (
     <section className="manifesto">
       <img
@@ -46,13 +51,17 @@ export function Manifesto() {
           People don&apos;t buy marketing strategies. They buy{" "}
           <em>connection, belonging, meaning.</em>
         </RisingHeading>
-        <p className="manifesto-lead">
+        <FadeInP className="manifesto-lead">
           In the end, that&apos;s what moves people. Big ideas are just the vehicle — emotion is the engine.
-        </p>
+        </FadeInP>
 
-        <div className="beliefs">
-          {beliefs.map((b) => (
-            <div className="belief" key={b.num}>
+        <div ref={beliefsRef} className="beliefs">
+          {beliefs.map((b, i) => (
+            <div
+              className="belief"
+              key={b.num}
+              style={{ "--reveal-index": i } as CSSProperties}
+            >
               <span className="num">{b.num}</span>
               <h4>{b.title}</h4>
               <p>{b.body}</p>
