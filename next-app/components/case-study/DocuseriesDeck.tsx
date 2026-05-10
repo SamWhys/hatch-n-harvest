@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, type PointerEvent as ReactPointerEvent } from "react";
+import { useScrollReveal } from "./useScrollReveal";
 
 export type DocuseriesEpisode = {
   title: string;
@@ -18,6 +19,8 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
   const [isDragging, setIsDragging] = useState(false);
 
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  useScrollReveal(sectionRef);
   const startXRef = useRef(0);
   const startYRef = useRef(0);
   const pointerMovedRef = useRef(false);
@@ -96,6 +99,7 @@ export function DocuseriesDeck({ episodes }: { episodes: DocuseriesEpisode[] }) 
 
   return (
     <section
+      ref={sectionRef}
       className="docuseries-deck"
       aria-roledescription="carousel"
       aria-label="Docuseries episodes"
