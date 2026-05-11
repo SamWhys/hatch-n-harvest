@@ -520,7 +520,7 @@
       width: clamp(770px, 109vw, 1400px);
       max-width: none;
       height: auto;
-      opacity: 0.55;
+      opacity: 0.9;
       z-index: -1;
       pointer-events: none;
       user-select: none;
