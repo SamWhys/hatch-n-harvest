@@ -91,11 +91,14 @@ describe("United by Play page", () => {
         expect(html).toContain("pGKBf9kV6mY");
     });
 
-    it("renders all three docuseries episode titles", () => {
-        render(<UnitedByPlayPage />);
-        expect(screen.getByText("Tech Rehearsal")).toBeInTheDocument();
-        expect(screen.getByText("The Forge")).toBeInTheDocument();
-        expect(screen.getByText("The Gallery")).toBeInTheDocument();
+    it("renders all three docuseries episode titles via the slider dots", () => {
+        const { container } = render(<UnitedByPlayPage />);
+        const dots = container.querySelectorAll(".docuseries-filmstrip .dfs-dot");
+        expect(dots.length).toBe(3);
+        const ariaLabels = Array.from(dots).map((d) => d.getAttribute("aria-label"));
+        expect(ariaLabels).toContain("Episode 1: Tech Rehearsal");
+        expect(ariaLabels).toContain("Episode 2: The Forge");
+        expect(ariaLabels).toContain("Episode 3: The Gallery");
     });
 
     it("renders the problem stat with the count-up number and 10 person icons (6 filled)", () => {

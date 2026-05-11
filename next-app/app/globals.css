@@ -2277,12 +2277,12 @@
     }
 
     /* ============================================================
-       DOCUSERIES FILMSTRIP — horizontal scroll-snap layout.
-       3 cards fit across the wrap on desktop (no scroll needed);
-       on narrow viewports cards become wider (~75vw) and the strip
-       scrolls horizontally with snap-to-card behavior.
+       DOCUSERIES SLIDER — one card at a time, full focus.
+       Track uses native scroll-snap so each card snaps centered;
+       prev/next arrows scroll programmatically; dots jump to index.
        ============================================================ */
     .docuseries-filmstrip {
+      position: relative;
       opacity: 0;
       transform: translateY(28px);
       transition:
@@ -2296,25 +2296,17 @@
     .dfs-track {
       list-style: none;
       margin: 0;
-      padding: 4px 0 16px;
+      padding: 0;
       display: flex;
-      gap: 24px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      scroll-padding-inline: 0;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--stone-soft) transparent;
+      scrollbar-width: none;
     }
-    .dfs-track::-webkit-scrollbar { height: 6px; }
-    .dfs-track::-webkit-scrollbar-track { background: transparent; }
-    .dfs-track::-webkit-scrollbar-thumb {
-      background: var(--stone-soft);
-      border-radius: 3px;
-    }
+    .dfs-track::-webkit-scrollbar { display: none; }
     .dfs-item {
-      flex: 0 0 calc((100% - 48px) / 3);
-      scroll-snap-align: start;
+      flex: 0 0 100%;
+      scroll-snap-align: center;
       min-width: 0;
     }
     .dfs-card {
@@ -2336,7 +2328,7 @@
       display: block;
       transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .dfs-card:hover .dfs-thumb img { transform: scale(1.04); }
+    .dfs-card:hover .dfs-thumb img { transform: scale(1.02); }
     .dfs-play {
       position: absolute;
       inset: 0;
@@ -2344,33 +2336,103 @@
       align-items: center;
       justify-content: center;
       color: var(--paper);
-      background: rgba(0, 0, 0, 0.18);
+      background: rgba(0, 0, 0, 0.20);
       opacity: 0;
       transition: opacity .25s ease;
     }
     .dfs-play svg {
       background: var(--ink);
       border-radius: 999px;
-      padding: 14px;
-      width: 56px;
-      height: 56px;
-      box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.5);
+      padding: 18px;
+      width: 72px;
+      height: 72px;
+      box-shadow: 0 18px 44px -12px rgba(0, 0, 0, 0.55);
     }
     .dfs-card:hover .dfs-play,
     .dfs-card:focus-visible .dfs-play { opacity: 1; }
+
+    /* Prev / next arrow buttons positioned over the card sides */
+    .dfs-prev,
+    .dfs-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28, 28, 28, 0.55);
+      color: var(--ink);
+      backdrop-filter: blur(6px);
+      transition: background .2s ease, transform .2s ease, opacity .2s ease;
+    }
+    .dfs-prev { left: 16px; }
+    .dfs-next { right: 16px; }
+    .dfs-prev:hover:not(:disabled),
+    .dfs-next:hover:not(:disabled) {
+      background: rgba(28, 28, 28, 0.85);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .dfs-prev:disabled,
+    .dfs-next:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    /* Title + dots beneath the active card */
+    .dfs-controls {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
     .dfs-title {
-      margin: 16px 0 0;
-      font-size: clamp(20px, 1.8vw, 26px);
+      margin: 0;
+      font-size: clamp(22px, 2vw, 30px);
       line-height: 1.1;
       color: var(--ink);
+      text-align: center;
     }
-    @media (max-width: 900px) {
-      .dfs-item { flex: 0 0 75vw; }
-      .dfs-track { gap: 16px; }
+    .dfs-dots {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 10px;
+    }
+    .dfs-dot {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(242, 235, 218, 0.25);
+      transition: background .2s ease, width .2s ease;
+    }
+    .dfs-dot.is-active {
+      background: var(--marigold);
+      width: 48px;
+    }
+    .dfs-dot:hover:not(.is-active) {
+      background: rgba(242, 235, 218, 0.5);
+    }
+
+    @media (max-width: 700px) {
+      .dfs-prev,
+      .dfs-next {
+        width: 40px;
+        height: 40px;
+      }
+      .dfs-prev { left: 8px; }
+      .dfs-next { right: 8px; }
+      .dfs-play svg { width: 56px; height: 56px; padding: 14px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .docuseries-filmstrip { transition-duration: 0ms !important; }
       .dfs-thumb img { transition: none !important; }
+      .dfs-track { scroll-behavior: auto !important; }
     }
 
     /* ============================================================
