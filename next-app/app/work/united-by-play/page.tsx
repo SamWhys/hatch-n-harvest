@@ -118,7 +118,7 @@ export default function UnitedByPlayPage() {
                         {/* Row 3: two cells (629 each) */}
                         <div className="ubp-row3">
                             <figure className="ubp-cell ubp-whiskey" style={{ "--reveal-index": 9 } as React.CSSProperties}>
-                                <img src="../../assets/work/united-by-play/portrait-whiskey-guy.jpg" alt="Portrait — whiskey gamer." loading="lazy" />
+                                <AutoplayVideo videoId="S9cT1s8xrCk" title="United by Play — Side Quests film" />
                             </figure>
                             <figure className="ubp-cell ubp-title" style={{ "--reveal-index": 10 } as React.CSSProperties}>
                                 <img src="../../assets/work/united-by-play/title-no-matter-how-you-game.jpg" alt="Title card — No matter how you game." loading="lazy" />
