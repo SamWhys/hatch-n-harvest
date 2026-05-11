@@ -178,6 +178,34 @@ export function Work() {
             </div>
           </a>
 
+          <a
+            href="work/meet-the-finchers/"
+            className="case"
+            aria-label="Meet the Finchers — ViewSonic branded entertainment campaign case study"
+          >
+            <div className="case-image">
+              <img
+                src="assets/work/meet-the-finchers/jakob-banner.jpg"
+                alt="Meet the Finchers — Jakob Fincher campaign banner."
+                loading="lazy"
+              />
+            </div>
+            <div className="case-meta">
+              <div className="case-label">
+                <span>Campaign · Identity · Documentaries · Social</span>
+                <span className="year">2022</span>
+              </div>
+              <div className="case-name">Meet the Finchers</div>
+              <p className="case-one-liner">
+                A binge-worthy 90s sitcom for ViewSonic — a six-month branded entertainment campaign produced entirely on the brand&apos;s own remote-collaboration tech.
+              </p>
+              <span className="case-read-cta">
+                Read case study
+                <ArrowIcon size={11} />
+              </span>
+            </div>
+          </a>
+
           {lockedCases.map((c) => (
             <div className="case is-locked" role="article" aria-label={c.label} key={c.name}>
               <div className="case-image">

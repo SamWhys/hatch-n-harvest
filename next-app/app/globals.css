@@ -2533,3 +2533,178 @@
         transition-duration: 0ms !important;
       }
     }
+
+    /* ============================================================
+       MEET THE FINCHERS — case-specific styles
+       Composes the editorial 90s-sitcom layout from Figma:
+       - Section padding mirrors UbP / AfA rhythm
+       - Asset grid: 2-col (885 / 373) with left having two cells stacked,
+         right having three cells stacked. Linkedin Carousel sits below
+         as a full-width rounded image.
+       - The Show: three episode thumbnails in a row.
+       ============================================================ */
+    .mtf-problem,
+    .mtf-solution,
+    .mtf-show,
+    .mtf-result {
+      padding: clamp(60px, 7vw, 100px) 0;
+    }
+    .mtf-problem .wrap > h2,
+    .mtf-solution .wrap > h2,
+    .mtf-show .wrap > h2,
+    .mtf-result .wrap > h2 {
+      max-width: 14ch;
+      margin-bottom: clamp(24px, 3vw, 36px);
+    }
+    .mtf-section-lead {
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.55;
+      color: var(--stone);
+      max-width: 70ch;
+      margin: 0 0 16px;
+    }
+    .mtf-section-lead:last-child { margin-bottom: 0; }
+
+    /* ----- Asset grid ----- */
+    .mtf-asset-grid-section {
+      padding: 0 0 clamp(60px, 7vw, 100px);
+    }
+    .mtf-asset-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 885fr) minmax(0, 373fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+    .mtf-asset-grid-left,
+    .mtf-asset-grid-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+    }
+    .mtf-cell {
+      margin: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      line-height: 0;
+    }
+    .mtf-cell img,
+    .mtf-cell video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Left column aspects */
+    .mtf-bts    { aspect-ratio: 885 / 490; }
+    .mtf-jakob  { aspect-ratio: 885 / 850; flex: 1; }
+    /* Right column aspects */
+    .mtf-gif    { aspect-ratio: 373 / 222; }
+    .mtf-lockup { aspect-ratio: 363 / 535; flex: 1; }
+    .mtf-karate { aspect-ratio: 373 / 559; }
+    /* Bottom full-width carousel */
+    .mtf-linkedin {
+      aspect-ratio: 1282 / 440;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .mtf-asset-grid {
+        grid-template-columns: 1fr;
+      }
+      /* On collapse the three right-column cells become a 3-up row to
+         keep the page tall but legible. */
+      .mtf-asset-grid-right {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .mtf-bts, .mtf-jakob, .mtf-gif, .mtf-lockup, .mtf-karate {
+        aspect-ratio: 16 / 9;
+        flex: none;
+      }
+    }
+    @media (max-width: 600px) {
+      .mtf-asset-grid-right { grid-template-columns: 1fr; }
+    }
+
+    /* ----- The Show — three episode thumbnails ----- */
+    .mtf-show-grid {
+      list-style: none;
+      margin: clamp(32px, 4vw, 48px) 0 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .mtf-show-card a {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .mtf-show-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .mtf-show-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mtf-show-card a:hover .mtf-show-thumb img { transform: scale(1.04); }
+    .mtf-show-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      background: rgba(0, 0, 0, 0.20);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .mtf-show-play svg {
+      background: var(--ink);
+      border-radius: 999px;
+      padding: 14px;
+      width: 56px;
+      height: 56px;
+      box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.5);
+    }
+    .mtf-show-card a:hover .mtf-show-play,
+    .mtf-show-card a:focus-visible .mtf-show-play { opacity: 1; }
+    .mtf-show-title {
+      margin: 14px 0 0;
+      font-size: clamp(20px, 1.8vw, 24px);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    @media (max-width: 700px) {
+      .mtf-show-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ----- Behind the scenes — final film embed ----- */
+    .mtf-bts-bleed {
+      padding: 0 0 clamp(80px, 10vw, 140px);
+    }
+    .mtf-film-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+      box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.65);
+    }
+    .mtf-film-frame iframe,
+    .mtf-film-frame img {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
