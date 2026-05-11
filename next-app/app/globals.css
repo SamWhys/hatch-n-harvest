@@ -451,14 +451,12 @@
       border-top: 1.5px solid var(--ink);
     }
     .belief .num {
-      /* 52px numerals carry semantic ordering — needs WCAG large-text 3:1 on cream.
-         --marigold gives only 1.99:1 on cream; --forest gives ~5.7:1. */
       font-family: var(--font-display);
       font-weight: 900;
       font-variation-settings: "opsz" 144, "SOFT" 100;
       font-size: 52px;
       line-height: 1;
-      color: var(--forest);
+      color: #FF9100;
       margin-bottom: 12px;
       display: inline-block;
     }
@@ -488,7 +486,7 @@
       transition:
         opacity 600ms cubic-bezier(0.32, 0.72, 0, 1),
         transform 600ms cubic-bezier(0.32, 0.72, 0, 1);
-      transition-delay: calc(var(--reveal-index, 0) * 120ms);
+      transition-delay: calc(var(--reveal-index, 0) * 200ms);
     }
     .beliefs.is-revealed .belief {
       opacity: 1;

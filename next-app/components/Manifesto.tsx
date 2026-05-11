@@ -34,7 +34,7 @@ export function Manifesto() {
   useParallaxScroll(mnemonicRef, { intensity: 0.15 });
 
   const beliefsRef = useRef<HTMLDivElement>(null);
-  useScrollReveal(beliefsRef);
+  useScrollReveal(beliefsRef, { rootMargin: "0px 0px -25% 0px" });
 
   return (
     <section className="manifesto">
