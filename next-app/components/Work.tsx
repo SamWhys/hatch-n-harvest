@@ -80,7 +80,6 @@ export function Work() {
       <div className="wrap">
         <div className="work-head">
           <div>
-            <div className="eyebrow">Recent harvests</div>
             <RisingHeading as="h2">Brands we&apos;ve helped grow.</RisingHeading>
           </div>
           <FadeInP>
