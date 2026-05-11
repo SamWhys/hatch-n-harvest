@@ -2277,6 +2277,103 @@
     }
 
     /* ============================================================
+       DOCUSERIES FILMSTRIP — horizontal scroll-snap layout.
+       3 cards fit across the wrap on desktop (no scroll needed);
+       on narrow viewports cards become wider (~75vw) and the strip
+       scrolls horizontally with snap-to-card behavior.
+       ============================================================ */
+    .docuseries-filmstrip {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 700ms cubic-bezier(0.32, 0.72, 0, 1),
+        transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .docuseries-filmstrip.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dfs-track {
+      list-style: none;
+      margin: 0;
+      padding: 4px 0 16px;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--stone-soft) transparent;
+    }
+    .dfs-track::-webkit-scrollbar { height: 6px; }
+    .dfs-track::-webkit-scrollbar-track { background: transparent; }
+    .dfs-track::-webkit-scrollbar-thumb {
+      background: var(--stone-soft);
+      border-radius: 3px;
+    }
+    .dfs-item {
+      flex: 0 0 calc((100% - 48px) / 3);
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+    .dfs-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .dfs-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .dfs-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .dfs-card:hover .dfs-thumb img { transform: scale(1.04); }
+    .dfs-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      background: rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .dfs-play svg {
+      background: var(--ink);
+      border-radius: 999px;
+      padding: 14px;
+      width: 56px;
+      height: 56px;
+      box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.5);
+    }
+    .dfs-card:hover .dfs-play,
+    .dfs-card:focus-visible .dfs-play { opacity: 1; }
+    .dfs-title {
+      margin: 16px 0 0;
+      font-size: clamp(20px, 1.8vw, 26px);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    @media (max-width: 900px) {
+      .dfs-item { flex: 0 0 75vw; }
+      .dfs-track { gap: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .docuseries-filmstrip { transition-duration: 0ms !important; }
+      .dfs-thumb img { transition: none !important; }
+    }
+
+    /* ============================================================
        UBP FILM FRAME
        Inline 16:9 video container — used by the Battle for Charity
        section. Same shape as AfA's .film-frame (contained within the

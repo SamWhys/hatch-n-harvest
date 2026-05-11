@@ -80,10 +80,10 @@ describe("United by Play page", () => {
         });
     });
 
-    it("renders the docuseries deck with three episodes", () => {
+    it("renders the docuseries filmstrip with three episodes", () => {
         const { container } = render(<UnitedByPlayPage />);
-        expect(container.querySelector(".docuseries-deck")).not.toBeNull();
-        const cards = container.querySelectorAll(".docuseries-deck .dd-card");
+        expect(container.querySelector(".docuseries-filmstrip")).not.toBeNull();
+        const cards = container.querySelectorAll(".docuseries-filmstrip .dfs-card");
         expect(cards.length).toBe(3);
         const html = container.innerHTML;
         expect(html).toContain("tRE3Mq6w5fo");
@@ -91,17 +91,11 @@ describe("United by Play page", () => {
         expect(html).toContain("pGKBf9kV6mY");
     });
 
-    it("renders the three docuseries episode titles via episode controls", () => {
-        const { container } = render(<UnitedByPlayPage />);
-        // The active episode title is shown
+    it("renders all three docuseries episode titles", () => {
+        render(<UnitedByPlayPage />);
         expect(screen.getByText("Tech Rehearsal")).toBeInTheDocument();
-        // All three titles are accessible via the episode buttons' aria-labels
-        const buttons = container.querySelectorAll(".dd-dot");
-        expect(buttons.length).toBe(3);
-        const ariaLabels = Array.from(buttons).map((btn) => btn.getAttribute("aria-label"));
-        expect(ariaLabels).toContain("Episode 1: Tech Rehearsal");
-        expect(ariaLabels).toContain("Episode 2: The Forge");
-        expect(ariaLabels).toContain("Episode 3: The Gallery");
+        expect(screen.getByText("The Forge")).toBeInTheDocument();
+        expect(screen.getByText("The Gallery")).toBeInTheDocument();
     });
 
     it("renders the problem stat with the count-up number and 10 person icons (6 filled)", () => {

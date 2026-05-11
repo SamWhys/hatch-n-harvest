@@ -3,7 +3,7 @@ import type React from "react";
 import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
-import { DocuseriesDeck } from "@/components/case-study/DocuseriesDeck";
+import { DocuseriesFilmstrip } from "@/components/case-study/DocuseriesFilmstrip";
 import { UbpAssetReveal } from "@/components/case-study/UbpAssetReveal";
 import { UbpProblemStat } from "@/components/case-study/UbpProblemStat";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
@@ -135,7 +135,7 @@ export default function UnitedByPlayPage() {
                     <RisingHeading as="h2" className="ubp-section-h">The Docuseries</RisingHeading>
                     <FadeInP className="ubp-docu-lead">A three-part docuseries — <em>Beyond the Game</em> — followed gamers whose lives challenged the traditional stereotype, taking us behind the scenes with a tech rehearsal, a custom-build forge, and an art gallery curated by the players themselves.</FadeInP>
 
-                    <DocuseriesDeck
+                    <DocuseriesFilmstrip
                         episodes={[
                             {
                                 title: "Tech Rehearsal",
