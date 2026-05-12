@@ -35,7 +35,7 @@ export function Studio() {
         </div>
         <div className="studio-image">
           <img
-            src="assets/team/hnh-team-shot.png"
+            src="assets/team/hnh-team-shot.jpg"
             alt="The Hatch & Harvest team."
             loading="lazy"
           />
