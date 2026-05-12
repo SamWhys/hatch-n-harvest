@@ -771,7 +771,8 @@
       font-size: clamp(40px, 6.5vw, 92px);
       letter-spacing: -0.03em;
       line-height: 0.92;
-      color: var(--paper);
+      color: var(--ink);
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
       margin: 0;
       max-width: 15ch;
     }
@@ -787,7 +788,8 @@
       font-size: 14px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--paper) 85%, transparent);
+      color: color-mix(in srgb, var(--ink) 90%, transparent);
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
     }
     .case.featured .featured-one-liner {
       font-family: var(--font-script);
