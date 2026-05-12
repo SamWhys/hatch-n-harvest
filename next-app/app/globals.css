@@ -375,7 +375,7 @@
     }
     @keyframes hero-graphic-enter {
       from { opacity: 0; }
-      to   { opacity: 0.55; }
+      to   { opacity: 1; }
     }
     @media (max-width: 900px) {
       .hero-graphic {
