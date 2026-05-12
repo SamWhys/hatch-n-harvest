@@ -39,7 +39,6 @@ export function Studio() {
             alt="The Hatch & Harvest team."
             loading="lazy"
           />
-          <div className="sticker">Brand people. Not tech people.</div>
         </div>
       </div>
     </section>
