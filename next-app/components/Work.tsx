@@ -185,8 +185,8 @@ export function Work() {
           >
             <div className="case-image">
               <img
-                src="assets/work/meet-the-finchers/jakob-banner.jpg"
-                alt="Meet the Finchers — Jakob Fincher campaign banner."
+                src="assets/work/meet-the-finchers/finchers-lockup-1.jpg"
+                alt="Meet the Finchers — campaign logo lockup."
                 loading="lazy"
               />
             </div>
