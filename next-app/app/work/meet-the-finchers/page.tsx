@@ -62,9 +62,13 @@ export default function MeetTheFinchersPage() {
             </section>
 
             {/* OOH BANNER */}
-            <CaseBleed>
-                <img src="../../assets/work/meet-the-finchers/finchers-ooh.jpg" alt="Meet the Finchers out-of-home billboard — sitcom-style family portrait announcing the campaign launch." loading="lazy" />
-            </CaseBleed>
+            <section className="mtf-ooh-section">
+                <div className="wrap">
+                    <figure className="mtf-cell mtf-ooh">
+                        <img src="../../assets/work/meet-the-finchers/finchers-ooh.jpg" alt="Meet the Finchers out-of-home billboard — sitcom-style family portrait announcing the campaign launch." loading="lazy" />
+                    </figure>
+                </div>
+            </section>
 
             {/* THE SOLUTION */}
             <CaseSection className="mtf-solution" heading="The Solution">

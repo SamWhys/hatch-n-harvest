@@ -2565,6 +2565,14 @@
     }
     .mtf-section-lead:last-child { margin-bottom: 0; }
 
+    /* ----- OOH banner ----- */
+    .mtf-ooh-section {
+      padding: 0 0 clamp(40px, 5vw, 60px);
+    }
+    .mtf-ooh {
+      aspect-ratio: 1280 / 434;
+    }
+
     /* ----- Asset grid ----- */
     .mtf-asset-grid-section {
       padding: 0 0 clamp(60px, 7vw, 100px);
