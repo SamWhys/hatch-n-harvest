@@ -203,6 +203,14 @@
       flex-direction: column;
       justify-content: center;
     }
+    /* In a flex column container, .wrap's `margin-inline: auto` causes it to
+       shrink to its content's intrinsic width instead of stretching to the
+       cross-axis. Force width: 100% so max-width + margin-auto behave like
+       the normal block layout other sections use, keeping the hero content
+       aligned with the rest of the page. */
+    .hero > .wrap {
+      width: 100%;
+    }
     .hero .eyebrow { margin-bottom: 28px; }
     .hero h1 {
       max-width: 14ch;
