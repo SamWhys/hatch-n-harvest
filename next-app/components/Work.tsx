@@ -90,7 +90,7 @@ export function Work() {
         <div className="case-grid">
           <a
             href="work/kestrel-coast.html"
-            className="case"
+            className="case featured"
             aria-label="Kestrel Coast — destination rebrand case study"
           >
             <div className="case-image">
@@ -99,20 +99,26 @@ export function Work() {
                 alt="Misty coastline at dawn, rocky shore with pines"
                 loading="lazy"
               />
-            </div>
-            <div className="case-meta">
-              <div className="case-label">
-                <span>Destination Identity · Wayfinding · Launch Campaign</span>
-                <span className="year">2025</span>
+              <div className="featured-overlay">
+                <div className="featured-top">
+                  <span className="featured-flag">Featured harvest</span>
+                  <span className="featured-cta">
+                    Read now
+                    <ArrowIcon />
+                  </span>
+                </div>
+                <div>
+                  <h3 className="featured-title">Kestrel Coast</h3>
+                  <div className="featured-meta">
+                    <div className="featured-sub">
+                      Destination Identity · Wayfinding · Launch Campaign · 2025
+                    </div>
+                    <div className="featured-one-liner">
+                      A coastline, reintroduced — season by season.
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="case-name">Kestrel Coast</div>
-              <p className="case-one-liner">
-                A coastline, reintroduced — season by season.
-              </p>
-              <span className="case-read-cta">
-                Read case study
-                <ArrowIcon size={11} />
-              </span>
             </div>
           </a>
 
