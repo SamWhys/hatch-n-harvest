@@ -35,8 +35,8 @@ export function Studio() {
         </div>
         <div className="studio-image">
           <img
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
-            alt="A bright studio workspace with wooden desks and plants"
+            src="assets/team/hnh-team-shot.png"
+            alt="The Hatch & Harvest team."
             loading="lazy"
           />
           <div className="sticker">Brand people. Not tech people.</div>
