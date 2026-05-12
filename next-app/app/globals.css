@@ -2296,6 +2296,12 @@
        ============================================================ */
     .docuseries-filmstrip {
       position: relative;
+      /* The component renders as a <section> (carousel landmark), but it's
+         nested inside a parent .ubp-docuseries section that already applies
+         clamp(60px, 8vw, 110px) vertical padding around the whole block.
+         Override the global section default (clamp(80px, 12vw, 160px)) so
+         the two paddings don't stack. */
+      padding: 0;
       opacity: 0;
       transform: translateY(28px);
       transition:
