@@ -82,8 +82,9 @@ export function Work() {
             A selection from the past three seasons. Each of these began as a conversation, a napkin sketch, or a founder with more conviction than cash. We&apos;re glad they called.
           </FadeInP>
         </div>
+      </div>
 
-        <div className="case-stack">
+      <div className="case-stack">
           <section className="case-section">
             <a
               href="work/kestrel-coast.html"
@@ -213,7 +214,6 @@ export function Work() {
               </div>
             </section>
           ))}
-        </div>
       </div>
     </section>
   );

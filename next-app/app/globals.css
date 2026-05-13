@@ -574,8 +574,7 @@
 
     .case-section {
       height: 100vh;
-      padding-top: 104px;     /* clear the sticky nav */
-      padding-bottom: 24px;
+      padding: 104px clamp(20px, 2vw, 32px) 24px;   /* clear the sticky nav, hug the viewport edges */
       display: flex;
     }
 
@@ -740,7 +739,7 @@
     .case.is-locked .case-locked-cta svg { flex: none; opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .case-section { height: auto; padding-top: 24px; padding-bottom: 24px; }
+      .case-section { height: auto; padding: 24px 16px; }
       .case { aspect-ratio: 4 / 5; }
       .case .title { font-size: clamp(36px, 10vw, 64px); max-width: 12ch; }
     }
