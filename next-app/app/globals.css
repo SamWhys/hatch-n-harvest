@@ -566,241 +566,188 @@
       .work-head { grid-template-columns: 1fr; }
     }
 
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(24px, 3vw, 40px);
+    /* Sequential case-study stack: each card lives in its own viewport-tall
+       section, with a centered Explore CTA revealed on hover. The first
+       card lands at full size; subsequent cards scale in (90% → 100%)
+       via a view-timeline as they enter the viewport. */
+    .case-stack { position: relative; }
+
+    .case-section {
+      height: 100vh;
+      padding-top: 104px;     /* clear the sticky nav */
+      padding-bottom: 24px;
+      display: flex;
     }
+
     .case {
-      position: relative;
+      flex: 1;
       display: block;
+      position: relative;
       color: var(--ink);
+      text-decoration: none;
+      border-radius: 40px;
       overflow: hidden;
-      border-radius: var(--radius-md);
-      transition: transform .4s ease;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      transform-origin: center bottom;
+      isolation: isolate;
+
+      animation: case-arrive linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 50%;
     }
-    .case:hover { transform: translateY(-4px); }
-    .case-image {
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      background: #1a1a1a;
+    .case-section:first-of-type .case { animation: none; }
+
+    @keyframes case-arrive {
+      from { transform: scale(0.90); }
+      to   { transform: scale(1); }
     }
-    .case-image img {
+
+    .case img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .8s cubic-bezier(.2,.8,.2,1);
+      display: block;
+      transition:
+        transform 0.8s cubic-bezier(.2,.8,.2,1),
+        filter 0.4s ease;
     }
-    .case:hover .case-image img { transform: scale(1.04); }
-    .case-meta {
-      padding: 22px 4px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .case-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-    .case-label .year { color: var(--marigold); }
-    .case-name {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      font-size: clamp(26px, 2.5vw, 36px);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      color: var(--ink);
-    }
-    .case-one-liner {
-      color: var(--ink);
-      font-size: 15px;
-      max-width: 42ch;
-      margin: 4px 0 0;
+    .case:hover img {
+      transform: scale(1.03);
+      filter: brightness(0.55);
     }
 
-    /* Featured / primary case study — full width, larger */
-    .case.featured {
-      grid-column: 1 / -1;
-      margin-bottom: 20px;
-    }
-    .case.featured .case-image {
-      aspect-ratio: 21 / 9;
-      position: relative;
-    }
-    .case.featured .featured-overlay {
+    .case .overlay {
       position: absolute;
       inset: 0;
-      padding: clamp(28px, 3vw, 48px);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 35%, rgba(0, 0, 0, 0) 65%);
+      padding: clamp(36px, 4vw, 72px);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0) 70%);
-      color: var(--ink);
       pointer-events: none;
     }
-    .case.featured .featured-top {
+    .case .top-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 14px;
-      flex-wrap: wrap;
-      pointer-events: none;
+      gap: 16px;
     }
-    .case.featured .featured-flag {
+    .case .sub {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--ink) 92%, transparent);
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+      margin-bottom: 14px;
+    }
+    .case .title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      font-size: clamp(40px, 6.5vw, 96px);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 0 0 16px;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+      max-width: 14ch;
+    }
+    .case .one-liner {
+      font-family: var(--font-script);
+      font-size: clamp(22px, 1.9vw, 30px);
+      color: var(--marigold);
+      max-width: 26ch;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+    }
+    .case .flag {
       background: var(--marigold);
       color: var(--paper);
       padding: 7px 14px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      align-self: flex-start;
     }
 
-    /* Hover CTA — secondary style, revealed on hover/focus */
-    .case.featured .featured-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border: 1.5px solid color-mix(in srgb, var(--ink) 50%, transparent);
-      border-radius: 999px;
-      color: var(--ink);
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      background: color-mix(in srgb, var(--ink) 10%, transparent);
-      backdrop-filter: blur(6px);
-      opacity: 0;
-      transform: translateY(-4px);
-      transition:
-        opacity .35s cubic-bezier(0.22, 1, 0.36, 1),
-        transform .35s cubic-bezier(0.22, 1, 0.36, 1),
-        background .2s ease,
-        color .2s ease,
-        border-color .2s ease;
-    }
-    .case.featured:hover .featured-cta,
-    .case.featured:focus-visible .featured-cta {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .case.featured:hover .featured-cta {
-      background: var(--marigold);
-      border-color: var(--marigold);
-      color: var(--paper);
-    }
-
-    /* Locked (non-featured) cards — visually disabled */
-    .case.is-locked {
-      cursor: default;
-    }
-    .case.is-locked:hover { transform: none; }
-    .case.is-locked:hover .case-image img { transform: none; }
-    .case.is-locked .case-image { position: relative; }
-    .case.is-locked .case-image::after {
-      content: '';
+    /* Centered Explore CTA — outlined; hidden until card hover, then fades in.
+       Hovering the pill itself fills it marigold. */
+    .case .read-cta {
       position: absolute;
-      inset: 0;
-      background: rgba(31, 29, 26, 0.22);
-      pointer-events: none;
-      transition: background .3s ease;
-    }
-    .case.is-locked .case-image img {
-      filter: saturate(0.65) brightness(0.85);
-    }
-    .case.is-locked .case-name,
-    .case.is-locked .case-one-liner {
-      opacity: 0.7;
-    }
-    .case-locked-cta {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(10px);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      padding: 8px 14px;
-      border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent);
+      gap: 12px;
+      padding: 18px 36px;
+      border: 2px solid var(--marigold);
       border-radius: 999px;
-      color: color-mix(in srgb, var(--ink) 60%, transparent);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: color-mix(in srgb, var(--ink) 5%, transparent);
-      width: fit-content;
-    }
-    .case-locked-cta svg { flex: none; opacity: 0.8; }
-
-    /* Unlocked (non-featured) card CTA — mirrors locked-cta dimensions
-       so cards line up vertically, but uses brand orange to read as
-       interactive. */
-    .case-read-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      padding: 8px 14px;
-      border: 1.5px solid var(--marigold);
-      border-radius: 999px;
+      background: color-mix(in srgb, var(--paper) 30%, transparent);
+      backdrop-filter: blur(6px);
       color: var(--marigold);
-      font-size: 11px;
+      font-family: var(--font-body);
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      background: color-mix(in srgb, var(--marigold) 8%, transparent);
-      width: fit-content;
-      transition: background .2s ease, color .2s ease;
+      opacity: 0;
+      transition:
+        opacity 0.35s cubic-bezier(.2,.8,.2,1),
+        transform 0.35s cubic-bezier(.2,.8,.2,1),
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
     }
-    .case:hover .case-read-cta {
+    .case:hover .read-cta,
+    .case:focus-visible .read-cta {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    .case .read-cta:hover {
       background: var(--marigold);
       color: var(--paper);
     }
-    .case-read-cta svg { flex: none; }
-    .case.featured .featured-title {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      font-size: clamp(40px, 6.5vw, 92px);
-      letter-spacing: -0.03em;
-      line-height: 0.92;
-      color: var(--ink);
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-      margin: 0;
-      max-width: 15ch;
-    }
-    .case.featured .featured-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .case.featured .featured-sub {
-      font-size: 14px;
-      letter-spacing: 0.14em;
+    .case .read-cta svg { flex: none; }
+
+    /* Locked variant — same hero treatment, but no link/hover dim,
+       and a "Coming soon" lock pill always visible at center. */
+    .case.is-locked { cursor: default; }
+    .case.is-locked img { filter: saturate(0.65) brightness(0.78); }
+    .case.is-locked:hover img { transform: none; filter: saturate(0.65) brightness(0.78); }
+    .case.is-locked .title,
+    .case.is-locked .one-liner { opacity: 0.7; }
+    .case.is-locked .case-locked-cta {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      border: 2px solid color-mix(in srgb, var(--ink) 35%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--paper) 30%, transparent);
+      backdrop-filter: blur(6px);
+      color: color-mix(in srgb, var(--ink) 75%, transparent);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--ink) 90%, transparent);
-      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
     }
-    .case.featured .featured-one-liner {
-      font-family: var(--font-script);
-      font-size: clamp(22px, 2vw, 32px);
-      color: var(--marigold);
-      max-width: 24ch;
-    }
+    .case.is-locked .case-locked-cta svg { flex: none; opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .case-grid { grid-template-columns: 1fr; }
-      .case.featured .case-image { aspect-ratio: 4/5; }
+      .case-section { height: auto; padding-top: 24px; padding-bottom: 24px; }
+      .case { aspect-ratio: 4 / 5; }
+      .case .title { font-size: clamp(36px, 10vw, 64px); max-width: 12ch; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .case { animation: none; }
+      .case:hover img { transform: none; filter: none; }
     }
 
     /* ============================================================

@@ -5,7 +5,7 @@ import { useParallaxScroll } from "./useParallaxScroll";
 import { RisingHeading } from "./case-study/RisingHeading";
 import { FadeInP } from "./case-study/FadeInP";
 
-function ArrowIcon({ size = 14 }: { size?: number }) {
+function ArrowIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -26,8 +26,8 @@ function ArrowIcon({ size = 14 }: { size?: number }) {
 function LockIcon() {
   return (
     <svg
-      width="12"
-      height="14"
+      width="14"
+      height="16"
       viewBox="0 0 14 18"
       fill="none"
       stroke="currentColor"
@@ -44,22 +44,18 @@ function LockIcon() {
 
 const lockedCases = [
   {
-    href: null,
     label: "Moth & Bloom case study — coming soon",
-    img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1800&q=80",
     alt: "Amber glass bottles of natural skincare on a wooden surface",
-    category: "Identity System · Packaging",
-    year: "2023",
+    sub: "Identity System · Packaging · 2023",
     name: "Moth & Bloom",
     oneLiner: "A skincare ritual — not a routine. Botanicals, thoughtfully measured, softly packaged.",
   },
   {
-    href: null,
     label: "Common Range case study — coming soon",
-    img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1800&q=80",
     alt: "Illuminated tent under a starry night sky",
-    category: "Brand Campaign · Art Direction",
-    year: "2023",
+    sub: "Brand Campaign · Art Direction · 2023",
     name: "Common Range",
     oneLiner: "Made for the ground you're likely to sleep on — a camping gear campaign for the weekends you earn.",
   },
@@ -87,143 +83,135 @@ export function Work() {
           </FadeInP>
         </div>
 
-        <div className="case-grid">
-          <a
-            href="work/kestrel-coast.html"
-            className="case featured"
-            aria-label="Kestrel Coast — destination rebrand case study"
-          >
-            <div className="case-image">
+        <div className="case-stack">
+          <section className="case-section">
+            <a
+              href="work/kestrel-coast.html"
+              className="case"
+              aria-label="Kestrel Coast — destination rebrand case study"
+            >
               <img
                 src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1800&q=80"
                 alt="Misty coastline at dawn, rocky shore with pines"
                 loading="lazy"
               />
-              <div className="featured-overlay">
-                <div className="featured-top">
-                  <span className="featured-flag">Featured harvest</span>
-                  <span className="featured-cta">
-                    Read now
-                    <ArrowIcon />
-                  </span>
-                </div>
-                <div>
-                  <h3 className="featured-title">Kestrel Coast</h3>
-                  <div className="featured-meta">
-                    <div className="featured-sub">
-                      Destination Identity · Wayfinding · Launch Campaign · 2025
-                    </div>
-                    <div className="featured-one-liner">
-                      A coastline, reintroduced — season by season.
-                    </div>
+              <div className="overlay">
+                <div className="top-row">
+                  <div>
+                    <div className="sub">Destination Identity · Wayfinding · Launch Campaign · 2025</div>
+                    <h3 className="title">Kestrel Coast</h3>
+                    <div className="one-liner">A coastline, reintroduced — season by season.</div>
                   </div>
+                  <span className="flag">Featured</span>
                 </div>
               </div>
-            </div>
-          </a>
+              <span className="read-cta">
+                Explore
+                <ArrowIcon />
+              </span>
+            </a>
+          </section>
 
-          <a
-            href="work/acceleration-for-all/"
-            className="case"
-            aria-label="Acceleration For All — ViewSonic × Hustle Fund case study"
-          >
-            <div className="case-image">
+          <section className="case-section">
+            <a
+              href="work/acceleration-for-all/"
+              className="case"
+              aria-label="Acceleration For All — ViewSonic × Hustle Fund case study"
+            >
               <img
                 src="assets/work/acceleration-for-all/kv-card.jpg"
                 alt="Acceleration For All key visual — a colourful grid of 30 founders' faces around the campaign lockup."
                 loading="lazy"
               />
-            </div>
-            <div className="case-meta">
-              <div className="case-label">
-                <span>Campaign · Identity · Film</span>
-                <span className="year">2021</span>
+              <div className="overlay">
+                <div className="top-row">
+                  <div>
+                    <div className="sub">Campaign · Identity · Film · 2021</div>
+                    <h3 className="title">Acceleration For All</h3>
+                    <div className="one-liner">Rebuilding the on-ramp to entrepreneurship — for everyone the old playbook left out.</div>
+                  </div>
+                </div>
               </div>
-              <div className="case-name">Acceleration For All</div>
-              <p className="case-one-liner">
-                A partnership campaign for ViewSonic × Hustle Fund — rebuilding the on-ramp to entrepreneurship for everyone the old playbook left out.
-              </p>
-              <span className="case-read-cta">
-                Read case study
-                <ArrowIcon size={11} />
+              <span className="read-cta">
+                Explore
+                <ArrowIcon />
               </span>
-            </div>
-          </a>
+            </a>
+          </section>
 
-          <a
-            href="work/united-by-play/"
-            className="case"
-            aria-label="United by Play — ViewSonic global gaming campaign case study"
-          >
-            <div className="case-image">
+          <section className="case-section">
+            <a
+              href="work/united-by-play/"
+              className="case"
+              aria-label="United by Play — ViewSonic global gaming campaign case study"
+            >
               <img
                 src="assets/work/united-by-play/title-no-matter-how-you-game.jpg"
                 alt="United by Play campaign title card — 'No matter how you game' on a colourful gaming background."
                 loading="lazy"
               />
-            </div>
-            <div className="case-meta">
-              <div className="case-label">
-                <span>Campaign · Manifesto · Docuseries</span>
-                <span className="year">2021</span>
+              <div className="overlay">
+                <div className="top-row">
+                  <div>
+                    <div className="sub">Campaign · Manifesto · Docuseries · 2021</div>
+                    <h3 className="title">United by Play</h3>
+                    <div className="one-liner">No matter how you game, we are united by play.</div>
+                  </div>
+                </div>
               </div>
-              <div className="case-name">United by Play</div>
-              <p className="case-one-liner">
-                A global ViewSonic campaign that challenged gaming stereotypes and proved we are all united by play.
-              </p>
-              <span className="case-read-cta">
-                Read case study
-                <ArrowIcon size={11} />
+              <span className="read-cta">
+                Explore
+                <ArrowIcon />
               </span>
-            </div>
-          </a>
+            </a>
+          </section>
 
-          <a
-            href="work/meet-the-finchers/"
-            className="case"
-            aria-label="Meet the Finchers — ViewSonic branded entertainment campaign case study"
-          >
-            <div className="case-image">
+          <section className="case-section">
+            <a
+              href="work/meet-the-finchers/"
+              className="case"
+              aria-label="Meet the Finchers — ViewSonic branded entertainment campaign case study"
+            >
               <img
                 src="assets/work/meet-the-finchers/finchers-lockup-1.jpg"
                 alt="Meet the Finchers — campaign logo lockup."
                 loading="lazy"
               />
-            </div>
-            <div className="case-meta">
-              <div className="case-label">
-                <span>Campaign · Identity · Documentaries · Social</span>
-                <span className="year">2022</span>
+              <div className="overlay">
+                <div className="top-row">
+                  <div>
+                    <div className="sub">Campaign · Identity · Documentaries · Social · 2022</div>
+                    <h3 className="title">Meet the Finchers</h3>
+                    <div className="one-liner">A binge-worthy 90s sitcom — produced entirely on the brand&apos;s own remote-collaboration tech.</div>
+                  </div>
+                </div>
               </div>
-              <div className="case-name">Meet the Finchers</div>
-              <p className="case-one-liner">
-                A binge-worthy 90s sitcom for ViewSonic — a six-month branded entertainment campaign produced entirely on the brand&apos;s own remote-collaboration tech.
-              </p>
-              <span className="case-read-cta">
-                Read case study
-                <ArrowIcon size={11} />
+              <span className="read-cta">
+                Explore
+                <ArrowIcon />
               </span>
-            </div>
-          </a>
+            </a>
+          </section>
 
           {lockedCases.map((c) => (
-            <div className="case is-locked" role="article" aria-label={c.label} key={c.name}>
-              <div className="case-image">
+            <section className="case-section" key={c.name}>
+              <div className="case is-locked" role="article" aria-label={c.label}>
                 <img src={c.img} alt={c.alt} loading="lazy" />
-              </div>
-              <div className="case-meta">
-                <div className="case-label">
-                  <span>{c.category}</span>
-                  <span className="year">{c.year}</span>
+                <div className="overlay">
+                  <div className="top-row">
+                    <div>
+                      <div className="sub">{c.sub}</div>
+                      <h3 className="title">{c.name}</h3>
+                      <div className="one-liner">{c.oneLiner}</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="case-name">{c.name}</div>
-                <p className="case-one-liner">{c.oneLiner}</p>
                 <span className="case-locked-cta" aria-disabled="true">
                   <LockIcon />
-                  Locked
+                  Coming soon
                 </span>
               </div>
-            </div>
+            </section>
           ))}
         </div>
       </div>
