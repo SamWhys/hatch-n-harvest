@@ -50,7 +50,14 @@
        RESET + BASE
        ============================================================ */
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      /* Proximity (not mandatory) so snap is localized to the case studies:
+         only the .case-section blocks are snap targets, and proximity means
+         the rest of the page scrolls freely. */
+      scroll-snap-type: y proximity;
+      scroll-padding-top: 80px;
+    }
     body {
       margin: 0;
       font-family: var(--font-body);
@@ -576,6 +583,8 @@
       height: 100vh;
       padding: 104px clamp(20px, 2vw, 32px) 24px;   /* clear the sticky nav, hug the viewport edges */
       display: flex;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .case {
@@ -739,7 +748,11 @@
     .case.is-locked .case-locked-cta svg { flex: none; opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .case-section { height: auto; padding: 24px 16px; }
+      .case-section {
+        height: auto;
+        padding: 24px 16px;
+        scroll-snap-align: none;
+      }
       .case { aspect-ratio: 4 / 5; }
       .case .title { font-size: clamp(36px, 10vw, 64px); max-width: 12ch; }
     }
@@ -747,6 +760,7 @@
     @media (prefers-reduced-motion: reduce) {
       .case { animation: none; }
       .case:hover img { transform: none; filter: none; }
+      .case-section { scroll-snap-align: none; }
     }
 
     /* ============================================================
