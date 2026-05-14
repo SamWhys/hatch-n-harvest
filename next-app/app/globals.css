@@ -664,7 +664,7 @@
       font-size: clamp(16px, 1.3vw, 19px);
       font-weight: 500;
       line-height: 1.4;
-      color: var(--marigold);
+      color: var(--ink);
       max-width: 38ch;
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
     }
