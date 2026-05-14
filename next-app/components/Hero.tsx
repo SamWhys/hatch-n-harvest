@@ -24,7 +24,8 @@ export function Hero() {
 
         <div className="hero-meta">
           <p className="hero-lead">
-            Ideas rooted in strategy. Shaped by real-world experiences.
+            Ideas rooted in strategy.<br />
+            Shaped by real-world experiences.
           </p>
           <div className="hero-ctas">
             <a href="#work" className="btn btn-primary">
