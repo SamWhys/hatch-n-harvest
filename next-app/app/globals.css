@@ -627,7 +627,9 @@
       scroll-snap-stop: always;
       scroll-margin-top: 104px;  /* land below the sticky nav */
     }
-    .case:last-child { margin-bottom: 0; }
+    /* Keep the 100vh margin on the last card too — without it, the final
+       card's sticky range collapses and it never gets its solo "stuck at
+       top" moment like the others. */
 
     /* Ken Burns on the <img> — scale value is driven from JS via the
        --ken-burns CSS variable in components/Work.tsx (a scroll handler
