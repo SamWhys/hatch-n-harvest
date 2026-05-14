@@ -12,6 +12,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Always start at the top on reload, instead of restoring the
+            previous scroll position. Anchor links (#work, #studio, …)
+            still jump as expected because they're processed separately. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(history.scrollRestoration)history.scrollRestoration='manual';`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* Warm up YouTube + thumbnail CDN connections so case-study video
