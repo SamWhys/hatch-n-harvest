@@ -19,13 +19,7 @@ export function Footer({ homeHref = "" }: { homeHref?: string }) {
         </div>
       </div>
       <div className="wrap footer-inner">
-        <div>© 2026 Hatch &amp; Harvest · Taipei, Taiwan</div>
-        <nav className="footer-links" aria-label="Footer">
-          <a href="mailto:hello@hatchnharvest.studio">Email</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Are.na</a>
-        </nav>
+        <div>© 2026 Hatch &amp; Harvest</div>
       </div>
     </footer>
   );

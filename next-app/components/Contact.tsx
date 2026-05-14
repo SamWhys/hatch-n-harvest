@@ -15,8 +15,8 @@ export function Contact() {
       <div className="wrap">
         <span className="script">Have a seed of an idea?</span>
         <RisingHeading as="h2">For more info about us, click here.</RisingHeading>
-        <a className="contact-email" href="mailto:hello@hatchnharvest.studio">
-          hello@hatchnharvest.studio
+        <a className="contact-email" href="mailto:hello@hatchnharvest.com">
+          hello@hatchnharvest.com
         </a>
         <div className="contact-note">
           Typical reply time: two working days · We&apos;ll tell you honestly if we&apos;re not the right fit.

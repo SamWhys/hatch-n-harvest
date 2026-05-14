@@ -48,10 +48,10 @@ export function Manifesto() {
       <div className="wrap">
         <RisingHeading as="h2">
           People don&apos;t buy marketing strategies. They buy{" "}
-          <em>connection, belonging, meaning.</em>
+          <em>connection, belonging, &amp; meaning.</em>
         </RisingHeading>
         <FadeInP className="manifesto-lead">
-          In the end, that&apos;s what moves people. Big ideas are just the vehicle — emotion is the engine.
+          In the end&hellip; that makes all the difference.
         </FadeInP>
 
         <div ref={beliefsRef} className="beliefs">

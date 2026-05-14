@@ -24,7 +24,7 @@ export function Hero() {
 
         <div className="hero-meta">
           <p className="hero-lead">
-            Big ideas rooted in sound strategy and real-world experience. Because people don&apos;t buy marketing strategies — they buy connection, belonging, and meaning.
+            Ideas rooted in strategy. Shaped by real-world experiences.
           </p>
           <div className="hero-ctas">
             <a href="#work" className="btn btn-primary">

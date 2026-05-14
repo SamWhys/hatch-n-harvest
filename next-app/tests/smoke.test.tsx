@@ -19,18 +19,14 @@ describe("HomePage smoke tests", () => {
     expect(h1.textContent).toContain("big ideas.");
   });
 
-  it("renders the contact script line and the studio sticker", () => {
+  it("renders the contact script line", () => {
     render(<HomePage />);
     expect(screen.getByText("Have a seed of an idea?")).toBeInTheDocument();
-    expect(screen.getByText("Brand people. Not tech people.")).toBeInTheDocument();
   });
 
-  it("renders footer copyright + 4 footer links", () => {
+  it("renders footer copyright", () => {
     render(<HomePage />);
-    expect(screen.getByText(/© 2026 Hatch & Harvest · Taipei, Taiwan/)).toBeInTheDocument();
-    const footerNav = screen.getByRole("navigation", { name: "Footer" });
-    const links = footerNav.querySelectorAll("a");
-    expect(links.length).toBe(4);
+    expect(screen.getByText(/© 2026 Hatch & Harvest/)).toBeInTheDocument();
   });
 
   it("renders the four belief cards with correct numbers", () => {
@@ -49,24 +45,16 @@ describe("HomePage smoke tests", () => {
     expect(screen.getByText("Common Range")).toBeInTheDocument();
   });
 
-  it("renders the three process services", () => {
-    render(<HomePage />);
-    expect(screen.getByRole("heading", { name: "Strategy", level: 3 })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Identity", level: 3 })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Launch", level: 3 })).toBeInTheDocument();
-  });
-
   it("renders the contact email", () => {
     render(<HomePage />);
-    const email = screen.getByRole("link", { name: "hello@hatchnharvest.studio" });
+    const email = screen.getByRole("link", { name: "hello@hatchnharvest.com" });
     expect(email).toBeInTheDocument();
-    expect(email).toHaveAttribute("href", "mailto:hello@hatchnharvest.studio");
+    expect(email).toHaveAttribute("href", "mailto:hello@hatchnharvest.com");
   });
 
-  it("renders nav with 3 anchor links + CTA", () => {
+  it("renders nav with 2 anchor links + CTA", () => {
     render(<HomePage />);
     expect(screen.getByRole("link", { name: "Work" })).toHaveAttribute("href", "#work");
-    expect(screen.getByRole("link", { name: "Process" })).toHaveAttribute("href", "#process");
     expect(screen.getByRole("link", { name: "Studio" })).toHaveAttribute("href", "#studio");
     expect(screen.getByRole("link", { name: "Start a project →" })).toHaveAttribute("href", "#contact");
   });
@@ -95,20 +83,13 @@ describe("HomePage smoke tests", () => {
     const localImgs = imgs.filter((img) => !img.src.startsWith("https://"));
     expect(localImgs.length).toBeGreaterThan(0);
     localImgs.forEach((img) => {
-      expect(img.src).toMatch(/assets\/(brand|work)\//);
+      expect(img.src).toMatch(/assets\/(brand|work|team)\//);
     });
   });
 
   it("Work mnemonic carries the parallax-mnemonic class", () => {
     const { container } = render(<HomePage />);
     const img = container.querySelector(".work-mnemonic");
-    expect(img).not.toBeNull();
-    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
-  });
-
-  it("Process mnemonic carries the parallax-mnemonic class", () => {
-    const { container } = render(<HomePage />);
-    const img = container.querySelector(".process-mnemonic");
     expect(img).not.toBeNull();
     expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
   });

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
 import { RisingHeading } from "./case-study/RisingHeading";
-import { FadeInP } from "./case-study/FadeInP";
 
 /** Subtle Ken Burns zoom on each card image: 1.06 → 1.0 as the card
  *  rises into its sticky position. Driven from a scroll handler instead
@@ -129,9 +128,6 @@ export function Work() {
           <div>
             <RisingHeading as="h2">Brands we&apos;ve helped grow.</RisingHeading>
           </div>
-          <FadeInP>
-            A selection from the past three seasons. Each of these began as a conversation, a napkin sketch, or a founder with more conviction than cash. We&apos;re glad they called.
-          </FadeInP>
         </div>
       </div>
 
