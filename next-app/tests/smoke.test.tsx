@@ -45,6 +45,13 @@ describe("HomePage smoke tests", () => {
     expect(screen.getByText("Common Range")).toBeInTheDocument();
   });
 
+  it("renders the three process services", () => {
+    render(<HomePage />);
+    expect(screen.getByRole("heading", { name: "Strategy", level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Identity", level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Launch", level: 3 })).toBeInTheDocument();
+  });
+
   it("renders the contact email", () => {
     render(<HomePage />);
     const email = screen.getByRole("link", { name: "hello@hatchnharvest.com" });
@@ -52,9 +59,10 @@ describe("HomePage smoke tests", () => {
     expect(email).toHaveAttribute("href", "mailto:hello@hatchnharvest.com");
   });
 
-  it("renders nav with 2 anchor links + CTA", () => {
+  it("renders nav with 3 anchor links + CTA", () => {
     render(<HomePage />);
     expect(screen.getByRole("link", { name: "Work" })).toHaveAttribute("href", "#work");
+    expect(screen.getByRole("link", { name: "Process" })).toHaveAttribute("href", "#process");
     expect(screen.getByRole("link", { name: "Studio" })).toHaveAttribute("href", "#studio");
     expect(screen.getByRole("link", { name: "Start a project →" })).toHaveAttribute("href", "#contact");
   });
@@ -90,6 +98,13 @@ describe("HomePage smoke tests", () => {
   it("Work mnemonic carries the parallax-mnemonic class", () => {
     const { container } = render(<HomePage />);
     const img = container.querySelector(".work-mnemonic");
+    expect(img).not.toBeNull();
+    expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
+  });
+
+  it("Process mnemonic carries the parallax-mnemonic class", () => {
+    const { container } = render(<HomePage />);
+    const img = container.querySelector(".process-mnemonic");
     expect(img).not.toBeNull();
     expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
   });
