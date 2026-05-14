@@ -682,7 +682,7 @@
       font-size: 13px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--ink) 92%, transparent);
+      color: var(--marigold);
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
       margin-bottom: 14px;
     }
