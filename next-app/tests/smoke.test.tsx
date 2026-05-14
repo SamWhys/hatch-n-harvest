@@ -36,13 +36,12 @@ describe("HomePage smoke tests", () => {
     });
   });
 
-  it("renders the work section with featured + 2 active + 2 locked cases", () => {
+  it("renders the work section with all four active case studies", () => {
     render(<HomePage />);
     expect(screen.getByText("Kestrel Coast")).toBeInTheDocument();
     expect(screen.getByText("Acceleration For All")).toBeInTheDocument();
     expect(screen.getByText("United by Play")).toBeInTheDocument();
-    expect(screen.getByText("Moth & Bloom")).toBeInTheDocument();
-    expect(screen.getByText("Common Range")).toBeInTheDocument();
+    expect(screen.getByText("Meet the Finchers")).toBeInTheDocument();
   });
 
   it("renders the three process services", () => {

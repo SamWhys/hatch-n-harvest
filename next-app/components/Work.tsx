@@ -71,44 +71,6 @@ function ArrowIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-function LockIcon() {
-  return (
-    <svg
-      width="14"
-      height="16"
-      viewBox="0 0 14 18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="2" y="8" width="10" height="8" rx="1.5" />
-      <path d="M4 8 V5.5 C4 3.5 5.3 2 7 2 C8.7 2 10 3.5 10 5.5 V8" />
-    </svg>
-  );
-}
-
-const lockedCases = [
-  {
-    label: "Moth & Bloom case study — coming soon",
-    img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1800&q=80",
-    alt: "Amber glass bottles of natural skincare on a wooden surface",
-    sub: "Identity System · Packaging · 2023",
-    name: "Moth & Bloom",
-    oneLiner: "A skincare ritual — not a routine. Botanicals, thoughtfully measured, softly packaged.",
-  },
-  {
-    label: "Common Range case study — coming soon",
-    img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1800&q=80",
-    alt: "Illuminated tent under a starry night sky",
-    sub: "Brand Campaign · Art Direction · 2023",
-    name: "Common Range",
-    oneLiner: "Made for the ground you're likely to sleep on — a camping gear campaign for the weekends you earn.",
-  },
-];
-
 export function Work() {
   const mnemonicRef = useRef<HTMLImageElement>(null);
   const stackRef = useRef<HTMLDivElement>(null);
@@ -232,25 +194,6 @@ export function Work() {
             <ArrowIcon />
           </span>
         </a>
-
-        {lockedCases.map((c) => (
-          <div className="case is-locked" role="article" aria-label={c.label} key={c.name}>
-            <img src={c.img} alt={c.alt} loading="lazy" />
-            <div className="overlay">
-              <div className="top-row">
-                <div>
-                  <div className="sub">{c.sub}</div>
-                  <h3 className="title">{c.name}</h3>
-                  <div className="one-liner">{c.oneLiner}</div>
-                </div>
-              </div>
-            </div>
-            <span className="case-locked-cta" aria-disabled="true">
-              <LockIcon />
-              Coming soon
-            </span>
-          </div>
-        ))}
       </div>
     </section>
   );
