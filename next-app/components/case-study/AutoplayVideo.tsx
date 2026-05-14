@@ -30,13 +30,19 @@ export function AutoplayVideo({
           obs.disconnect();
         }
       },
-      { rootMargin: "200px 0px" }
+      // Larger rootMargin so the iframe mounts well before the user
+      // scrolls to it — by the time the video is on screen, the player
+      // is usually ready to play.
+      { rootMargin: "800px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, [shouldLoad]);
 
-  const iframeSrc = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1`;
+  // youtube-nocookie.com is slightly leaner on first paint (skips
+  // some cookie/session setup) and the preconnect hint lives in
+  // app/layout.tsx pointing at the same origin.
+  const iframeSrc = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1`;
   const posterSrc = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (
