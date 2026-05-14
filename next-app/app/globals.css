@@ -52,12 +52,12 @@
     *, *::before, *::after { box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
-      /* Proximity (not mandatory) so snap is localized to the case studies:
-         only the .case blocks are snap targets, and proximity means the
-         rest of the page scrolls freely. scroll-padding-top matches the
-         card's sticky offset so snap-target and sticky position align. */
+      /* Proximity (not mandatory) so the page lands softly on each
+         major section as you scroll, without forcing a stop mid-content
+         inside tall sections (Manifesto, Process). Per-element offsets
+         live on .case via scroll-margin-top so case-study cards align
+         under the sticky nav. */
       scroll-snap-type: y proximity;
-      scroll-padding-top: 104px;
     }
     body {
       margin: 0;
@@ -207,6 +207,7 @@
       position: relative;
       overflow: hidden;
       isolation: isolate; /* contains the hero-atmos below text via z-index:-1 */
+      scroll-snap-align: start;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -406,6 +407,7 @@
       background: #000;
       overflow: hidden;
       position: relative;
+      scroll-snap-align: start;
     }
     .sizzle-reel-video {
       width: 100%;
@@ -417,7 +419,7 @@
     /* ============================================================
        MANIFESTO / BELIEFS
        ============================================================ */
-    .manifesto { overflow: hidden; }
+    .manifesto { overflow: hidden; scroll-snap-align: start; }
     .manifesto .section-decor {
       position: absolute;
       top: -219.492px;
@@ -435,6 +437,7 @@
       overflow: hidden;
       position: relative;
       isolation: isolate;
+      scroll-snap-align: start;
     }
     .process .process-mnemonic {
       position: absolute;
@@ -622,6 +625,7 @@
 
       scroll-snap-align: start;
       scroll-snap-stop: always;
+      scroll-margin-top: 104px;  /* land below the sticky nav */
     }
     .case:last-child { margin-bottom: 0; }
 
@@ -667,6 +671,8 @@
       opacity: 1;
     }
     .case .top-row {
+      position: relative;        /* sit above the gradient pseudo-element */
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -909,6 +915,7 @@
       background:
         linear-gradient(to bottom, transparent, rgba(249, 123, 5, 0.08)),
         var(--paper);
+      scroll-snap-align: start;
     }
     .studio-inner {
       display: grid;
@@ -991,6 +998,7 @@
       color: var(--ink);
       padding-block: clamp(100px, 14vw, 180px);
       position: relative;
+      scroll-snap-align: start;
       overflow: hidden;
     }
     .contact h2 {
