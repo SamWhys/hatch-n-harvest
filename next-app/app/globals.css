@@ -53,10 +53,11 @@
     html {
       scroll-behavior: smooth;
       /* Proximity (not mandatory) so snap is localized to the case studies:
-         only the .case-section blocks are snap targets, and proximity means
-         the rest of the page scrolls freely. */
+         only the .case blocks are snap targets, and proximity means the
+         rest of the page scrolls freely. scroll-padding-top matches the
+         card's sticky offset so snap-target and sticky position align. */
       scroll-snap-type: y proximity;
-      scroll-padding-top: 80px;
+      scroll-padding-top: 104px;
     }
     body {
       margin: 0;
@@ -526,7 +527,9 @@
       background: var(--forest-deep);
       color: var(--ink);
       position: relative;
-      overflow: hidden;
+      /* `clip` (not `hidden`) so sticky cards inside still anchor to the
+         document scroll — overflow: hidden would create a scroll container. */
+      overflow: clip;
       isolation: isolate;
     }
     .work h2 { color: var(--ink); max-width: 16ch; }
@@ -573,54 +576,51 @@
       .work-head { grid-template-columns: 1fr; }
     }
 
-    /* Sequential case-study stack: each card lives in its own viewport-tall
-       section, with a centered Explore CTA revealed on hover. The first
-       card lands at full size; subsequent cards scale in (90% → 100%)
-       via a view-timeline as they enter the viewport. */
-    .case-stack { position: relative; }
-
-    .case-section {
-      height: 100vh;
-      padding: 104px clamp(20px, 2vw, 32px) 24px;   /* clear the sticky nav, hug the viewport edges */
-      display: flex;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
+    /* Sticky-stack case studies: cards are siblings, each position: sticky
+       at the same top offset. As the user scrolls, later cards rise from
+       below and visually stack on top of earlier ones. ~100vh of margin
+       between cards gives each one a beat of solo time before the next
+       arrives. The card frame never scales — only the image inside has
+       a subtle Ken Burns zoom-out on arrival. */
+    .case-stack {
+      position: relative;
+      padding: 0 clamp(20px, 2vw, 32px);
     }
 
     .case {
-      flex: 1;
       display: block;
-      position: relative;
+      position: sticky;
+      top: 104px;            /* clear the sticky nav */
+      width: 100%;
+      height: calc(100vh - 128px);
+      margin-bottom: 100vh;  /* breathing between cards */
       color: var(--ink);
       text-decoration: none;
       border-radius: 40px;
       overflow: hidden;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-      transform-origin: center bottom;
       isolation: isolate;
 
-      animation: case-arrive linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 50%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
-    .case-section:first-of-type .case { animation: none; }
+    .case:last-child { margin-bottom: 0; }
 
-    @keyframes case-arrive {
-      from { transform: scale(0.90); }
-      to   { transform: scale(1); }
-    }
-
+    /* Ken Burns on the <img> — scale value is driven from JS via the
+       --ken-burns CSS variable in components/Work.tsx (a scroll handler
+       updates each card's image on rAF). The card frame stays full-size
+       so the previous card never peeks. */
     .case img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition:
-        transform 0.8s cubic-bezier(.2,.8,.2,1),
-        filter 0.4s ease;
+      transform-origin: center center;
+      transform: scale(var(--ken-burns, 1));
+      transition: filter 0.4s ease;
+      will-change: transform;
     }
     .case:hover img {
-      transform: scale(1.03);
       filter: brightness(0.55);
     }
 
@@ -748,19 +748,22 @@
     .case.is-locked .case-locked-cta svg { flex: none; opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .case-section {
+      .case-stack { padding: 0 16px; }
+      .case {
+        position: static;
         height: auto;
-        padding: 24px 16px;
+        aspect-ratio: 4 / 5;
+        margin-bottom: 24px;
         scroll-snap-align: none;
       }
-      .case { aspect-ratio: 4 / 5; }
+      .case-img { animation: none; }
       .case .title { font-size: clamp(36px, 10vw, 64px); max-width: 12ch; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .case { animation: none; }
+      .case { position: static; height: auto; aspect-ratio: 21 / 10; margin-bottom: 24px; scroll-snap-align: none; }
+      .case-img { animation: none; }
       .case:hover img { transform: none; filter: none; }
-      .case-section { scroll-snap-align: none; }
     }
 
     /* ============================================================
