@@ -194,6 +194,7 @@ export function Work() {
             <ArrowIcon />
           </span>
         </a>
+        <div className="case-stack-tail" aria-hidden="true" />
       </div>
     </section>
   );

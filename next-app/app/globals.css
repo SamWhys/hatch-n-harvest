@@ -608,6 +608,14 @@
       position: relative;
       padding: 0 clamp(20px, 2vw, 32px);
     }
+    /* An empty in-flow trailing element extends the case-stack past the
+       last card so the final case can stay sticky for the same 100vh of
+       "solo time" as the others. Without it, the last card's margin
+       leaks out of the stack and its sticky range collapses to zero. */
+    .case-stack-tail {
+      height: 100vh;
+      pointer-events: none;
+    }
 
     .case {
       display: block;
