@@ -608,12 +608,13 @@
       position: relative;
       padding: 0 clamp(20px, 2vw, 32px);
     }
-    /* An empty in-flow trailing element extends the case-stack past
-       the last card so the final case has a sticky range. Its height
-       sets both how long the last card stays stuck AND the empty
-       space below before the next section — so keep it modest. */
+    /* The tail's role now is just to TRAP the last card's
+       margin-bottom inside the stack (otherwise the margin leaks out
+       and the sticky containing block collapses). A 1px element is
+       enough to break the margin-passthrough — the last card's own
+       100vh margin-bottom then provides the sticky range. */
     .case-stack-tail {
-      height: 50vh;
+      height: 1px;
       pointer-events: none;
     }
 
@@ -635,11 +636,12 @@
       scroll-snap-stop: always;
       scroll-margin-top: 104px;  /* land below the sticky nav */
     }
-    /* The last .case has no "next card" below it, so its margin-bottom
-       just contributes dead space to the case-stack. The .case-stack-tail
-       provides the sticky range instead. (nth-last-child(2) because the
-       tail is the literal last child.) */
-    .case-stack > .case:nth-last-child(2) { margin-bottom: 0; }
+    /* (Previously zeroed the last card's margin-bottom to trim dead
+       space, but that made the previous card un-stick early during the
+       handoff to the last card — Chrome appears to share constraints
+       across adjacent sticky siblings within the same containing block.
+       Keeping the margin matches the spacing between every other pair
+       and keeps the stack synchronized through the last transition.) */
 
     /* Ken Burns on the <img> — scale value is driven from JS via the
        --ken-burns CSS variable in components/Work.tsx (a scroll handler
