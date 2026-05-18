@@ -82,6 +82,11 @@ describe("HomePage smoke tests", () => {
       "United by Play — ViewSonic global gaming campaign case study"
     );
     expect(ubpLink).toHaveAttribute("href", "work/united-by-play/");
+
+    const mtfLink = screen.getByLabelText(
+      "Meet the Finchers — ViewSonic branded entertainment campaign case study"
+    );
+    expect(mtfLink).toHaveAttribute("href", "work/meet-the-finchers/");
   });
 
   it("does not render any broken asset paths (assets/ prefix only)", () => {
