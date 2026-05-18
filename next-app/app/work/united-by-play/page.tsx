@@ -4,7 +4,7 @@ import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { DocuseriesFilmstrip } from "@/components/case-study/DocuseriesFilmstrip";
-import { UbpAssetReveal } from "@/components/case-study/UbpAssetReveal";
+import { ScrollRevealGroup } from "@/components/case-study/ScrollRevealGroup";
 import { UbpProblemStat } from "@/components/case-study/UbpProblemStat";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { FadeInP } from "@/components/case-study/FadeInP";
@@ -59,7 +59,7 @@ export default function UnitedByPlayPage() {
                 </div>
 
                 {/* Solution Asset Grid — non-standard nested layout matching source */}
-                <UbpAssetReveal>
+                <ScrollRevealGroup className="ubp-asset-wrap">
                     <div className="ubp-asset-grid">
 
                         {/* Row 1: Gaming Hero Shot (full width) */}
@@ -126,7 +126,7 @@ export default function UnitedByPlayPage() {
                         </div>
 
                     </div>
-                </UbpAssetReveal>
+                </ScrollRevealGroup>
             </section>
 
             {/* THE DOCUSERIES */}

@@ -2290,22 +2290,23 @@
       transform: translateY(0);
     }
 
-    .ubp-reveal-target .ubp-cell {
+    .scroll-reveal-group [style*="--reveal-index"] {
       opacity: 0;
       transform: translateY(20px);
       transition:
         opacity 600ms cubic-bezier(0.32, 0.72, 0, 1),
         transform 600ms cubic-bezier(0.32, 0.72, 0, 1);
       transition-delay: calc(var(--reveal-index, 0) * 90ms);
+      will-change: opacity, transform;
     }
-    .ubp-reveal-target.is-revealed .ubp-cell {
+    .scroll-reveal-group.is-revealed [style*="--reveal-index"] {
       opacity: 1;
       transform: translateY(0);
     }
 
     @media (prefers-reduced-motion: reduce) {
       .docuseries-deck,
-      .ubp-reveal-target .ubp-cell {
+      .scroll-reveal-group [style*="--reveal-index"] {
         transition-duration: 0ms !important;
         transition-delay: 0ms !important;
       }
