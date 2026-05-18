@@ -2757,3 +2757,124 @@
       border: 0;
       display: block;
     }
+
+    /* ───────────────────────────────────────────────────────────────
+       ColorPro Awards (case study)
+       ─────────────────────────────────────────────────────────────── */
+    .cpa-page {
+      background: var(--cpa-bg);
+      color: var(--cpa-paper);
+    }
+
+    .cpa-page .case-hero,
+    .cpa-page .problem,
+    .cpa-page .cpa-solution {
+      color: var(--cpa-paper);
+    }
+
+    .cpa-page .case-meta-grid {
+      border-top: 1px solid var(--cpa-line);
+    }
+
+    .cpa-page .case-meta-label {
+      color: var(--cpa-mute);
+    }
+
+    .cpa-page .case-meta-value {
+      color: var(--cpa-paper);
+    }
+
+    .cpa-page .problem p,
+    .cpa-page .cpa-solution p {
+      color: var(--cpa-mute);
+    }
+
+    /* Solution — KV + body + asset grid */
+    .cpa-solution {
+      padding: 80px 0;
+    }
+
+    .cpa-solution-kv {
+      margin: 0 0 32px;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1920 / 1080;
+    }
+
+    .cpa-solution-kv img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cpa-solution-copy {
+      max-width: 746px;
+      margin: 0 0 80px;
+    }
+
+    .cpa-solution-copy h2 {
+      margin-bottom: 24px;
+    }
+
+    .cpa-solution-copy p + p {
+      margin-top: 16px;
+    }
+
+    /* Asset grid (2 columns, 24px gap; left col ≈ 66%, right col ≈ 28%) */
+    .cpa-asset-grid {
+      display: grid;
+      grid-template-columns: 884.775fr 373.225fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .cpa-asset-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .cpa-tile-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .cpa-tile-row-tall .cpa-tile {
+      aspect-ratio: 408 / 840;
+    }
+
+    .cpa-tile {
+      margin: 0;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .cpa-tile img,
+    .cpa-tile video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cpa-tile-wide {
+      aspect-ratio: 2048 / 1149;
+    }
+
+    .cpa-tile-video {
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Responsive: stack the grid below ~900px */
+    @media (max-width: 900px) {
+      .cpa-asset-grid {
+        grid-template-columns: 1fr;
+      }
+      .cpa-tile-row {
+        grid-template-columns: 1fr;
+      }
+    }
