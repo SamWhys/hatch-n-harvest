@@ -145,7 +145,7 @@ describe("United by Play page", () => {
 
     it("wraps the asset grid in a reveal target with --reveal-index per cell", () => {
         const { container } = render(<UnitedByPlayPage />);
-        const wrap = container.querySelector(".ubp-reveal-target");
+        const wrap = container.querySelector(".scroll-reveal-group.ubp-asset-wrap");
         expect(wrap).not.toBeNull();
         const cells = wrap?.querySelectorAll(".ubp-cell") ?? [];
         expect(cells.length).toBe(11);

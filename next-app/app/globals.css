@@ -2274,8 +2274,8 @@
        `is-revealed` to the target element on first viewport entry.
 
        1. The DocuseriesDeck slides up + fades in as a single unit.
-       2. Each .ubp-cell inside .ubp-reveal-target staggers its fade-in
-          based on its own --reveal-index custom property.
+       2. Each child with a --reveal-index custom property inside
+          .scroll-reveal-group staggers its fade-in via that index.
        ============================================================ */
 
     .docuseries-deck {
