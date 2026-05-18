@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type React from "react";
+import type { CSSProperties } from "react";
 import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
@@ -63,7 +63,7 @@ export default function UnitedByPlayPage() {
                     <div className="ubp-asset-grid">
 
                         {/* Row 1: Gaming Hero Shot (full width) */}
-                        <figure className="ubp-cell ubp-hero-shot" style={{ "--reveal-index": 0 } as React.CSSProperties}>
+                        <figure className="ubp-cell ubp-hero-shot" style={{ "--reveal-index": 0 } as CSSProperties}>
                             <img src="../../assets/work/united-by-play/gaming-hero-shot.jpg" alt="Gaming hero shot — United by Play campaign key visual." loading="lazy" />
                         </figure>
 
@@ -72,29 +72,29 @@ export default function UnitedByPlayPage() {
                             <div className="ubp-row2-left">
                                 {/* Frame 26: top of left column (885x841) */}
                                 <div className="ubp-frame26">
-                                    <figure className="ubp-cell ubp-chinese-lady" style={{ "--reveal-index": 1 } as React.CSSProperties}>
+                                    <figure className="ubp-cell ubp-chinese-lady" style={{ "--reveal-index": 1 } as CSSProperties}>
                                         <img src="../../assets/work/united-by-play/portrait-chinese-lady.jpg" alt="Portrait — Chinese lady gamer." loading="lazy" />
                                     </figure>
                                     <div className="ubp-frame25">
-                                        <figure className="ubp-cell ubp-cop" style={{ "--reveal-index": 2 } as React.CSSProperties}>
+                                        <figure className="ubp-cell ubp-cop" style={{ "--reveal-index": 2 } as CSSProperties}>
                                             <img src="../../assets/work/united-by-play/portrait-cop.jpg" alt="Portrait — police officer gamer." loading="lazy" />
                                         </figure>
-                                        <figure className="ubp-cell ubp-troll" style={{ "--reveal-index": 5 } as React.CSSProperties}>
+                                        <figure className="ubp-cell ubp-troll" style={{ "--reveal-index": 5 } as CSSProperties}>
                                             <img src="../../assets/work/united-by-play/portrait-troll-investors.jpg" alt="Portrait — Troll Investors group." loading="lazy" />
                                         </figure>
                                     </div>
                                 </div>
                                 {/* Bottom of left column: Portrait Man (885x885) */}
-                                <figure className="ubp-cell ubp-man" style={{ "--reveal-index": 6 } as React.CSSProperties}>
+                                <figure className="ubp-cell ubp-man" style={{ "--reveal-index": 6 } as CSSProperties}>
                                     <img src="../../assets/work/united-by-play/portrait-man.jpg" alt="Portrait — gamer at home." loading="lazy" />
                                 </figure>
                             </div>
 
                             <div className="ubp-row2-right">
-                                <figure className="ubp-cell ubp-fashion" style={{ "--reveal-index": 4 } as React.CSSProperties}>
+                                <figure className="ubp-cell ubp-fashion" style={{ "--reveal-index": 4 } as CSSProperties}>
                                     <img src="../../assets/work/united-by-play/portrait-fashion-designer.jpg" alt="Portrait — fashion designer gamer." loading="lazy" />
                                 </figure>
-                                <figure className="ubp-cell ubp-award" style={{ "--reveal-index": 3 } as React.CSSProperties}>
+                                <figure className="ubp-cell ubp-award" style={{ "--reveal-index": 3 } as CSSProperties}>
                                     <video
                                         src="../../assets/work/united-by-play/award-logo.mp4"
                                         poster="../../assets/work/united-by-play/award-logo.png"
@@ -106,10 +106,10 @@ export default function UnitedByPlayPage() {
                                         aria-label="United by Play award trophy — animated reveal."
                                     />
                                 </figure>
-                                <figure className="ubp-cell ubp-waitress" style={{ "--reveal-index": 7 } as React.CSSProperties}>
+                                <figure className="ubp-cell ubp-waitress" style={{ "--reveal-index": 7 } as CSSProperties}>
                                     <img src="../../assets/work/united-by-play/portrait-waitress.jpg" alt="Portrait — waitress gamer." loading="lazy" />
                                 </figure>
-                                <figure className="ubp-cell ubp-kid" style={{ "--reveal-index": 8 } as React.CSSProperties}>
+                                <figure className="ubp-cell ubp-kid" style={{ "--reveal-index": 8 } as CSSProperties}>
                                     <img src="../../assets/work/united-by-play/portrait-kid.jpg" alt="Portrait — kid gamer." loading="lazy" />
                                 </figure>
                             </div>
@@ -117,10 +117,10 @@ export default function UnitedByPlayPage() {
 
                         {/* Row 3: two cells (629 each) */}
                         <div className="ubp-row3">
-                            <figure className="ubp-cell ubp-whiskey" style={{ "--reveal-index": 9 } as React.CSSProperties}>
+                            <figure className="ubp-cell ubp-whiskey" style={{ "--reveal-index": 9 } as CSSProperties}>
                                 <AutoplayVideo videoId="S9cT1s8xrCk" title="United by Play — Side Quests film" />
                             </figure>
-                            <figure className="ubp-cell ubp-title" style={{ "--reveal-index": 10 } as React.CSSProperties}>
+                            <figure className="ubp-cell ubp-title" style={{ "--reveal-index": 10 } as CSSProperties}>
                                 <img src="../../assets/work/united-by-play/title-no-matter-how-you-game.jpg" alt="Title card — No matter how you game." loading="lazy" />
                             </figure>
                         </div>
