@@ -95,21 +95,21 @@ export function Work() {
 
       <div className="case-stack" ref={stackRef}>
         <a
-          href="work/kestrel-coast.html"
+          href="work/colorpro-awards/"
           className="case"
-          aria-label="Kestrel Coast — destination rebrand case study"
+          aria-label="ColorPro Awards — ViewSonic global creator platform case study"
         >
           <img
-              src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1800&q=80"
-              alt="Misty coastline at dawn, rocky shore with pines"
+            src="assets/work/colorpro-awards/kv-card.jpg"
+            alt="ColorPro Awards key visual — the 2025 FLOW campaign artwork."
             loading="lazy"
           />
           <div className="overlay">
             <div className="top-row">
               <div>
-                <div className="sub">Destination Identity · Wayfinding · Launch Campaign · 2025</div>
-                <h3 className="title">Kestrel Coast</h3>
-                <div className="one-liner">A coastline, reintroduced — season by season.</div>
+                <div className="sub">Campaign · Identity · Live Events · Microsite · 2022–2026</div>
+                <h3 className="title">ColorPro Awards</h3>
+                <div className="one-liner">A global creative platform that turned ViewSonic&apos;s professional displays into the world&apos;s pro-creator stage.</div>
               </div>
               <span className="flag">Featured</span>
             </div>

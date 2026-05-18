@@ -38,7 +38,7 @@ describe("HomePage smoke tests", () => {
 
   it("renders the work section with all four active case studies", () => {
     render(<HomePage />);
-    expect(screen.getByText("Kestrel Coast")).toBeInTheDocument();
+    expect(screen.getByText("ColorPro Awards")).toBeInTheDocument();
     expect(screen.getByText("Acceleration For All")).toBeInTheDocument();
     expect(screen.getByText("United by Play")).toBeInTheDocument();
     expect(screen.getByText("Meet the Finchers")).toBeInTheDocument();
@@ -66,8 +66,13 @@ describe("HomePage smoke tests", () => {
     expect(screen.getByRole("link", { name: "Start a project →" })).toHaveAttribute("href", "#contact");
   });
 
-  it("links AfA and UbP cards to clean URLs and leaves Kestrel Coast unchanged", () => {
+  it("links all four case study cards to clean URLs", () => {
     render(<HomePage />);
+    const cpaLink = screen.getByLabelText(
+      "ColorPro Awards — ViewSonic global creator platform case study"
+    );
+    expect(cpaLink).toHaveAttribute("href", "work/colorpro-awards/");
+
     const afaLink = screen.getByLabelText(
       "Acceleration For All — ViewSonic × Hustle Fund case study"
     );
@@ -77,11 +82,6 @@ describe("HomePage smoke tests", () => {
       "United by Play — ViewSonic global gaming campaign case study"
     );
     expect(ubpLink).toHaveAttribute("href", "work/united-by-play/");
-
-    const kcLink = screen.getByLabelText(
-      "Kestrel Coast — destination rebrand case study"
-    );
-    expect(kcLink).toHaveAttribute("href", "work/kestrel-coast.html");
   });
 
   it("does not render any broken asset paths (assets/ prefix only)", () => {
