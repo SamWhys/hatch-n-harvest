@@ -2893,12 +2893,6 @@
       padding: 80px 0 0;
     }
 
-    .cpa-live-events-body {
-      margin: 24px 0 64px;
-      max-width: 1280px;
-      color: var(--cpa-mute);
-    }
-
     .cpa-live-events-anchors {
       display: grid;
       grid-template-columns: minmax(0, 593fr) minmax(0, 661fr);
