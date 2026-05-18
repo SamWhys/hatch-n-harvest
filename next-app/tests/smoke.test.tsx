@@ -126,4 +126,14 @@ describe("HomePage smoke tests", () => {
     expect(img).not.toBeNull();
     expect(img?.classList.contains("parallax-mnemonic")).toBe(true);
   });
+
+  it("ColorPro Awards page renders without crashing", async () => {
+    const { default: ColorProAwardsPage } = await import(
+      "@/app/work/colorpro-awards/page"
+    );
+    render(<ColorProAwardsPage />);
+    expect(
+      screen.getByRole("heading", { level: 1, name: /ColorPro Awards/i })
+    ).toBeInTheDocument();
+  });
 });
