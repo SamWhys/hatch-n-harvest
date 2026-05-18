@@ -6,6 +6,8 @@ import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
 import { DocuseriesFilmstrip } from "@/components/case-study/DocuseriesFilmstrip";
+import { FadeInP } from "@/components/case-study/FadeInP";
+import { ScrollRevealGroup } from "@/components/case-study/ScrollRevealGroup";
 
 export const metadata: Metadata = {
     title: "ColorPro Awards — ViewSonic · Hatch n Harvest",
@@ -71,9 +73,9 @@ export default function ColorProAwardsPage() {
                         </div>
 
                         {/* Asset grid */}
-                        <div className="cpa-asset-grid">
+                        <ScrollRevealGroup className="cpa-asset-grid">
                             <div className="cpa-asset-col cpa-asset-col-wide">
-                                <figure className="cpa-tile cpa-tile-wide">
+                                <figure className="cpa-tile cpa-tile-wide" style={{ "--reveal-index": 0 } as CSSProperties}>
                                     <img
                                         src="../../assets/work/colorpro-awards/prize-outline.png"
                                         alt="ColorPro Awards 2024 — prize outline graphic listing the three category awards."
@@ -81,19 +83,19 @@ export default function ColorProAwardsPage() {
                                     />
                                 </figure>
 
-                                <div className="cpa-tile cpa-tile-video">
+                                <div className="cpa-tile cpa-tile-video" style={{ "--reveal-index": 1 } as CSSProperties}>
                                     <AutoplayVideo videoId="q0qJdUqJiq0" title="ColorPro Awards — FLOW teaser" />
                                 </div>
 
                                 <div className="cpa-tile-row">
-                                    <figure className="cpa-tile">
+                                    <figure className="cpa-tile" style={{ "--reveal-index": 2 } as CSSProperties}>
                                         <img
                                             src="../../assets/work/colorpro-awards/lucky-draw.png"
                                             alt="ColorPro Awards Lucky Draw social card — campaign giveaway artwork."
                                             loading="lazy"
                                         />
                                     </figure>
-                                    <figure className="cpa-tile">
+                                    <figure className="cpa-tile" style={{ "--reveal-index": 3 } as CSSProperties}>
                                         <video
                                             src="../../assets/work/colorpro-awards/exhibition-ig.mp4"
                                             autoPlay
@@ -107,7 +109,7 @@ export default function ColorProAwardsPage() {
                                 </div>
 
                                 <div className="cpa-tile-row cpa-tile-row-tall">
-                                    <figure className="cpa-tile">
+                                    <figure className="cpa-tile" style={{ "--reveal-index": 4 } as CSSProperties}>
                                         <video
                                             src="../../assets/work/colorpro-awards/advocates-cover.mp4"
                                             autoPlay
@@ -118,7 +120,7 @@ export default function ColorProAwardsPage() {
                                             aria-label="Meet the ColorPro Advocates — cover film for the 2024 advocates programme."
                                         />
                                     </figure>
-                                    <figure className="cpa-tile">
+                                    <figure className="cpa-tile" style={{ "--reveal-index": 5 } as CSSProperties}>
                                         <img
                                             src="../../assets/work/colorpro-awards/categories.png"
                                             alt="ColorPro Awards categories key art — Photography, Videography, and Digital Art."
@@ -129,21 +131,21 @@ export default function ColorProAwardsPage() {
                             </div>
 
                             <div className="cpa-asset-col cpa-asset-col-narrow">
-                                <figure className="cpa-tile">
+                                <figure className="cpa-tile" style={{ "--reveal-index": 6 } as CSSProperties}>
                                     <img
                                         src="../../assets/work/colorpro-awards/kv-2023.jpg"
                                         alt="2023 ColorPro Awards key visual."
                                         loading="lazy"
                                     />
                                 </figure>
-                                <figure className="cpa-tile">
+                                <figure className="cpa-tile" style={{ "--reveal-index": 7 } as CSSProperties}>
                                     <img
                                         src="../../assets/work/colorpro-awards/thumbnail-vertical.png"
                                         alt="ColorPro Awards vertical thumbnail — campaign poster cut for social."
                                         loading="lazy"
                                     />
                                 </figure>
-                                <figure className="cpa-tile">
+                                <figure className="cpa-tile" style={{ "--reveal-index": 8 } as CSSProperties}>
                                     <video
                                         src="../../assets/work/colorpro-awards/bumper-photography.mp4"
                                         autoPlay
@@ -154,7 +156,7 @@ export default function ColorProAwardsPage() {
                                         aria-label="ColorPro Awards Photography bumper — short category sting."
                                     />
                                 </figure>
-                                <figure className="cpa-tile">
+                                <figure className="cpa-tile" style={{ "--reveal-index": 9 } as CSSProperties}>
                                     <img
                                         src="../../assets/work/colorpro-awards/judge-jeremy.png"
                                         alt="Judge spotlight — Jeremy Reinmuth, ColorPro Awards juror."
@@ -162,7 +164,7 @@ export default function ColorProAwardsPage() {
                                     />
                                 </figure>
                             </div>
-                        </div>
+                        </ScrollRevealGroup>
                     </div>
                 </section>
 
@@ -170,7 +172,7 @@ export default function ColorProAwardsPage() {
                 <section className="cpa-live-events">
                     <div className="wrap">
                         <RisingHeading as="h2">The Live Events</RisingHeading>
-                        <p className="cpa-live-events-body">To turn the awards into something audiences could touch, ViewSonic took ColorPro on the road. International ceremonies and traveling exhibitions across the UK, India, Thailand, and Vietnam transformed each year&apos;s winning work into immersive physical showcases — where creators, resellers, distributors, and enterprise customers could see the displays do exactly what the winning artists had asked of them. Each stop combined gallery, ceremony, and product demo into a single experience, turning brand inspiration into hands-on engagement.</p>
+                        <FadeInP className="cpa-section-lead">To turn the awards into something audiences could touch, ViewSonic took ColorPro on the road. International ceremonies and traveling exhibitions across the UK, India, Thailand, and Vietnam transformed each year&apos;s winning work into immersive physical showcases — where creators, resellers, distributors, and enterprise customers could see the displays do exactly what the winning artists had asked of them. Each stop combined gallery, ceremony, and product demo into a single experience, turning brand inspiration into hands-on engagement.</FadeInP>
 
                         <div className="cpa-live-events-anchors">
                             <figure className="cpa-tile">
@@ -188,42 +190,42 @@ export default function ColorProAwardsPage() {
                                 />
                             </figure>
                         </div>
-                    </div>
 
-                    <DocuseriesFilmstrip
-                        episodes={[
-                            {
-                                title: "2026 FLOW · Live event",
-                                thumbnail: "https://i.ytimg.com/vi/rIY52x2l__w/maxresdefault.jpg",
-                                alt: "FLOW 2026 ColorPro Awards live event highlight.",
-                                href: "https://www.youtube.com/watch?v=rIY52x2l__w&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=1",
-                            },
-                            {
-                                title: "5th MOMENTUM · Live event",
-                                thumbnail: "https://i.ytimg.com/vi/GYZe8CY63lE/maxresdefault.jpg",
-                                alt: "5th ColorPro Awards MOMENTUM live event highlight.",
-                                href: "https://www.youtube.com/watch?v=GYZe8CY63lE&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=6",
-                            },
-                            {
-                                title: "2022 BREAKTHROUGH · Live event",
-                                thumbnail: "https://i.ytimg.com/vi/9DULWKEcNsU/maxresdefault.jpg",
-                                alt: "2022 ColorPro Awards BREAKTHROUGH live event highlight.",
-                                href: "https://www.youtube.com/watch?v=9DULWKEcNsU",
-                            },
-                            {
-                                title: "RISE · Live event",
-                                thumbnail: "https://i.ytimg.com/vi/anOFomSca7Q/maxresdefault.jpg",
-                                alt: "ColorPro Awards RISE live event highlight.",
-                                href: "https://www.youtube.com/watch?v=anOFomSca7Q",
-                            },
-                            {
-                                title: "2021 · Live event",
-                                thumbnail: "https://i.ytimg.com/vi/VuQEWNX8-3g/maxresdefault.jpg",
-                                alt: "2021 ColorPro Awards live event highlight.",
-                                href: "https://www.youtube.com/watch?v=VuQEWNX8-3g&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=13",
-                            },
-                        ]}
-                    />
+                        <DocuseriesFilmstrip
+                            episodes={[
+                                {
+                                    title: "2026 FLOW · Live event",
+                                    thumbnail: "https://i.ytimg.com/vi/rIY52x2l__w/maxresdefault.jpg",
+                                    alt: "FLOW 2026 ColorPro Awards live event highlight.",
+                                    href: "https://www.youtube.com/watch?v=rIY52x2l__w&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=1",
+                                },
+                                {
+                                    title: "5th MOMENTUM · Live event",
+                                    thumbnail: "https://i.ytimg.com/vi/GYZe8CY63lE/maxresdefault.jpg",
+                                    alt: "5th ColorPro Awards MOMENTUM live event highlight.",
+                                    href: "https://www.youtube.com/watch?v=GYZe8CY63lE&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=6",
+                                },
+                                {
+                                    title: "2022 BREAKTHROUGH · Live event",
+                                    thumbnail: "https://i.ytimg.com/vi/9DULWKEcNsU/maxresdefault.jpg",
+                                    alt: "2022 ColorPro Awards BREAKTHROUGH live event highlight.",
+                                    href: "https://www.youtube.com/watch?v=9DULWKEcNsU",
+                                },
+                                {
+                                    title: "RISE · Live event",
+                                    thumbnail: "https://i.ytimg.com/vi/anOFomSca7Q/maxresdefault.jpg",
+                                    alt: "ColorPro Awards RISE live event highlight.",
+                                    href: "https://www.youtube.com/watch?v=anOFomSca7Q",
+                                },
+                                {
+                                    title: "2021 · Live event",
+                                    thumbnail: "https://i.ytimg.com/vi/VuQEWNX8-3g/maxresdefault.jpg",
+                                    alt: "2021 ColorPro Awards live event highlight.",
+                                    href: "https://www.youtube.com/watch?v=VuQEWNX8-3g&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=13",
+                                },
+                            ]}
+                        />
+                    </div>
                 </section>
 
                 {/* THE RESULTS */}
@@ -231,35 +233,35 @@ export default function ColorProAwardsPage() {
                     <div className="wrap">
                         <RisingHeading as="h2">The Results</RisingHeading>
                         <div className="cpa-results-body">
-                            <p>The ColorPro Awards evolved into a global ecosystem that strengthened both brand affinity and business growth.</p>
-                            <p>The campaign generated thousands of submissions from more than 100 countries, built an engaged, international and creative community, which helped position ViewSonic as a leader in creative technology.</p>
-                            <p>At the same time, the platform increased visibility for ColorPro displays, strengthened reseller and partner relationships and created meaningful opportunities for product demonstrations and demand generation.</p>
-                            <p>By integrating online engagement with offline experiences, the campaign successfully moved audiences from inspiration to participation to product interaction — delivering impact across both B2C and B2B audiences.</p>
+                            <FadeInP>The ColorPro Awards evolved into a global ecosystem that strengthened both brand affinity and business growth.</FadeInP>
+                            <FadeInP>The campaign generated thousands of submissions from more than 100 countries, built an engaged, international and creative community, which helped position ViewSonic as a leader in creative technology.</FadeInP>
+                            <FadeInP>At the same time, the platform increased visibility for ColorPro displays, strengthened reseller and partner relationships and created meaningful opportunities for product demonstrations and demand generation.</FadeInP>
+                            <FadeInP>By integrating online engagement with offline experiences, the campaign successfully moved audiences from inspiration to participation to product interaction — delivering impact across both B2C and B2B audiences.</FadeInP>
                         </div>
-                    </div>
 
-                    <DocuseriesFilmstrip
-                        episodes={[
-                            {
-                                title: "RISE · Highlight reel",
-                                thumbnail: "https://i.ytimg.com/vi/67LDhrlMfKg/maxresdefault.jpg",
-                                alt: "ColorPro Awards 2023 RISE highlight reel.",
-                                href: "https://www.youtube.com/watch?v=67LDhrlMfKg&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=11",
-                            },
-                            {
-                                title: "5th MOMENTUM · Highlight reel",
-                                thumbnail: "https://i.ytimg.com/vi/Po5tOYmwa9I/maxresdefault.jpg",
-                                alt: "The 5th ColorPro Awards MOMENTUM highlight reel.",
-                                href: "https://www.youtube.com/watch?v=Po5tOYmwa9I&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=7",
-                            },
-                            {
-                                title: "2021 NEW ADVENTURE · Highlight reel",
-                                thumbnail: "https://i.ytimg.com/vi/erOwuKmsU7c/maxresdefault.jpg",
-                                alt: "2021 ColorPro Awards NEW ADVENTURE highlight reel.",
-                                href: "https://www.youtube.com/watch?v=erOwuKmsU7c&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=18",
-                            },
-                        ]}
-                    />
+                        <DocuseriesFilmstrip
+                            episodes={[
+                                {
+                                    title: "RISE · Highlight reel",
+                                    thumbnail: "https://i.ytimg.com/vi/67LDhrlMfKg/maxresdefault.jpg",
+                                    alt: "ColorPro Awards 2023 RISE highlight reel.",
+                                    href: "https://www.youtube.com/watch?v=67LDhrlMfKg&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=11",
+                                },
+                                {
+                                    title: "5th MOMENTUM · Highlight reel",
+                                    thumbnail: "https://i.ytimg.com/vi/Po5tOYmwa9I/maxresdefault.jpg",
+                                    alt: "The 5th ColorPro Awards MOMENTUM highlight reel.",
+                                    href: "https://www.youtube.com/watch?v=Po5tOYmwa9I&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=7",
+                                },
+                                {
+                                    title: "2021 NEW ADVENTURE · Highlight reel",
+                                    thumbnail: "https://i.ytimg.com/vi/erOwuKmsU7c/maxresdefault.jpg",
+                                    alt: "2021 ColorPro Awards NEW ADVENTURE highlight reel.",
+                                    href: "https://www.youtube.com/watch?v=erOwuKmsU7c&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=18",
+                                },
+                            ]}
+                        />
+                    </div>
                 </section>
 
                 {/* BACK TO ALL WORK */}

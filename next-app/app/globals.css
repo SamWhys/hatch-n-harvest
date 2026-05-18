@@ -2790,6 +2790,14 @@
       color: var(--cpa-mute);
     }
 
+    .cpa-page .cpa-section-lead {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.55;
+      color: var(--cpa-mute);
+      max-width: 70ch;
+      margin: 0 0 clamp(32px, 4vw, 56px);
+    }
+
     /* Solution — KV + body + asset grid */
     .cpa-solution {
       padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
