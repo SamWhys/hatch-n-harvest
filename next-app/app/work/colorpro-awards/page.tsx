@@ -131,7 +131,7 @@ export default function ColorProAwardsPage() {
                             <div className="cpa-asset-col cpa-asset-col-narrow">
                                 <figure className="cpa-tile">
                                     <img
-                                        src="../../assets/work/colorpro-awards/kv-2023.png"
+                                        src="../../assets/work/colorpro-awards/kv-2023.jpg"
                                         alt="2023 ColorPro Awards key visual."
                                         loading="lazy"
                                     />
@@ -260,6 +260,17 @@ export default function ColorProAwardsPage() {
                         },
                     ]}
                 />
+            </section>
+
+            {/* BACK TO ALL WORK */}
+            <section className="next-project-section">
+                <div className="wrap">
+                    <a className="next-project" href="../../#work">
+                        <div className="np-eyebrow">More harvests →</div>
+                        <div className="np-title">Back to all work</div>
+                        <div className="np-note">Individual case studies for Hinterland Stays, Common Range, Small Acre, and Moth &amp; Bloom are on their way.</div>
+                    </a>
+                </div>
             </section>
             </div>
         </CaseStudyShell>
