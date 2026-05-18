@@ -166,112 +166,112 @@ export default function ColorProAwardsPage() {
                     </div>
                 </section>
 
-            {/* THE LIVE EVENTS */}
-            <section className="cpa-live-events">
-                <div className="wrap">
-                    <RisingHeading as="h2">The Live Events</RisingHeading>
-                    <p className="cpa-live-events-body">To turn the awards into something audiences could touch, ViewSonic took ColorPro on the road. International ceremonies and traveling exhibitions across the UK, India, Thailand, and Vietnam transformed each year&apos;s winning work into immersive physical showcases — where creators, resellers, distributors, and enterprise customers could see the displays do exactly what the winning artists had asked of them. Each stop combined gallery, ceremony, and product demo into a single experience, turning brand inspiration into hands-on engagement.</p>
+                {/* THE LIVE EVENTS */}
+                <section className="cpa-live-events">
+                    <div className="wrap">
+                        <RisingHeading as="h2">The Live Events</RisingHeading>
+                        <p className="cpa-live-events-body">To turn the awards into something audiences could touch, ViewSonic took ColorPro on the road. International ceremonies and traveling exhibitions across the UK, India, Thailand, and Vietnam transformed each year&apos;s winning work into immersive physical showcases — where creators, resellers, distributors, and enterprise customers could see the displays do exactly what the winning artists had asked of them. Each stop combined gallery, ceremony, and product demo into a single experience, turning brand inspiration into hands-on engagement.</p>
 
-                    <div className="cpa-live-events-anchors">
-                        <figure className="cpa-tile">
-                            <img
-                                src="../../assets/work/colorpro-awards/event-india.jpg"
-                                alt="ColorPro Awards ceremony — India gallery installation, 2024."
-                                loading="lazy"
-                            />
-                        </figure>
-                        <figure className="cpa-tile">
-                            <img
-                                src="../../assets/work/colorpro-awards/event-london.jpg"
-                                alt="ColorPro Awards 2023 — London venue, exhibition stage and audience."
-                                loading="lazy"
-                            />
-                        </figure>
+                        <div className="cpa-live-events-anchors">
+                            <figure className="cpa-tile">
+                                <img
+                                    src="../../assets/work/colorpro-awards/event-india.jpg"
+                                    alt="ColorPro Awards ceremony — India gallery installation, 2024."
+                                    loading="lazy"
+                                />
+                            </figure>
+                            <figure className="cpa-tile">
+                                <img
+                                    src="../../assets/work/colorpro-awards/event-london.jpg"
+                                    alt="ColorPro Awards 2023 — London venue, exhibition stage and audience."
+                                    loading="lazy"
+                                />
+                            </figure>
+                        </div>
                     </div>
-                </div>
 
-                <DocuseriesFilmstrip
-                    episodes={[
-                        {
-                            title: "2026 FLOW · Live event",
-                            thumbnail: "https://i.ytimg.com/vi/rIY52x2l__w/maxresdefault.jpg",
-                            alt: "FLOW 2026 ColorPro Awards live event highlight.",
-                            href: "https://www.youtube.com/watch?v=rIY52x2l__w&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=1",
-                        },
-                        {
-                            title: "5th MOMENTUM · Live event",
-                            thumbnail: "https://i.ytimg.com/vi/GYZe8CY63lE/maxresdefault.jpg",
-                            alt: "5th ColorPro Awards MOMENTUM live event highlight.",
-                            href: "https://www.youtube.com/watch?v=GYZe8CY63lE&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=6",
-                        },
-                        {
-                            title: "2022 BREAKTHROUGH · Live event",
-                            thumbnail: "https://i.ytimg.com/vi/9DULWKEcNsU/maxresdefault.jpg",
-                            alt: "2022 ColorPro Awards BREAKTHROUGH live event highlight.",
-                            href: "https://www.youtube.com/watch?v=9DULWKEcNsU",
-                        },
-                        {
-                            title: "RISE · Live event",
-                            thumbnail: "https://i.ytimg.com/vi/anOFomSca7Q/maxresdefault.jpg",
-                            alt: "ColorPro Awards RISE live event highlight.",
-                            href: "https://www.youtube.com/watch?v=anOFomSca7Q",
-                        },
-                        {
-                            title: "2021 · Live event",
-                            thumbnail: "https://i.ytimg.com/vi/VuQEWNX8-3g/maxresdefault.jpg",
-                            alt: "2021 ColorPro Awards live event highlight.",
-                            href: "https://www.youtube.com/watch?v=VuQEWNX8-3g&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=13",
-                        },
-                    ]}
-                />
-            </section>
+                    <DocuseriesFilmstrip
+                        episodes={[
+                            {
+                                title: "2026 FLOW · Live event",
+                                thumbnail: "https://i.ytimg.com/vi/rIY52x2l__w/maxresdefault.jpg",
+                                alt: "FLOW 2026 ColorPro Awards live event highlight.",
+                                href: "https://www.youtube.com/watch?v=rIY52x2l__w&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=1",
+                            },
+                            {
+                                title: "5th MOMENTUM · Live event",
+                                thumbnail: "https://i.ytimg.com/vi/GYZe8CY63lE/maxresdefault.jpg",
+                                alt: "5th ColorPro Awards MOMENTUM live event highlight.",
+                                href: "https://www.youtube.com/watch?v=GYZe8CY63lE&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=6",
+                            },
+                            {
+                                title: "2022 BREAKTHROUGH · Live event",
+                                thumbnail: "https://i.ytimg.com/vi/9DULWKEcNsU/maxresdefault.jpg",
+                                alt: "2022 ColorPro Awards BREAKTHROUGH live event highlight.",
+                                href: "https://www.youtube.com/watch?v=9DULWKEcNsU",
+                            },
+                            {
+                                title: "RISE · Live event",
+                                thumbnail: "https://i.ytimg.com/vi/anOFomSca7Q/maxresdefault.jpg",
+                                alt: "ColorPro Awards RISE live event highlight.",
+                                href: "https://www.youtube.com/watch?v=anOFomSca7Q",
+                            },
+                            {
+                                title: "2021 · Live event",
+                                thumbnail: "https://i.ytimg.com/vi/VuQEWNX8-3g/maxresdefault.jpg",
+                                alt: "2021 ColorPro Awards live event highlight.",
+                                href: "https://www.youtube.com/watch?v=VuQEWNX8-3g&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=13",
+                            },
+                        ]}
+                    />
+                </section>
 
-            {/* THE RESULTS */}
-            <section className="cpa-results">
-                <div className="wrap">
-                    <RisingHeading as="h2">The Results</RisingHeading>
-                    <div className="cpa-results-body">
-                        <p>The ColorPro Awards evolved into a global ecosystem that strengthened both brand affinity and business growth.</p>
-                        <p>The campaign generated thousands of submissions from more than 100 countries, built an engaged, international and creative community, which helped position ViewSonic as a leader in creative technology.</p>
-                        <p>At the same time, the platform increased visibility for ColorPro displays, strengthened reseller and partner relationships and created meaningful opportunities for product demonstrations and demand generation.</p>
-                        <p>By integrating online engagement with offline experiences, the campaign successfully moved audiences from inspiration to participation to product interaction — delivering impact across both B2C and B2B audiences.</p>
+                {/* THE RESULTS */}
+                <section className="cpa-results">
+                    <div className="wrap">
+                        <RisingHeading as="h2">The Results</RisingHeading>
+                        <div className="cpa-results-body">
+                            <p>The ColorPro Awards evolved into a global ecosystem that strengthened both brand affinity and business growth.</p>
+                            <p>The campaign generated thousands of submissions from more than 100 countries, built an engaged, international and creative community, which helped position ViewSonic as a leader in creative technology.</p>
+                            <p>At the same time, the platform increased visibility for ColorPro displays, strengthened reseller and partner relationships and created meaningful opportunities for product demonstrations and demand generation.</p>
+                            <p>By integrating online engagement with offline experiences, the campaign successfully moved audiences from inspiration to participation to product interaction — delivering impact across both B2C and B2B audiences.</p>
+                        </div>
                     </div>
-                </div>
 
-                <DocuseriesFilmstrip
-                    episodes={[
-                        {
-                            title: "RISE · Highlight reel",
-                            thumbnail: "https://i.ytimg.com/vi/67LDhrlMfKg/maxresdefault.jpg",
-                            alt: "ColorPro Awards 2023 RISE highlight reel.",
-                            href: "https://www.youtube.com/watch?v=67LDhrlMfKg&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=11",
-                        },
-                        {
-                            title: "5th MOMENTUM · Highlight reel",
-                            thumbnail: "https://i.ytimg.com/vi/Po5tOYmwa9I/maxresdefault.jpg",
-                            alt: "The 5th ColorPro Awards MOMENTUM highlight reel.",
-                            href: "https://www.youtube.com/watch?v=Po5tOYmwa9I&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=7",
-                        },
-                        {
-                            title: "2021 NEW ADVENTURE · Highlight reel",
-                            thumbnail: "https://i.ytimg.com/vi/erOwuKmsU7c/maxresdefault.jpg",
-                            alt: "2021 ColorPro Awards NEW ADVENTURE highlight reel.",
-                            href: "https://www.youtube.com/watch?v=erOwuKmsU7c&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=18",
-                        },
-                    ]}
-                />
-            </section>
+                    <DocuseriesFilmstrip
+                        episodes={[
+                            {
+                                title: "RISE · Highlight reel",
+                                thumbnail: "https://i.ytimg.com/vi/67LDhrlMfKg/maxresdefault.jpg",
+                                alt: "ColorPro Awards 2023 RISE highlight reel.",
+                                href: "https://www.youtube.com/watch?v=67LDhrlMfKg&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=11",
+                            },
+                            {
+                                title: "5th MOMENTUM · Highlight reel",
+                                thumbnail: "https://i.ytimg.com/vi/Po5tOYmwa9I/maxresdefault.jpg",
+                                alt: "The 5th ColorPro Awards MOMENTUM highlight reel.",
+                                href: "https://www.youtube.com/watch?v=Po5tOYmwa9I&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=7",
+                            },
+                            {
+                                title: "2021 NEW ADVENTURE · Highlight reel",
+                                thumbnail: "https://i.ytimg.com/vi/erOwuKmsU7c/maxresdefault.jpg",
+                                alt: "2021 ColorPro Awards NEW ADVENTURE highlight reel.",
+                                href: "https://www.youtube.com/watch?v=erOwuKmsU7c&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=18",
+                            },
+                        ]}
+                    />
+                </section>
 
-            {/* BACK TO ALL WORK */}
-            <section className="next-project-section">
-                <div className="wrap">
-                    <a className="next-project" href="../../#work">
-                        <div className="np-eyebrow">More harvests →</div>
-                        <div className="np-title">Back to all work</div>
-                        <div className="np-note">Individual case studies for Hinterland Stays, Common Range, Small Acre, and Moth &amp; Bloom are on their way.</div>
-                    </a>
-                </div>
-            </section>
+                {/* BACK TO ALL WORK */}
+                <section className="next-project-section">
+                    <div className="wrap">
+                        <a className="next-project" href="../../#work">
+                            <div className="np-eyebrow">More harvests →</div>
+                            <div className="np-title">Back to all work</div>
+                            <div className="np-note">Individual case studies for Hinterland Stays, Common Range, Small Acre, and Moth &amp; Bloom are on their way.</div>
+                        </a>
+                    </div>
+                </section>
             </div>
         </CaseStudyShell>
     );
