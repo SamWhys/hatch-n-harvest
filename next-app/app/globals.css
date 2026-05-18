@@ -2879,3 +2879,30 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .cpa-live-events {
+        padding: 80px 0 0;
+    }
+
+    .cpa-live-events-body {
+        margin: 24px 0 64px;
+        max-width: 1280px;
+        color: var(--cpa-mute);
+    }
+
+    .cpa-live-events-anchors {
+        display: grid;
+        grid-template-columns: minmax(0, 593fr) minmax(0, 661fr);
+        gap: 24px;
+        margin-bottom: 60px;
+    }
+
+    .cpa-live-events-anchors .cpa-tile {
+        aspect-ratio: 593 / 396;
+    }
+
+    @media (max-width: 900px) {
+        .cpa-live-events-anchors {
+            grid-template-columns: 1fr;
+        }
+    }

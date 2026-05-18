@@ -5,6 +5,7 @@ import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
+import { DocuseriesFilmstrip } from "@/components/case-study/DocuseriesFilmstrip";
 
 export const metadata: Metadata = {
     title: "ColorPro Awards — ViewSonic · Hatch n Harvest",
@@ -164,6 +165,66 @@ export default function ColorProAwardsPage() {
                         </div>
                     </div>
                 </section>
+
+            {/* THE LIVE EVENTS */}
+            <section className="cpa-live-events">
+                <div className="wrap">
+                    <RisingHeading as="h2">The Live Events</RisingHeading>
+                    <p className="cpa-live-events-body">To turn the awards into something audiences could touch, ViewSonic took ColorPro on the road. International ceremonies and traveling exhibitions across the UK, India, Thailand, and Vietnam transformed each year&apos;s winning work into immersive physical showcases — where creators, resellers, distributors, and enterprise customers could see the displays do exactly what the winning artists had asked of them. Each stop combined gallery, ceremony, and product demo into a single experience, turning brand inspiration into hands-on engagement.</p>
+
+                    <div className="cpa-live-events-anchors">
+                        <figure className="cpa-tile">
+                            <img
+                                src="../../assets/work/colorpro-awards/event-india.jpg"
+                                alt="ColorPro Awards ceremony — India gallery installation, 2024."
+                                loading="lazy"
+                            />
+                        </figure>
+                        <figure className="cpa-tile">
+                            <img
+                                src="../../assets/work/colorpro-awards/event-london.jpg"
+                                alt="ColorPro Awards 2023 — London venue, exhibition stage and audience."
+                                loading="lazy"
+                            />
+                        </figure>
+                    </div>
+                </div>
+
+                <DocuseriesFilmstrip
+                    episodes={[
+                        {
+                            title: "2026 FLOW · Live event",
+                            thumbnail: "https://i.ytimg.com/vi/rIY52x2l__w/maxresdefault.jpg",
+                            alt: "FLOW 2026 ColorPro Awards live event highlight.",
+                            href: "https://www.youtube.com/watch?v=rIY52x2l__w&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=1",
+                        },
+                        {
+                            title: "5th MOMENTUM · Live event",
+                            thumbnail: "https://i.ytimg.com/vi/GYZe8CY63lE/maxresdefault.jpg",
+                            alt: "5th ColorPro Awards MOMENTUM live event highlight.",
+                            href: "https://www.youtube.com/watch?v=GYZe8CY63lE&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=6",
+                        },
+                        {
+                            title: "2022 BREAKTHROUGH · Live event",
+                            thumbnail: "https://i.ytimg.com/vi/9DULWKEcNsU/maxresdefault.jpg",
+                            alt: "2022 ColorPro Awards BREAKTHROUGH live event highlight.",
+                            href: "https://www.youtube.com/watch?v=9DULWKEcNsU",
+                        },
+                        {
+                            title: "RISE · Live event",
+                            thumbnail: "https://i.ytimg.com/vi/anOFomSca7Q/maxresdefault.jpg",
+                            alt: "ColorPro Awards RISE live event highlight.",
+                            href: "https://www.youtube.com/watch?v=anOFomSca7Q",
+                        },
+                        {
+                            title: "2021 · Live event",
+                            thumbnail: "https://i.ytimg.com/vi/VuQEWNX8-3g/maxresdefault.jpg",
+                            alt: "2021 ColorPro Awards live event highlight.",
+                            href: "https://www.youtube.com/watch?v=VuQEWNX8-3g&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=13",
+                        },
+                    ]}
+                />
+            </section>
             </div>
         </CaseStudyShell>
     );
