@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { CaseStudyShell } from "@/components/case-study/CaseStudyShell";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import { CaseBleed } from "@/components/case-study/CaseBleed";
@@ -6,6 +7,7 @@ import { CaseSection } from "@/components/case-study/CaseSection";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { FadeInP } from "@/components/case-study/FadeInP";
 import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
+import { ScrollRevealGroup } from "@/components/case-study/ScrollRevealGroup";
 
 export const metadata: Metadata = {
     title: "Meet the Finchers — ViewSonic · Hatch n Harvest",
@@ -80,9 +82,10 @@ export default function MeetTheFinchersPage() {
             {/* ASSET GRID */}
             <section className="mtf-asset-grid-section">
                 <div className="wrap">
-                    <div className="mtf-asset-grid">
+                    <ScrollRevealGroup className="mtf-asset-grid-reveal">
+                        <div className="mtf-asset-grid">
                         <div className="mtf-asset-grid-left">
-                            <figure className="mtf-cell mtf-bts">
+                            <figure className="mtf-cell mtf-bts" style={{ "--reveal-index": 0 } as CSSProperties}>
                                 <video
                                     src="../../assets/work/meet-the-finchers/bts-short-form.mov"
                                     autoPlay
@@ -93,18 +96,18 @@ export default function MeetTheFinchersPage() {
                                     aria-label="Behind-the-scenes short form — Meet the Finchers production."
                                 />
                             </figure>
-                            <figure className="mtf-cell mtf-jakob">
+                            <figure className="mtf-cell mtf-jakob" style={{ "--reveal-index": 1 } as CSSProperties}>
                                 <img src="../../assets/work/meet-the-finchers/jakob-banner.jpg" alt="Meet the Finchers — Jakob Fincher campaign banner." loading="lazy" />
                             </figure>
                         </div>
                         <div className="mtf-asset-grid-right">
-                            <figure className="mtf-cell mtf-gif">
+                            <figure className="mtf-cell mtf-gif" style={{ "--reveal-index": 2 } as CSSProperties}>
                                 <img src="../../assets/work/meet-the-finchers/animated-gif.gif" alt="Meet the Finchers — animated social asset." loading="lazy" />
                             </figure>
-                            <figure className="mtf-cell mtf-lockup">
+                            <figure className="mtf-cell mtf-lockup" style={{ "--reveal-index": 3 } as CSSProperties}>
                                 <img src="../../assets/work/meet-the-finchers/finchers-lockup.jpg" alt="Meet the Finchers — campaign logo lockup." loading="lazy" />
                             </figure>
-                            <figure className="mtf-cell mtf-karate">
+                            <figure className="mtf-cell mtf-karate" style={{ "--reveal-index": 4 } as CSSProperties}>
                                 <video
                                     src="../../assets/work/meet-the-finchers/karate-promo.mp4"
                                     autoPlay
@@ -117,9 +120,10 @@ export default function MeetTheFinchersPage() {
                             </figure>
                         </div>
                     </div>
-                    <figure className="mtf-cell mtf-linkedin">
+                    <figure className="mtf-cell mtf-linkedin" style={{ "--reveal-index": 5 } as CSSProperties}>
                         <img src="../../assets/work/meet-the-finchers/linkedin-carousel.jpg" alt="Meet the Finchers — LinkedIn carousel layout." loading="lazy" />
                     </figure>
+                    </ScrollRevealGroup>
                 </div>
             </section>
 
