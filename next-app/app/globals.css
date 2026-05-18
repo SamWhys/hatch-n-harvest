@@ -2906,3 +2906,17 @@
             grid-template-columns: 1fr;
         }
     }
+
+    .cpa-results {
+        padding: 80px 0 0;
+    }
+
+    .cpa-results-body {
+        margin: 24px 0 64px;
+        max-width: 1280px;
+        color: var(--cpa-mute);
+    }
+
+    .cpa-results-body p + p {
+        margin-top: 16px;
+    }

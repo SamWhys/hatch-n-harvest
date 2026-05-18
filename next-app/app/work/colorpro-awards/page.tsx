@@ -225,6 +225,42 @@ export default function ColorProAwardsPage() {
                     ]}
                 />
             </section>
+
+            {/* THE RESULTS */}
+            <section className="cpa-results">
+                <div className="wrap">
+                    <RisingHeading as="h2">The Results</RisingHeading>
+                    <div className="cpa-results-body">
+                        <p>The ColorPro Awards evolved into a global ecosystem that strengthened both brand affinity and business growth.</p>
+                        <p>The campaign generated thousands of submissions from more than 100 countries, built an engaged, international and creative community, which helped position ViewSonic as a leader in creative technology.</p>
+                        <p>At the same time, the platform increased visibility for ColorPro displays, strengthened reseller and partner relationships and created meaningful opportunities for product demonstrations and demand generation.</p>
+                        <p>By integrating online engagement with offline experiences, the campaign successfully moved audiences from inspiration to participation to product interaction — delivering impact across both B2C and B2B audiences.</p>
+                    </div>
+                </div>
+
+                <DocuseriesFilmstrip
+                    episodes={[
+                        {
+                            title: "RISE · Highlight reel",
+                            thumbnail: "https://i.ytimg.com/vi/67LDhrlMfKg/maxresdefault.jpg",
+                            alt: "ColorPro Awards 2023 RISE highlight reel.",
+                            href: "https://www.youtube.com/watch?v=67LDhrlMfKg&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=11",
+                        },
+                        {
+                            title: "5th MOMENTUM · Highlight reel",
+                            thumbnail: "https://i.ytimg.com/vi/Po5tOYmwa9I/maxresdefault.jpg",
+                            alt: "The 5th ColorPro Awards MOMENTUM highlight reel.",
+                            href: "https://www.youtube.com/watch?v=Po5tOYmwa9I&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=7",
+                        },
+                        {
+                            title: "2021 NEW ADVENTURE · Highlight reel",
+                            thumbnail: "https://i.ytimg.com/vi/erOwuKmsU7c/maxresdefault.jpg",
+                            alt: "2021 ColorPro Awards NEW ADVENTURE highlight reel.",
+                            href: "https://www.youtube.com/watch?v=erOwuKmsU7c&list=PLhW6e7eTnTo6yLopbyljaJ4HThnECfh1_&index=18",
+                        },
+                    ]}
+                />
+            </section>
             </div>
         </CaseStudyShell>
     );
