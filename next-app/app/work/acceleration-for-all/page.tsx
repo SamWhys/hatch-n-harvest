@@ -6,6 +6,7 @@ import { CaseBleed } from "@/components/case-study/CaseBleed";
 import { CaseSection } from "@/components/case-study/CaseSection";
 import { RisingHeading } from "@/components/case-study/RisingHeading";
 import { AutoplayVideo } from "@/components/case-study/AutoplayVideo";
+import { ScrollRevealGroup } from "@/components/case-study/ScrollRevealGroup";
 
 export const metadata: Metadata = {
     title: "Acceleration For All — ViewSonic × Hustle Fund · Hatch n Harvest",
@@ -86,45 +87,45 @@ export default function AccelerationForAllPage() {
                     </div>
 
                     {/* Lockup variations */}
-                    <div className="lockup-variants">
-                        <figure>
+                    <ScrollRevealGroup className="lockup-variants">
+                        <figure style={{ "--reveal-index": 0 } as CSSProperties}>
                             <div className="variant-card is-positive">
                                 <img src="../../assets/work/acceleration-for-all/lockup-light.svg" alt="Primary lockup, positive — black on white." loading="lazy" />
                             </div>
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 1 } as CSSProperties}>
                             <div className="variant-card is-negative">
                                 <img src="../../assets/work/acceleration-for-all/lockup-dark.svg" alt="Primary lockup, negative — white on black." loading="lazy" />
                             </div>
                         </figure>
-                    </div>
+                    </ScrollRevealGroup>
 
                     {/* Key visual */}
-                    <div className="hero-stage">
-                        <figure className="block-full identity-kv">
+                    <ScrollRevealGroup className="hero-stage">
+                        <figure className="block-full identity-kv" style={{ "--reveal-index": 0 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/kv-inside-scoop.png" alt="Acceleration For All campaign hero — three founder portraits in coloured chevrons next to the line: 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
                         </figure>
-                    </div>
+                    </ScrollRevealGroup>
 
                     {/* Brand color & Mnemonic system */}
                     <div className="id-subhead">Brand color &amp; Mnemonic system</div>
-                    <div className="mnemonic-grid">
-                        <figure>
+                    <ScrollRevealGroup className="mnemonic-grid">
+                        <figure style={{ "--reveal-index": 0 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/mnemonic-3.svg" alt="Brand mnemonic — diamond composition built from chevrons in coral, navy, yellow, and paper." loading="lazy" />
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 1 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/mnemonic-2.svg" alt="Brand mnemonic — full chevron composition spanning coral, navy, purple, yellow, paper, and graphite." loading="lazy" />
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 2 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/mnemonic-4.svg" alt="Brand mnemonic — square chevron composition spanning the full six-tone palette." loading="lazy" />
                         </figure>
-                        <figure className="is-half">
+                        <figure className="is-half" style={{ "--reveal-index": 3 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/mnemonic-1.svg" alt="Brand mnemonic — three chevrons in a row: purple, graphite, coral." loading="lazy" />
                         </figure>
-                        <figure className="is-half">
+                        <figure className="is-half" style={{ "--reveal-index": 4 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/mnemonic-5.svg" alt="Brand mnemonic — four chevrons in a row: navy, graphite, coral, yellow." loading="lazy" />
                         </figure>
-                        <figure className="is-wide palette-strip" aria-label="Full ten-tone palette">
+                        <figure className="is-wide palette-strip" aria-label="Full ten-tone palette" style={{ "--reveal-index": 5 } as CSSProperties}>
                             <div className="palette-strip-inner">
                                 <div className="swatch" style={{ background: "var(--afa-yellow)", color: "var(--afa-navy)" }}>
                                     <span className="swatch-name">Yellow</span>
@@ -168,7 +169,7 @@ export default function AccelerationForAllPage() {
                                 </div>
                             </div>
                         </figure>
-                    </div>
+                    </ScrollRevealGroup>
 
                     {/* Typography + Apparel */}
                     <div className="identity-foot">
@@ -192,61 +193,61 @@ export default function AccelerationForAllPage() {
                             </div>
                         </div>
 
-                        <div className="apparel-grid">
-                            <figure>
+                        <ScrollRevealGroup className="apparel-grid">
+                            <figure style={{ "--reveal-index": 0 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/tshirt-coral.jpg" alt="Event t-shirt — coral colorway, white lockup with yellow chevron." loading="lazy" />
                             </figure>
-                            <figure>
+                            <figure style={{ "--reveal-index": 1 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/tshirt-navy.jpg" alt="Event t-shirt — navy colorway." loading="lazy" />
                             </figure>
-                            <figure>
+                            <figure style={{ "--reveal-index": 2 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/tshirt-black.jpg" alt="Event t-shirt — black colorway." loading="lazy" />
                             </figure>
-                        </div>
+                        </ScrollRevealGroup>
                     </div>
                 </section>
 
                 {/* Social media — campaign cadence */}
                 <section className="work-section solution-social">
-                    <div className="social-stack">
-                        <figure className="social-card is-wide">
+                    <ScrollRevealGroup className="social-stack">
+                        <figure className="social-card is-wide" style={{ "--reveal-index": 0 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/social-grid-21.jpg" alt="RSVP card — 'The Acceleration For All Awards · January 12th · 5pm PT.'" loading="lazy" />
                         </figure>
 
                         <div className="social-row-2">
-                            <figure className="social-card is-square">
+                            <figure className="social-card is-square" style={{ "--reveal-index": 1 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-6.jpg" alt="Founder spotlight — Eric Bahn, Co-Founder & GP, Hustle Fund." loading="lazy" />
                             </figure>
-                            <figure className="social-card is-square">
+                            <figure className="social-card is-square" style={{ "--reveal-index": 2 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/pitch-us-now.gif" alt="Animated submission prompt — 'Submissions are open. Pitch us now.'" loading="lazy" />
                             </figure>
                         </div>
 
                         <div className="social-row-6">
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 3 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-9.jpg" alt="LinkedIn card — 'The inside scoop on what makes a startup stand out.'" loading="lazy" />
                             </figure>
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 4 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-10.jpg" alt="Submission countdown — 'Submissions close in 4 days.'" loading="lazy" />
                             </figure>
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 5 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-17.jpg" alt="Top 100 announcement — 'Introducing the AFA Top 100 Startups.'" loading="lazy" />
                             </figure>
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 6 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-18.jpg" alt="Top 20 reveal — 'Meet the Top 20 and pick your #1 — Vote Now.'" loading="lazy" />
                             </figure>
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 7 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-19-01.jpg" alt="Top 20 announcement — 'Meet the AFA Top 20 Finalists.'" loading="lazy" />
                             </figure>
-                            <figure className="social-card is-small">
+                            <figure className="social-card is-small" style={{ "--reveal-index": 8 } as CSSProperties}>
                                 <img src="../../assets/work/acceleration-for-all/social-grid-20.jpg" alt="People's Choice vote prompt — 'You be the VC. Vote Now.'" loading="lazy" />
                             </figure>
                         </div>
 
-                        <figure className="social-card is-wide">
+                        <figure className="social-card is-wide" style={{ "--reveal-index": 9 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/social-grid-22.jpg" alt="Countdown — 'Just one more sleep till #TheAffies.'" loading="lazy" />
                         </figure>
-                    </div>
+                    </ScrollRevealGroup>
                 </section>
 
             </div>
@@ -259,32 +260,34 @@ export default function AccelerationForAllPage() {
                         <p className="results-lead">Acceleration For All helped position ViewSonic as a brand invested not just in products, but in people and progress. The campaign generated meaningful engagement within entrepreneurial communities, strengthened brand perception, and created authentic connections with the next generation of innovators. Most importantly, it opened doors for founders who otherwise may never have had access to the startup ecosystem.</p>
                     </div>
 
-                    <figure className="results-top5">
-                        <img src="../../assets/work/acceleration-for-all/results-top5.png" alt="Top 5 reveal — Acceleration For All 2022 award categories: Best B2B, Best Consumer, Best Frontier, Best Creator, People's Choice." loading="lazy" />
-                    </figure>
+                    <ScrollRevealGroup className="results-top5-wrap">
+                        <figure className="results-top5" style={{ "--reveal-index": 0 } as CSSProperties}>
+                            <img src="../../assets/work/acceleration-for-all/results-top5.png" alt="Top 5 reveal — Acceleration For All 2022 award categories: Best B2B, Best Consumer, Best Frontier, Best Creator, People's Choice." loading="lazy" />
+                        </figure>
+                    </ScrollRevealGroup>
 
-                    <div className="gallery-five">
-                        <figure>
+                    <ScrollRevealGroup className="gallery-five">
+                        <figure style={{ "--reveal-index": 0 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/finalist-before-noon.png" alt="Finalist — Before Noon" loading="lazy" />
                             <figcaption className="finalist-name">Before Noon<span className="finalist-cat">Tiny Business</span></figcaption>
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 1 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/finalist-colab.png" alt="Finalist — Co.Lab" loading="lazy" />
                             <figcaption className="finalist-name">Co.Lab<span className="finalist-cat">Innovation</span></figcaption>
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 2 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/finalist-mi-terror.png" alt="Finalist — Mi Terror" loading="lazy" />
                             <figcaption className="finalist-name">Mi Terror<span className="finalist-cat">Social Enterprise</span></figcaption>
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 3 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/finalist-roboamp.png" alt="Finalist — ROBOAMP" loading="lazy" />
                             <figcaption className="finalist-name">ROBOAMP<span className="finalist-cat">B2B</span></figcaption>
                         </figure>
-                        <figure>
+                        <figure style={{ "--reveal-index": 4 } as CSSProperties}>
                             <img src="../../assets/work/acceleration-for-all/finalist-telecalm.png" alt="Finalist — TeleCalm" loading="lazy" />
                             <figcaption className="finalist-name">TeleCalm<span className="finalist-cat">People&#39;s Choice</span></figcaption>
                         </figure>
-                    </div>
+                    </ScrollRevealGroup>
 
                     <div className="results-metrics">
                         <h3 className="results-metrics-head">Five categories,<br />Five hustles.</h3>
