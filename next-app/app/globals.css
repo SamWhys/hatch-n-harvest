@@ -2791,7 +2791,7 @@
 
     /* Solution — KV + body + asset grid */
     .cpa-solution {
-      padding: 80px 0;
+      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
     }
 
     .cpa-solution-kv {
@@ -2814,6 +2814,7 @@
     }
 
     .cpa-solution-copy h2 {
+      font-size: clamp(40px, 6vw, 78px);
       margin-bottom: 24px;
     }
 
@@ -2824,7 +2825,7 @@
     /* Asset grid (2 columns, 24px gap; left col ≈ 66%, right col ≈ 28%) */
     .cpa-asset-grid {
       display: grid;
-      grid-template-columns: 884.775fr 373.225fr;
+      grid-template-columns: minmax(0, 884.775fr) minmax(0, 373.225fr);
       gap: 24px;
       align-items: start;
     }
@@ -2837,7 +2838,7 @@
 
     .cpa-tile-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 24px;
     }
 
