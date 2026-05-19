@@ -13,9 +13,11 @@ import { useEffect, useRef, useState } from "react";
 export function AutoplayVideo({
   videoId,
   title,
+  start,
 }: {
   videoId: string;
   title: string;
+  start?: number;
 }) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -42,7 +44,7 @@ export function AutoplayVideo({
   // youtube-nocookie.com is slightly leaner on first paint (skips
   // some cookie/session setup) and the preconnect hint lives in
   // app/layout.tsx pointing at the same origin.
-  const iframeSrc = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1`;
+  const iframeSrc = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1${start ? `&start=${start}` : ""}`;
   const posterSrc = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (

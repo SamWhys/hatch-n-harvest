@@ -40,7 +40,7 @@ export default function ColorProAwardsPage() {
                 />
 
                 <CaseBleed caption={{ title: "Hero film · The ColorPro Awards.", meta: "Campaign · 2026" }}>
-                    <AutoplayVideo videoId="q0qJdUqJiq0" title="ColorPro Awards — FLOW hero film" />
+                    <AutoplayVideo videoId="pthccmfcNLI" title="ColorPro Awards — FLOW hero film" start={8} />
                 </CaseBleed>
 
                 {/* THE PROBLEM */}
