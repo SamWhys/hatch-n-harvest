@@ -2798,9 +2798,22 @@
       margin: 0 0 clamp(32px, 4vw, 56px);
     }
 
+    /* Tighten the Problem→Solution handoff on the CPA case study: drop
+       Problem's bottom padding, zero the intro's margin-bottom (CPA has
+       no .problem-graphic below the intro, so that 40–80px margin is
+       pure waste), and pin Solution's top padding to 80px — total gap
+       between the two sections is exactly 80px. */
+    .cpa-page .problem {
+      padding-bottom: 0;
+    }
+
+    .cpa-page .problem .problem-intro {
+      margin-bottom: 0;
+    }
+
     /* Solution — KV + body + asset grid */
     .cpa-solution {
-      padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 110px);
+      padding: 80px 0 clamp(60px, 8vw, 110px);
     }
 
     .cpa-solution-kv {
