@@ -10,10 +10,23 @@ export type DocuseriesEpisode = {
   href: string;
 };
 
+function videoIdFromHref(href: string): string | null {
+  try {
+    const url = new URL(href);
+    return url.searchParams.get("v");
+  } catch {
+    return null;
+  }
+}
+
 export function DocuseriesFilmstrip({ episodes }: { episodes: DocuseriesEpisode[] }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLUListElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  // href of the currently-playing episode (null = none). We swap thumb for
+  // iframe in-place, and clear this whenever the carousel advances so a video
+  // never keeps playing off-screen.
+  const [playingHref, setPlayingHref] = useState<string | null>(null);
   useScrollReveal(sectionRef);
   const len = episodes.length;
 
@@ -23,6 +36,7 @@ export function DocuseriesFilmstrip({ episodes }: { episodes: DocuseriesEpisode[
     const target = ((i % len) + len) % len;
     track.scrollTo({ left: track.clientWidth * target, behavior: "smooth" });
     setActiveIndex(target);
+    setPlayingHref(null);
   }, [len]);
 
   const advance = useCallback((delta: number) => {
@@ -67,26 +81,44 @@ export function DocuseriesFilmstrip({ episodes }: { episodes: DocuseriesEpisode[
       </button>
 
       <ul ref={trackRef} className="dfs-track" role="list" aria-live="polite" onScroll={handleScroll}>
-        {episodes.map((ep, i) => (
-          <li key={ep.title} className="dfs-item" aria-hidden={i !== activeIndex}>
-            <a
-              className="dfs-card"
-              href={ep.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              tabIndex={i === activeIndex ? 0 : -1}
-            >
-              <div className="dfs-thumb">
-                <img src={ep.thumbnail} alt={ep.alt} loading="lazy" />
-                <span className="dfs-play" aria-hidden="true">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-              </div>
-            </a>
-          </li>
-        ))}
+        {episodes.map((ep, i) => {
+          const isPlaying = playingHref === ep.href;
+          const videoId = videoIdFromHref(ep.href);
+          return (
+            <li key={ep.title} className="dfs-item" aria-hidden={i !== activeIndex}>
+              {isPlaying && videoId ? (
+                <div className="dfs-card is-playing">
+                  <div className="dfs-thumb">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                      title={ep.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="dfs-card"
+                  onClick={() => setPlayingHref(ep.href)}
+                  tabIndex={i === activeIndex ? 0 : -1}
+                  aria-label={`Play ${ep.title}`}
+                >
+                  <div className="dfs-thumb">
+                    <img src={ep.thumbnail} alt={ep.alt} loading="lazy" />
+                    <span className="dfs-play" aria-hidden="true">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       <button
