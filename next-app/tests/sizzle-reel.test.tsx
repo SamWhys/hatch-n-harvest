@@ -35,4 +35,11 @@ describe("SizzleReel sound toggle", () => {
     const remuteButton = screen.getByRole("button", { name: "Unmute video" });
     expect(remuteButton).toHaveAttribute("aria-pressed", "false");
   });
+
+  it("does not aria-hide the video (it is now interactive)", () => {
+    const { container } = render(<SizzleReel />);
+    const video = container.querySelector("video");
+    expect(video).not.toBeNull();
+    expect(video).not.toHaveAttribute("aria-hidden");
+  });
 });
