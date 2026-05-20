@@ -1,0 +1,92 @@
+# Sizzle Reel Sound Toggle — Design
+
+## Background
+
+The homepage sizzle reel ([next-app/components/SizzleReel.tsx](../next-app/components/SizzleReel.tsx)) currently plays a self-hosted MP4 (`assets/video/sizzle-reel.mp4`) as a muted, looping, autoplaying background-style video with no controls. It is marked `aria-hidden="true"` and treated as decorative.
+
+We want to give visitors the option to hear the reel without changing its cinematic, background-feel default. A small floating sound toggle in the bottom-right corner of the video gives an opt-in path to audio while preserving the silent-loop default.
+
+A separate, larger decision — whether to keep this self-hosted or migrate to a YouTube embed once the final cut is delivered — is deferred. Today's repo footprint (~320 MB tracked, ~18 MB for the current `sizzle-reel.mp4`) leaves comfortable headroom under GitHub Pages' ~1 GB soft cap, so the self-hosted approach remains viable in the short term.
+
+## Goals
+
+- Add a discoverable but unobtrusive way for visitors to unmute the homepage sizzle reel.
+- Preserve the existing default: muted, autoplaying, looping background feel.
+- No regressions to accessibility, keyboard nav, or screen-reader behavior.
+
+## Non-Goals
+
+- No volume slider — on/off only.
+- No keyboard shortcut (e.g. `M`) — overkill for a single video.
+- No analytics event on toggle.
+- No auto-mute on scroll-out — the user's explicit unmute choice persists for the page lifetime even if they scroll away.
+- No persistence across page loads — every fresh visit starts muted.
+- No change to the underlying video asset or its hosting strategy in this work.
+
+## Design
+
+### Component changes ([next-app/components/SizzleReel.tsx](../next-app/components/SizzleReel.tsx))
+
+- Convert `SizzleReel` to a client component (`"use client"` directive) so it can hold mute state and respond to clicks. It is currently a server component because it has no interactivity.
+- Keep the existing `autoPlay muted loop playsInline preload="auto"` attributes on the `<video>` — muted autoplay is required by all major browsers, so the initial load behavior cannot change.
+- Add a `ref` to the `<video>` element so the toggle can imperatively set `videoEl.muted`.
+- Add a `muted` state (`useState(true)`) that drives the icon and `aria-pressed` state on the button.
+- Remove `aria-hidden="true"` from the `<video>`. A video with an interactive sound control is no longer purely decorative; hiding it from assistive tech while exposing a "mute video" button would be inconsistent.
+- Add a `<button type="button">` inside the `.sizzle-reel` section with class `sizzle-reel-sound-toggle`. The button:
+  - Toggles `videoEl.muted` on click and updates local state.
+  - Renders one of two inline SVG icons (speaker-muted / speaker-on) based on state.
+  - Has `aria-label="Unmute video"` when muted, `"Mute video"` when unmuted.
+  - Has `aria-pressed={!muted}` to convey state to assistive tech.
+
+### Styles ([next-app/app/globals.css](../next-app/app/globals.css))
+
+- Ensure `.sizzle-reel` is `position: relative` so the absolutely-positioned button anchors against it. If it already is (likely, since it's a `<section>` styled to crop the video), no change is needed.
+- New `.sizzle-reel-sound-toggle` rules:
+  - `position: absolute; bottom: 16px; right: 16px;`
+  - ~40px circular button (`width: 40px; height: 40px; border-radius: 50%;`)
+  - Background: `rgba(0, 0, 0, 0.55)` with `backdrop-filter: blur(6px)`. Hover: `rgba(0, 0, 0, 0.75)`.
+  - Icon (inline SVG) ~18px, white stroke.
+  - `:focus-visible` outline matching the focus pattern already used elsewhere in `globals.css` (look up the existing convention during implementation rather than introducing a new one).
+  - `border: none; cursor: pointer;`
+  - Transition on background and transform for a subtle hover lift.
+
+### Icons
+
+Two inline SVG paths defined in the same file (or as small `Icon` consts). Using inline SVG avoids adding image assets for two ~1KB icons:
+
+- **Muted**: speaker silhouette with a diagonal slash.
+- **Unmuted**: speaker silhouette with one or two sound waves.
+
+Both icons share the same viewBox and stroke style so the visual swap is clean.
+
+### Behavior
+
+| Action | Result |
+| --- | --- |
+| Page load | Video autoplays muted (unchanged from today). Button shows muted icon. |
+| Click button (muted → unmuted) | `videoEl.muted = false`. Video continues from current playback position. Icon swaps. `aria-label` updates. |
+| Click button (unmuted → muted) | `videoEl.muted = true`. Same swap in reverse. |
+| Scroll away while unmuted | Audio continues — this is the user's explicit choice. |
+| Page reload / navigation back to home | Resets to muted. No persistence. |
+
+### Edge cases
+
+- **The MP4 may have no audio track.** If `sizzle-reel.mp4` is silent, unmuting will appear to do nothing. Verify during implementation with `ffprobe` or by opening the file; if there's no audio track, raise this with the user before shipping (we either skip the toggle or the design needs a placeholder explanation).
+- **Browser blocks unmute.** Programmatically setting `videoEl.muted = false` after a user click is treated as user-initiated and is allowed across browsers. No special handling needed.
+- **Mobile Safari quirks.** `playsInline` is already set; setting `.muted = false` in a click handler is supported. Verified pattern.
+- **Reduced motion.** The button is static visual chrome; no motion considerations.
+
+## Files Touched
+
+- [next-app/components/SizzleReel.tsx](../next-app/components/SizzleReel.tsx) — convert to client component, add state, ref, button, icons.
+- [next-app/app/globals.css](../next-app/app/globals.css) — add `.sizzle-reel-sound-toggle` styles; ensure `.sizzle-reel` is positioned.
+- No new files needed.
+
+## Open Questions
+
+- Does `sizzle-reel.mp4` actually contain an audio track? If not, this work should pause until a version with audio is available.
+
+## Future Work (Out of Scope)
+
+- Decide whether to migrate to a YouTube embed once the final cut is delivered. YouTube would give the sound toggle, captions, and adaptive streaming for free at the cost of YouTube branding and a less seamless loop. This decision can be revisited when the final video lands and we know its length, whether it has narration, and how much repo budget it consumes.
+- Optional: auto-mute when the video scrolls out of view (one-line `IntersectionObserver` addition).
