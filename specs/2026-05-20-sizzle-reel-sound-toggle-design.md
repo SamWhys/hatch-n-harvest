@@ -82,7 +82,52 @@ Both icons share the same viewBox and stroke style so the visual swap is clean.
 - [next-app/app/globals.css](../next-app/app/globals.css) — add `.sizzle-reel-sound-toggle` styles; ensure `.sizzle-reel` is positioned.
 - No new files needed.
 
+## Revision (2026-05-20): Sound-by-default and scroll-aware muting
+
+After reviewing the initial implementation, two behaviors were added:
+
+### Sound-on-by-default (best-effort)
+
+Browsers block autoplay with sound on first load — that constraint can't be overridden. But we can:
+
+1. Default the user's *intent* to `"sound-on"` so they don't have to opt in.
+2. On every scroll into view (including initial mount when the section is already visible), attempt to apply that intent — unmute the video. If the browser rejects (autoplay policy), gracefully fall back to muted.
+
+In practice the reel still typically starts muted on first load. But on return visits, or sessions where the user has already interacted with the site, the reel may start unmuted.
+
+### Scroll-aware muting
+
+Using `IntersectionObserver` on the `<section>`:
+
+- Section leaves viewport → mute the audio. The `<video>` keeps playing — only audio is gated, so loop timing stays continuous.
+- Section enters viewport → apply the user's last deliberate sound intent.
+
+### State model
+
+Two pieces of state:
+
+- `muted: boolean` — actual `<video>.muted` value. Drives the icon and `aria-pressed`. **Always reflects reality.**
+- `userIntent: "sound-on" | "muted"` — last deliberate user choice. Defaults to `"sound-on"`. Updated only by toggle clicks (not by scroll-out auto-mute, not by autoplay-rejection fallback).
+
+`userIntent` decides what to apply on scroll-into-view; `muted` decides what the button looks like. The two can diverge — e.g. user wants sound, but section is scrolled away → `userIntent="sound-on"` while `muted=true`.
+
+### `applyIntent` helper (implementation contract)
+
+A single helper handles all "make the video match this intent" calls, used both by the IntersectionObserver callback and by `toggleSound`:
+
+- If intent is `"muted"`: set `video.muted = true` and `setMuted(true)`. Synchronous.
+- If intent is `"sound-on"`: optimistically set `video.muted = false` and `setMuted(false)`. Call `video.play()` and `.catch(...)` — on rejection (autoplay blocked), revert: `video.muted = true; setMuted(true);` and re-start muted-autoplay.
+
+This keeps the happy path synchronous (good for tests and perceived snappiness) while still recovering from autoplay-policy rejection.
+
+### Edge cases
+
+- **Initial load, section already in view:** IntersectionObserver fires `isIntersecting=true` on first observation → applies `userIntent="sound-on"` → optimistic unmute → browser rejects → reverts to muted. Net effect on first load: muted.
+- **Return visit / user already interacted:** Same flow, but unmute may succeed → starts unmuted.
+- **User mutes via toggle then scrolls away:** `userIntent` becomes `"muted"`. Scroll-out also mutes (no-op). Scroll-back-in applies `"muted"` intent → stays muted.
+- **User unmutes via toggle then scrolls away:** `userIntent="sound-on"`. Scroll-out mutes audio (does NOT change `userIntent`). Scroll-back-in re-applies `"sound-on"` → unmutes again if browser allows.
+- **Browser blocks autoplay-with-sound the whole session:** Every `applyIntent("sound-on")` reverts to muted. User has to click the toggle to unmute. Once they do, scroll-out/in cycles work as expected (because by then user activation has occurred).
+
 ## Future Work (Out of Scope)
 
-- Decide whether to migrate to a YouTube embed once the final cut is delivered. YouTube would give the sound toggle, captions, and adaptive streaming for free at the cost of YouTube branding and a less seamless loop. This decision can be revisited when the final video lands and we know its length, whether it has narration, and how much repo budget it consumes.
-- Optional: auto-mute when the video scrolls out of view (one-line `IntersectionObserver` addition).
+- Decide whether to migrate to a YouTube embed once the final cut is delivered. YouTube would give the sound toggle, captions, and adaptive streaming for free at the cost of YouTube branding and a less seamless loop. Revisit when the final video lands and we know its length, whether it has narration, and how much repo budget it consumes.
