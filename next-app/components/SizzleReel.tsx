@@ -1,21 +1,68 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+type SoundIntent = "sound-on" | "muted";
 
 export function SizzleReel({ srcPrefix = "" }: { srcPrefix?: string }) {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [muted, setMuted] = useState(true);
+  const [userIntent, setUserIntent] = useState<SoundIntent>("sound-on");
 
-  function toggleSound() {
+  function applyIntent(intent: SoundIntent): void {
     const video = videoRef.current;
     if (!video) return;
-    const next = !muted;
-    video.muted = next;
-    setMuted(next);
+    if (intent === "muted") {
+      video.muted = true;
+      setMuted(true);
+      return;
+    }
+    // intent === "sound-on" — optimistically unmute.
+    video.muted = false;
+    setMuted(false);
+    Promise.resolve(video.play()).catch(() => {
+      // Browser blocked autoplay-with-sound. Revert to muted autoplay.
+      video.muted = true;
+      setMuted(true);
+      Promise.resolve(video.play()).catch(() => {
+        // Even muted autoplay failed (jsdom or extreme cases) — give up silently.
+      });
+    });
+  }
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          applyIntent(userIntent);
+        } else {
+          const video = videoRef.current;
+          if (!video) return;
+          video.muted = true;
+          setMuted(true);
+        }
+      },
+      { threshold: 0 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+    // applyIntent is stable enough; userIntent is the relevant dep.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userIntent]);
+
+  function toggleSound(): void {
+    const nextIntent: SoundIntent = muted ? "sound-on" : "muted";
+    setUserIntent(nextIntent);
+    applyIntent(nextIntent);
   }
 
   return (
-    <section className="sizzle-reel" aria-label="Sizzle reel">
+    <section ref={sectionRef} className="sizzle-reel" aria-label="Sizzle reel">
       <video
         ref={videoRef}
         className="sizzle-reel-video"
