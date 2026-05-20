@@ -85,10 +85,15 @@ describe("United by Play page", () => {
         expect(container.querySelector(".docuseries-filmstrip")).not.toBeNull();
         const cards = container.querySelectorAll(".docuseries-filmstrip .dfs-card");
         expect(cards.length).toBe(3);
-        const html = container.innerHTML;
-        expect(html).toContain("tRE3Mq6w5fo");
-        expect(html).toContain("Dwo2JJKZviI");
-        expect(html).toContain("pGKBf9kV6mY");
+        // Each card renders a local thumbnail image; the YouTube embed swaps in on click.
+        const thumbSrcs = Array.from(
+            container.querySelectorAll(".docuseries-filmstrip .dfs-card img"),
+        ).map((img) => img.getAttribute("src"));
+        expect(thumbSrcs).toEqual([
+            "../../assets/work/united-by-play/docu-tech-rehearsal.jpg",
+            "../../assets/work/united-by-play/docu-the-forge.jpg",
+            "../../assets/work/united-by-play/docu-the-gallery.jpg",
+        ]);
     });
 
     it("renders all three docuseries episode titles via the slider dots", () => {
