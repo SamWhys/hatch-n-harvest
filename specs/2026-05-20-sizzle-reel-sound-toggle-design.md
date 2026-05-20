@@ -71,7 +71,7 @@ Both icons share the same viewBox and stroke style so the visual swap is clean.
 
 ### Edge cases
 
-- **The MP4 may have no audio track.** If `sizzle-reel.mp4` is silent, unmuting will appear to do nothing. Verify during implementation with `ffprobe` or by opening the file; if there's no audio track, raise this with the user before shipping (we either skip the toggle or the design needs a placeholder explanation).
+- **Audio track present.** Verified via `ffprobe`: `sizzle-reel.mp4` contains a stereo AAC track at 48kHz alongside the H.264 video. Unmuting will produce audio.
 - **Browser blocks unmute.** Programmatically setting `videoEl.muted = false` after a user click is treated as user-initiated and is allowed across browsers. No special handling needed.
 - **Mobile Safari quirks.** `playsInline` is already set; setting `.muted = false` in a click handler is supported. Verified pattern.
 - **Reduced motion.** The button is static visual chrome; no motion considerations.
@@ -81,10 +81,6 @@ Both icons share the same viewBox and stroke style so the visual swap is clean.
 - [next-app/components/SizzleReel.tsx](../next-app/components/SizzleReel.tsx) — convert to client component, add state, ref, button, icons.
 - [next-app/app/globals.css](../next-app/app/globals.css) — add `.sizzle-reel-sound-toggle` styles; ensure `.sizzle-reel` is positioned.
 - No new files needed.
-
-## Open Questions
-
-- Does `sizzle-reel.mp4` actually contain an audio track? If not, this work should pause until a version with audio is available.
 
 ## Future Work (Out of Scope)
 
