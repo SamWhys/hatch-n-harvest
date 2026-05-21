@@ -1,57 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useParallaxScroll } from "./useParallaxScroll";
+import { useKenBurnsOnEnter } from "./useKenBurnsOnEnter";
 import { RisingHeading } from "./case-study/RisingHeading";
-
-/** Subtle Ken Burns zoom on each card image: 1.06 → 1.0 as the card
- *  rises into its sticky position. Driven from a scroll handler instead
- *  of CSS view-timeline because the latter freezes for descendants of
- *  sticky elements in Chrome. */
-function useKenBurnsStack(stackRef: React.RefObject<HTMLElement | null>) {
-  useEffect(() => {
-    const el = stackRef.current;
-    if (!el || typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const cards = Array.from(el.querySelectorAll<HTMLElement>(".case"));
-    let raf = 0;
-
-    const STICKY_TOP = 104;
-    const FROM = 1.06;
-    const TO = 1.0;
-
-    const update = () => {
-      raf = 0;
-      const vh = window.innerHeight;
-      const range = vh - STICKY_TOP;
-      for (const card of cards) {
-        const img = card.querySelector<HTMLImageElement>("img");
-        if (!img) continue;
-        const top = card.getBoundingClientRect().top;
-        const traveled = vh - top;
-        // First half of the entry travel drives the zoom-out.
-        const progress = Math.max(0, Math.min(1, (traveled / range) * 2));
-        const scale = FROM + (TO - FROM) * progress;
-        img.style.setProperty("--ken-burns", scale.toFixed(4));
-      }
-    };
-
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [stackRef]);
-}
 
 function ArrowIcon({ size = 16 }: { size?: number }) {
   return (
@@ -71,11 +23,68 @@ function ArrowIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+type Case = {
+  href: string;
+  ariaLabel: string;
+  img: string;
+  alt: string;
+  sub: string;
+  title: string;
+  oneLiner: string;
+  featured?: boolean;
+};
+
+const CASES: Case[] = [
+  {
+    href: "work/colorpro-awards/",
+    ariaLabel:
+      "ColorPro Awards — ViewSonic global creator platform case study",
+    img: "assets/work/colorpro-awards/kv-card.jpg",
+    alt: "ColorPro Awards key visual — the 2025 FLOW campaign artwork.",
+    sub: "Campaign · Identity · Live Events · Microsite · 2022–2026",
+    title: "ColorPro Awards",
+    oneLiner:
+      "A global creative platform that turned ViewSonic's professional displays into the world's pro-creator stage.",
+    featured: true,
+  },
+  {
+    href: "work/acceleration-for-all/",
+    ariaLabel: "Acceleration For All — ViewSonic × Hustle Fund case study",
+    img: "assets/work/acceleration-for-all/kv-card.jpg",
+    alt: "Acceleration For All key visual — a colourful grid of 30 founders' faces around the campaign lockup.",
+    sub: "Campaign · Identity · Film · 2021",
+    title: "Acceleration For All",
+    oneLiner:
+      "Rebuilding the on-ramp to entrepreneurship — for everyone the old playbook left out.",
+  },
+  {
+    href: "work/united-by-play/",
+    ariaLabel: "United by Play — ViewSonic global gaming campaign case study",
+    img: "assets/work/united-by-play/title-no-matter-how-you-game.jpg",
+    alt: "United by Play campaign title card — 'No matter how you game' on a colourful gaming background.",
+    sub: "Campaign · Manifesto · Docuseries · 2021",
+    title: "United by Play",
+    oneLiner: "No matter how you game, we are united by play.",
+  },
+  {
+    href: "work/meet-the-finchers/",
+    ariaLabel:
+      "Meet the Finchers — ViewSonic branded entertainment campaign case study",
+    img: "assets/work/meet-the-finchers/finchers-lockup-1.jpg",
+    alt: "Meet the Finchers — campaign logo lockup.",
+    sub: "Campaign · Identity · Documentaries · Social · 2022",
+    title: "Meet the Finchers",
+    oneLiner:
+      "A binge-worthy 90s sitcom — produced entirely on the brand's own remote-collaboration tech.",
+  },
+];
+
 export function Work() {
   const mnemonicRef = useRef<HTMLImageElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
-  useParallaxScroll(mnemonicRef, { intensity: 0.20 });
-  useKenBurnsStack(stackRef);
+  const deckRef = useRef<HTMLDivElement>(null);
+  useParallaxScroll(mnemonicRef, { intensity: 0.2 });
+  useKenBurnsOnEnter(deckRef);
+
   return (
     <section className="work" id="work">
       <img
@@ -88,113 +97,41 @@ export function Work() {
       <div className="wrap">
         <div className="work-head">
           <div>
-            <RisingHeading as="h2">Brands we&apos;ve helped grow.</RisingHeading>
+            <RisingHeading as="h2">
+              Brands we&apos;ve helped grow.
+            </RisingHeading>
           </div>
         </div>
       </div>
 
-      <div className="case-stack" ref={stackRef}>
-        <a
-          href="work/colorpro-awards/"
-          className="case"
-          aria-label="ColorPro Awards — ViewSonic global creator platform case study"
-        >
-          <img
-            src="assets/work/colorpro-awards/kv-card.jpg"
-            alt="ColorPro Awards key visual — the 2025 FLOW campaign artwork."
-            loading="lazy"
-          />
-          <div className="overlay">
-            <div className="top-row">
-              <div>
-                <div className="sub">Campaign · Identity · Live Events · Microsite · 2022–2026</div>
-                <h3 className="title">ColorPro Awards</h3>
-                <div className="one-liner">A global creative platform that turned ViewSonic&apos;s professional displays into the world&apos;s pro-creator stage.</div>
-              </div>
-              <span className="flag">Featured</span>
+      <div className="case-stack-vertical" ref={deckRef}>
+        {CASES.map((c) => (
+          <a
+            key={c.href}
+            href={c.href}
+            className="case-vertical"
+            aria-label={c.ariaLabel}
+          >
+            <img
+              className="case-vertical__bg"
+              src={c.img}
+              alt={c.alt}
+              loading="lazy"
+            />
+            {c.featured && (
+              <span className="case-vertical__flag">Featured</span>
+            )}
+            <div className="case-vertical__content">
+              <div className="case-vertical__sub">{c.sub}</div>
+              <h3 className="case-vertical__title">{c.title}</h3>
+              <p className="case-vertical__one-liner">{c.oneLiner}</p>
+              <span className="case-vertical__cta">
+                Explore
+                <ArrowIcon />
+              </span>
             </div>
-          </div>
-          <span className="read-cta">
-            Explore
-            <ArrowIcon />
-          </span>
-        </a>
-
-        <a
-          href="work/acceleration-for-all/"
-          className="case"
-          aria-label="Acceleration For All — ViewSonic × Hustle Fund case study"
-        >
-          <img
-              src="assets/work/acceleration-for-all/kv-card.jpg"
-              alt="Acceleration For All key visual — a colourful grid of 30 founders' faces around the campaign lockup."
-            loading="lazy"
-          />
-          <div className="overlay">
-            <div className="top-row">
-              <div>
-                <div className="sub">Campaign · Identity · Film · 2021</div>
-                <h3 className="title">Acceleration For All</h3>
-                <div className="one-liner">Rebuilding the on-ramp to entrepreneurship — for everyone the old playbook left out.</div>
-              </div>
-            </div>
-          </div>
-          <span className="read-cta">
-            Explore
-            <ArrowIcon />
-          </span>
-        </a>
-
-        <a
-          href="work/united-by-play/"
-          className="case"
-          aria-label="United by Play — ViewSonic global gaming campaign case study"
-        >
-          <img
-              src="assets/work/united-by-play/title-no-matter-how-you-game.jpg"
-              alt="United by Play campaign title card — 'No matter how you game' on a colourful gaming background."
-            loading="lazy"
-          />
-          <div className="overlay">
-            <div className="top-row">
-              <div>
-                <div className="sub">Campaign · Manifesto · Docuseries · 2021</div>
-                <h3 className="title">United by Play</h3>
-                <div className="one-liner">No matter how you game, we are united by play.</div>
-              </div>
-            </div>
-          </div>
-          <span className="read-cta">
-            Explore
-            <ArrowIcon />
-          </span>
-        </a>
-
-        <a
-          href="work/meet-the-finchers/"
-          className="case"
-          aria-label="Meet the Finchers — ViewSonic branded entertainment campaign case study"
-        >
-          <img
-              src="assets/work/meet-the-finchers/finchers-lockup-1.jpg"
-              alt="Meet the Finchers — campaign logo lockup."
-            loading="lazy"
-          />
-          <div className="overlay">
-            <div className="top-row">
-              <div>
-                <div className="sub">Campaign · Identity · Documentaries · Social · 2022</div>
-                <h3 className="title">Meet the Finchers</h3>
-                <div className="one-liner">A binge-worthy 90s sitcom — produced entirely on the brand&apos;s own remote-collaboration tech.</div>
-              </div>
-            </div>
-          </div>
-          <span className="read-cta">
-            Explore
-            <ArrowIcon />
-          </span>
-        </a>
-        <div className="case-stack-tail" aria-hidden="true" />
+          </a>
+        ))}
       </div>
     </section>
   );
