@@ -55,8 +55,8 @@
       /* Proximity (not mandatory) so the page lands softly on each
          major section as you scroll, without forcing a stop mid-content
          inside tall sections (Manifesto, Process). Per-element offsets
-         live on .case via scroll-margin-top so case-study cards align
-         under the sticky nav. */
+         live on .case-vertical via scroll-margin-top so case-study cards
+         align under the sticky nav. */
       scroll-snap-type: y proximity;
     }
     body {

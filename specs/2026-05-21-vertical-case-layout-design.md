@@ -343,3 +343,10 @@ Today there is no locked card on the homepage, but the structure is in place for
 - **Production flag.** If we want to A/B the layouts, that's a separate plumbing task (Next.js can do this with a route param or a server-injected variant).
 - **New case studies.** The "Here's to Learning" case study is independent work and uses the same `.case-vertical` markup once added.
 - **Locked-card content.** No `is-locked` card lives on the homepage today; rules above are forward-looking only.
+
+## Post-implementation revisions (2026-05-21)
+
+Two tweaks made after live visual review on `experiment/vertical-case-layout`:
+
+- **Eyebrow color** — `.case-vertical__sub` changed from `var(--marigold)` to `var(--ink)`. The marigold-on-marigold (and marigold-on-warm-photography) read poorly against several of the live key visuals; warm cream gives consistent contrast across all four cards.
+- **Hover dim depth** — `.case-vertical:hover .case-vertical__bg` / `:focus-visible .case-vertical__bg` filter changed from `brightness(0.72)` to `brightness(0.5)`. The lighter dim left the title and one-liner hard to read on top of bright photography; `0.5` matches the contrast level the legacy `.case` cards used.
