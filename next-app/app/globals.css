@@ -631,130 +631,153 @@
       .work-head { grid-template-columns: 1fr; }
     }
 
-    /* Sticky-stack case studies: cards are siblings, each position: sticky
-       at the same top offset. As the user scrolls, later cards rise from
-       below and visually stack on top of earlier ones. ~100vh of margin
-       between cards gives each one a beat of solo time before the next
-       arrives. The card frame never scales — only the image inside has
-       a subtle Ken Burns zoom-out on arrival. */
-    .case-stack {
+    /* ============================================================
+       VERTICAL FULL-BLEED CASE LAYOUT
+       — replaces the old sticky-stacked .case-stack / .case rules.
+       Each .case-vertical is one full viewport; the deck scroll-snaps
+       between them; useKenBurnsOnEnter (components/useKenBurnsOnEnter.ts)
+       drives the entrance zoom by toggling .is-ken-burns on the <a>.
+       ============================================================ */
+    .case-stack-vertical {
       position: relative;
-      padding: 0 clamp(20px, 2vw, 32px);
-    }
-    /* The tail's role now is just to TRAP the last card's
-       margin-bottom inside the stack (otherwise the margin leaks out
-       and the sticky containing block collapses). A 1px element is
-       enough to break the margin-passthrough — the last card's own
-       100vh margin-bottom then provides the sticky range. */
-    .case-stack-tail {
-      height: 1px;
-      pointer-events: none;
+      scroll-snap-type: y mandatory;
     }
 
-    .case {
+    .case-vertical {
       display: block;
-      position: sticky;
-      top: 104px;            /* clear the sticky nav */
-      width: 100%;
-      height: calc(100vh - 128px);
-      margin-bottom: 100vh;  /* breathing between cards */
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      margin-left: calc(50% - 50vw);  /* break out of any parent padding */
+      overflow: hidden;
       color: var(--ink);
       text-decoration: none;
-      border-radius: 40px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
       isolation: isolate;
 
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      scroll-margin-top: 104px;  /* land below the sticky nav */
+      scroll-margin-top: 104px;       /* land below the sticky nav */
     }
-    /* (Previously zeroed the last card's margin-bottom to trim dead
-       space, but that made the previous card un-stick early during the
-       handoff to the last card — Chrome appears to share constraints
-       across adjacent sticky siblings within the same containing block.
-       Keeping the margin matches the spacing between every other pair
-       and keeps the stack synchronized through the last transition.) */
 
-    /* Ken Burns on the <img> — scale value is driven from JS via the
-       --ken-burns CSS variable in components/Work.tsx (a scroll handler
-       updates each card's image on rAF). The card frame stays full-size
-       so the previous card never peeks. */
-    .case img {
+    .case-vertical__bg {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transform-origin: center center;
-      transform: scale(var(--ken-burns, 1));
+      transform-origin: center;
+      transform: scale(1.0);
       transition: filter 0.4s ease;
       will-change: transform;
     }
-    .case:hover img {
-      filter: brightness(0.55);
+    .case-vertical.is-ken-burns .case-vertical__bg {
+      animation: case-vertical-ken-burns 6s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    @keyframes case-vertical-ken-burns {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1.0); }
+    }
+    .case-vertical:hover .case-vertical__bg,
+    .case-vertical:focus-visible .case-vertical__bg {
+      filter: brightness(0.72);
     }
 
-    .case .overlay {
-      position: absolute;
-      inset: 0;
-      padding: clamp(36px, 4vw, 72px);
-      display: flex;
-      flex-direction: column;
-      pointer-events: none;
-    }
-    /* Gradient lives on a pseudo-element so it can fade in on hover
-       without affecting the text layered above. */
-    .case .overlay::before {
+    /* Top + bottom gradient so the centered text reads on any image. */
+    .case-vertical::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 35%, rgba(0, 0, 0, 0) 65%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0)   30%,
+        rgba(0, 0, 0, 0)   65%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
       pointer-events: none;
-    }
-    .case:hover .overlay::before,
-    .case:focus-visible .overlay::before {
-      opacity: 1;
-    }
-    .case .top-row {
-      position: relative;        /* sit above the gradient pseudo-element */
       z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
     }
-    .case .sub {
+
+    .case-vertical__content {
+      position: absolute;
+      inset: 104px 0 0 0;             /* clear the sticky nav */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 clamp(24px, 4vw, 64px);
+      z-index: 2;
+    }
+
+    .case-vertical__sub {
       font-size: 13px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--marigold);
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
-    .case .title {
+
+    .case-vertical__title {
       font-family: var(--font-display);
       font-weight: 900;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      font-size: clamp(40px, 6.5vw, 96px);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144;
+      font-size: clamp(26px, 3vw, 40px);   /* H3 scale */
+      line-height: 1;
+      letter-spacing: -0.02em;
       color: var(--ink);
-      margin: 0 0 16px;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-      max-width: 14ch;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+      margin: 0 0 18px;
+      max-width: 18ch;
+      transition:
+        font-size 0.35s cubic-bezier(.2,.8,.2,1),
+        letter-spacing 0.35s cubic-bezier(.2,.8,.2,1);
     }
-    .case .one-liner {
+    .case-vertical:hover .case-vertical__title,
+    .case-vertical:focus-visible .case-vertical__title {
+      font-size: clamp(30px, 3.4vw, 46px);
+      letter-spacing: -0.025em;
+    }
+
+    .case-vertical__one-liner {
       font-family: var(--font-body);
-      font-size: clamp(16px, 1.3vw, 19px);
+      font-size: clamp(15px, 1.2vw, 17px);
       font-weight: 500;
       line-height: 1.4;
       color: var(--ink);
-      max-width: 38ch;
+      max-width: 52ch;
       text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+      margin: 0 0 28px;
     }
-    .case .flag {
+
+    .case-vertical__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      border: 2px solid var(--marigold);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--paper) 30%, transparent);
+      backdrop-filter: blur(6px);
+      color: var(--marigold);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .case-vertical__cta:hover {
+      background: var(--marigold);
+      color: var(--paper);
+    }
+    .case-vertical__cta svg { flex: none; }
+
+    .case-vertical__flag {
+      position: absolute;
+      top: calc(104px + 24px);
+      right: clamp(20px, 3vw, 40px);
       background: var(--marigold);
       color: var(--paper);
       padding: 7px 14px;
@@ -763,95 +786,59 @@
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      align-self: flex-start;
+      z-index: 3;
     }
 
-    /* Centered Explore CTA — outlined; hidden until card hover, then fades in.
-       Hovering the pill itself fills it marigold. */
-    .case .read-cta {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) translateY(10px);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 36px;
-      border: 2px solid var(--marigold);
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--paper) 30%, transparent);
-      backdrop-filter: blur(6px);
-      color: var(--marigold);
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      opacity: 0;
-      transition:
-        opacity 0.35s cubic-bezier(.2,.8,.2,1),
-        transform 0.35s cubic-bezier(.2,.8,.2,1),
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+    /* Locked variant — forward-looking; no homepage card uses .is-locked today.
+       When one does, render the existing .case-locked-cta inside
+       .case-vertical__content (in place of .case-vertical__cta) and the reset
+       below lets it inherit centering from the flex parent. */
+    .case-vertical.is-locked { cursor: default; }
+    .case-vertical.is-locked .case-vertical__bg {
+      filter: saturate(0.65) brightness(0.78);
     }
-    .case:hover .read-cta,
-    .case:focus-visible .read-cta {
-      opacity: 1;
-      transform: translate(-50%, -50%) translateY(0);
+    .case-vertical.is-locked:hover .case-vertical__bg,
+    .case-vertical.is-locked:focus-visible .case-vertical__bg {
+      filter: saturate(0.65) brightness(0.78);
     }
-    .case .read-cta:hover {
-      background: var(--marigold);
-      color: var(--paper);
+    .case-vertical.is-locked:hover .case-vertical__title,
+    .case-vertical.is-locked:focus-visible .case-vertical__title {
+      font-size: clamp(26px, 3vw, 40px);
+      letter-spacing: -0.02em;
     }
-    .case .read-cta svg { flex: none; }
-
-    /* Locked variant — same hero treatment, but no link/hover dim,
-       and a "Coming soon" lock pill always visible at center. */
-    .case.is-locked { cursor: default; }
-    .case.is-locked img { filter: saturate(0.65) brightness(0.78); }
-    .case.is-locked:hover img { transform: none; filter: saturate(0.65) brightness(0.78); }
-    .case.is-locked .title,
-    .case.is-locked .one-liner { opacity: 0.7; }
-    .case.is-locked .case-locked-cta {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 36px;
-      border: 2px solid color-mix(in srgb, var(--ink) 35%, transparent);
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--paper) 30%, transparent);
-      backdrop-filter: blur(6px);
-      color: color-mix(in srgb, var(--ink) 75%, transparent);
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
+    .case-vertical.is-locked .case-vertical__title,
+    .case-vertical.is-locked .case-vertical__one-liner { opacity: 0.7; }
+    .case-vertical__content .case-locked-cta {
+      position: static;
+      transform: none;
+      top: auto;
+      left: auto;
     }
-    .case.is-locked .case-locked-cta svg { flex: none; opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .case-stack { padding: 0 16px; }
-      .case {
-        position: static;
+      .case-stack-vertical { scroll-snap-type: none; }
+      .case-vertical {
+        width: 100%;
+        margin-left: 0;
         height: auto;
         aspect-ratio: 4 / 5;
-        margin-bottom: 24px;
         scroll-snap-align: none;
+        scroll-snap-stop: normal;
       }
-      .case-img { animation: none; }
-      .case .title { font-size: clamp(36px, 10vw, 64px); max-width: 12ch; }
+      .case-vertical__content { inset: 0; padding: 24px; }
+      .case-vertical__flag { top: 16px; right: 16px; }
+      .case-vertical.is-ken-burns .case-vertical__bg { animation: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .case { position: static; height: auto; aspect-ratio: 21 / 10; margin-bottom: 24px; scroll-snap-align: none; }
-      .case-img { animation: none; }
-      .case:hover img { transform: none; filter: none; }
+      .case-stack-vertical { scroll-snap-type: none; }
+      .case-vertical { scroll-snap-align: none; }
+      .case-vertical.is-ken-burns .case-vertical__bg { animation: none; }
+      .case-vertical:hover .case-vertical__title,
+      .case-vertical:focus-visible .case-vertical__title {
+        font-size: clamp(26px, 3vw, 40px);
+        letter-spacing: -0.02em;
+      }
     }
 
     /* ============================================================
