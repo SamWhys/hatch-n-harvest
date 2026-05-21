@@ -790,9 +790,11 @@
     }
 
     /* Locked variant — forward-looking; no homepage card uses .is-locked today.
-       When one does, render the existing .case-locked-cta inside
-       .case-vertical__content (in place of .case-vertical__cta) and the reset
-       below lets it inherit centering from the flex parent. */
+       When a "Coming soon" card is added, render its lock pill in place of
+       .case-vertical__cta inside .case-vertical__content. The pill itself
+       will need its own rules (border, padding, type) — the old
+       .case-locked-cta ruleset was removed with the rest of the legacy
+       .case-stack CSS in this commit and is not ported forward. */
     .case-vertical.is-locked { cursor: default; }
     .case-vertical.is-locked .case-vertical__bg {
       filter: saturate(0.65) brightness(0.78);
@@ -808,12 +810,6 @@
     }
     .case-vertical.is-locked .case-vertical__title,
     .case-vertical.is-locked .case-vertical__one-liner { opacity: 0.7; }
-    .case-vertical__content .case-locked-cta {
-      position: static;
-      transform: none;
-      top: auto;
-      left: auto;
-    }
 
     @media (max-width: 800px) {
       .case-stack-vertical { scroll-snap-type: none; }
