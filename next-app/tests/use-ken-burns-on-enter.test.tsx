@@ -32,7 +32,6 @@ beforeEach(() => {
 
 afterEach(() => {
   globalThis.IntersectionObserver = originalIO;
-  // @ts-expect-error
   window.IntersectionObserver = originalIO;
 });
 
